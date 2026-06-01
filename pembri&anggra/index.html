@@ -44,7 +44,17 @@
         #cover-section {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(247, 249, 247, 0.9), rgba(247, 249, 247, 0.95)), url('[URL_FOTO_BACKGROUND_COVER_OPSIONAL]') center/cover;
+            
+            /* ========================================== */
+            /* NOTE CARA GANTI BACKGROUND COVER:          */
+            /* 1. Kalau mau pakai foto, ganti teks:       */
+            /*    [URL_FOTO_BACKGROUND_COVER_OPSIONAL]    */
+            /*    dengan link foto lu.                    */
+            /* 2. Kalau TIDAK MAU pakai foto (polosan),   */
+            /*    hapus kode: url('...') center/cover;    */
+            /* ========================================== */
+            background: linear-gradient(rgba(247, 249, 247, 0.9), rgba(247, 249, 247, 0.95)), url('/pembri&anggra/album/background.jpg') center/cover;
+            
             background-color: var(--bg-light);
             z-index: 999;
             display: flex;
@@ -149,6 +159,7 @@
             color: #fff;
         }
 
+        /* Gaya Bingkai Bulat (Untuk Cover & Kutipan) */
         .circle-frame {
             width: 200px;
             height: 200px; 
@@ -161,6 +172,24 @@
         }
 
         .circle-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Gaya Bingkai Melengkung (Arch) Khusus Untuk Profil Mempelai */
+        .arch-frame {
+            width: 220px;
+            height: 280px; 
+            margin: 0 auto 20px auto;
+            border-radius: 110px 110px 0 0; /* Lengkung di atas */
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background-color: #ddd;
+        }
+
+        .arch-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -320,8 +349,8 @@
         <section id="profil" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color); margin-bottom: 40px;">Mempelai</h2>
             
-            <!-- Mempelai Wanita -->
-            <div class="circle-frame">
+            <!-- Mempelai Wanita (Sudah dikembalikan ke bentuk Arch) -->
+            <div class="arch-frame">
                 <img src="/pembri&anggra/album/anggra.png" alt="Mempelai Wanita">
             </div>
             <h3 class="profile-name">Anggrainita</h3>
@@ -329,8 +358,8 @@
             
             <br><br>
 
-            <!-- Mempelai Pria -->
-            <div class="circle-frame">
+            <!-- Mempelai Pria (Sudah dikembalikan ke bentuk Arch) -->
+            <div class="arch-frame">
                 <img src="/pembri&anggra/album/pembri.png" alt="Mempelai Pria">
             </div>
             <h3 class="profile-name">Ahmad Supembri</h3>
@@ -378,6 +407,7 @@
 
         <!-- BAGIAN KUTIPAN -->
         <section id="kutipan" class="section-padding" style="background-color: #fff;">
+            <!-- Foto di bawah tetap Bulat (Circle) -->
             <div class="circle-frame" style="height: 200px;">
                 <img src="/pembri&anggra/album/wedding.jpg" alt="Couple">
             </div>
