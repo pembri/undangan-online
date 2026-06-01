@@ -1,1 +1,159 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Acara</title>
+    <style>
+        /* Styling Dasar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero / Cover Section */
+        #cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #e9ecef; /* Warna netral */
+            padding: 20px;
+        }
+
+        .cover-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .guest-section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding: 15px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .guest-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d35400;
+            margin-top: 10px;
+        }
+
+        .btn-open {
+            padding: 12px 25px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-open:hover {
+            background-color: #1a252f;
+        }
+
+        /* Konten Utama (Disembunyikan di awal) */
+        #main-content {
+            display: none; /* Akan muncul setelah tombol diklik */
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION COVER -->
+    <section id="cover">
+        <h1 class="cover-title">The Wedding of<br>Tuan & Nyonya</h1>
+        <p>Kami mengundang Anda untuk hadir di hari bahagia kami.</p>
+        
+        <div class="guest-section">
+            <p style="margin:0; font-size: 0.9rem;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            <!-- Di sinilah keajaiban JavaScript terjadi -->
+            <div id="nama-tamu" class="guest-name">Tamu Undangan</div>
+        </div>
+
+        <button class="btn-open" onclick="bukaUndangan()">Buka Undangan</button>
+    </section>
+
+    <!-- SECTION KONTEN UTAMA -->
+    <section id="main-content">
+        <div class="section">
+            <h2>Detail Acara</h2>
+            <p><strong>Hari, Tanggal:</strong> Minggu, 31 Desember 2026</p>
+            <p><strong>Waktu:</strong> 09.00 WIB - Selesai</p>
+            <p><strong>Tempat:</strong> Gedung Serbaguna Pusat Kota</p>
+            <a href="#" class="btn-open" style="background-color: #27ae60; font-size: 0.9rem; padding: 10px 20px;">Lihat di Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2>Kutipan Bahagia</h2>
+            <p><em>"Sebuah perjalanan baru dimulai dari sini, bersama melangkah menuju masa depan yang cerah."</em></p>
+        </div>
+
+        <div class="section">
+            <h2>RSVP & Ucapan</h2>
+            <p>Konfirmasi kehadiran Anda dan berikan doa restu.</p>
+            <!-- Form dummy -->
+            <textarea style="width: 100%; height: 80px; margin-bottom: 10px; padding: 10px; box-sizing: border-box;" placeholder="Tulis ucapan Anda di sini..."></textarea>
+            <button class="btn-open">Kirim Ucapan</button>
+        </div>
+    </section>
+
+    <script>
+        // 1. Fungsi untuk mengambil nama tamu dari URL
+        function setNamaTamu() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const namaDariUrl = urlParams.get('to');
+            
+            // Jika ada parameter 'to', ganti teksnya. Jika tidak, biarkan default.
+            if (namaDariUrl) {
+                document.getElementById('nama-tamu').innerText = namaDariUrl;
+            }
+        }
+
+        // 2. Fungsi saat tombol "Buka Undangan" diklik
+        function bukaUndangan() {
+            // Sembunyikan cover
+            document.getElementById('cover').style.display = 'none';
+            // Tampilkan konten utama
+            document.getElementById('main-content').style.display = 'block';
+            // Scroll otomatis ke atas konten utama
+            window.scrollTo(0, 0);
+        }
+
+        // Jalankan fungsi setNamaTamu saat halaman pertama kali dimuat
+        window.onload = setNamaTamu;
+    </script>
+
+</body>
+</html>
