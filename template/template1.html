@@ -44,7 +44,17 @@
         #cover-section {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
+            
+            /* ========================================== */
+            /* NOTE CARA GANTI BACKGROUND COVER:          */
+            /* 1. Kalau mau pakai foto, ganti teks:       */
+            /*    [URL_FOTO_BACKGROUND_COVER_OPSIONAL]    */
+            /*    dengan link foto lu.                    */
+            /* 2. Kalau TIDAK MAU pakai foto (polosan),   */
+            /*    hapus kode: url('...') center/cover;    */
+            /* ========================================== */
             background: linear-gradient(rgba(247, 249, 247, 0.9), rgba(247, 249, 247, 0.95)), url('[URL_FOTO_BACKGROUND_COVER_OPSIONAL]') center/cover;
+            
             background-color: var(--bg-light);
             z-index: 999;
             display: flex;
@@ -149,6 +159,7 @@
             color: #fff;
         }
 
+        /* Gaya Bingkai Bulat (Untuk Cover & Kutipan) */
         .circle-frame {
             width: 200px;
             height: 200px; 
@@ -161,6 +172,24 @@
         }
 
         .circle-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Gaya Bingkai Melengkung (Arch) Khusus Untuk Profil Mempelai */
+        .arch-frame {
+            width: 220px;
+            height: 280px; 
+            margin: 0 auto 20px auto;
+            border-radius: 110px 110px 0 0; /* Lengkung di atas */
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background-color: #ddd;
+        }
+
+        .arch-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -283,16 +312,20 @@
 
 <div class="app-container">
 
+    <!-- AUDIO ELEMENT BACKSOUND -->
     <audio id="bg-music" loop>
         <source src="https://github.com/pembri/undangan-online/raw/refs/heads/main/backsound/senandung-manis.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- TOMBOL KONTROL MUSIK -->
     <div id="music-control" class="music-control spin-animation" onclick="toggleMusic()">
         🎵
     </div>
 
+    <!-- ================= COVER SECTION ================= -->
     <div id="cover-section">
         
+        <!-- Foto Bulat di Atas -->
         <div class="cover-photo-circle">
             <img src="[URL_FOTO_COVER_DISINI]" alt="Foto Pasangan">
         </div>
@@ -304,19 +337,28 @@
         <div class="guest-box">
             <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
             
+            <!-- ========================================== -->
+            <!-- NOTE BUAT NGEDIT NAMA TAMU:                -->
+            <!-- Karena ini versi template murni, fitur     -->
+            <!-- nama otomatis dari link dinonaktifkan.     -->
+            <!-- Silakan ganti tulisan "[TULIS NAMA TAMU    -->
+            <!-- DI SINI]" di bawah ini secara manual.      -->
+            <!-- ========================================== -->
             <div class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
-            
         </div>
 
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
+    <!-- ================= KONTEN UTAMA ================= -->
     <div id="main-content">
         
+        <!-- BAGIAN PROFIL -->
         <section id="profil" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color); margin-bottom: 40px;">Mempelai</h2>
             
-            <div class="circle-frame">
+            <!-- Mempelai Wanita (Format Arch) -->
+            <div class="arch-frame">
                 <img src="[URL_FOTO_WANITA_DISINI]" alt="Mempelai Wanita">
             </div>
             <h3 class="profile-name">[Nama Wanita Lengkap]</h3>
@@ -324,13 +366,15 @@
             
             <br><br>
 
-            <div class="circle-frame">
+            <!-- Mempelai Pria (Format Arch) -->
+            <div class="arch-frame">
                 <img src="[URL_FOTO_PRIA_DISINI]" alt="Mempelai Pria">
             </div>
             <h3 class="profile-name">[Nama Pria Lengkap]</h3>
             <p class="parent-name">Putra dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
         </section>
 
+        <!-- BAGIAN ACARA -->
         <section id="acara" class="section-padding bg-green">
             <h2 class="font-serif">Rangkaian Acara</h2>
             <p style="font-size: 0.85rem; margin-bottom: 30px; opacity: 0.9;">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk hadir pada acara kami:</p>
@@ -356,6 +400,7 @@
             </div>
         </section>
 
+        <!-- BAGIAN MAPS -->
         <section id="lokasi" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color);">Peta Lokasi</h2>
             
@@ -368,16 +413,19 @@
             </a>
         </section>
 
+        <!-- BAGIAN KUTIPAN -->
         <section id="kutipan" class="section-padding" style="background-color: #fff;">
+            <!-- Foto di bawah (Format Circle) -->
             <div class="circle-frame" style="height: 200px;">
                 <img src="[URL_FOTO_BERDUA_DISINI]" alt="Couple">
             </div>
             <p class="quote-text font-serif">
                 "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."
             </p>
-            <p style="font-size: 0.8rem; font-weight: bold; color: var(--primary-color);">[SUMBER KUTIPAN]</p>
+            <p style="font-size: 0.8rem; font-weight: bold; color: var(--primary-color);">[SUMBER KUTIPAN / NAMA WEBSITE]</p>
         </section>
 
+        <!-- BOTTOM NAVIGATION BAR -->
         <nav class="bottom-nav">
             <a href="#profil" class="nav-item">
                 <span class="nav-icon">👤</span>
@@ -398,17 +446,19 @@
 </div>
 
 <script>
-    // FITUR BACA NAMA DARI LINK DIHAPUS UNTUK VERSI TEMPLATE
+    // FITUR BACA NAMA DARI LINK DIHAPUS UNTUK VERSI TEMPLATE MANUAL
 
-    // Transisi Buka Undangan & Play Musik
+    // FUNGSI 1: Transisi Buka Undangan & Play Musik
     function bukaUndangan() {
         let cover = document.getElementById('cover-section');
         cover.style.transition = "opacity 0.8s ease";
         cover.style.opacity = "0";
         
+        // Memutar musik
         let audio = document.getElementById("bg-music");
         audio.play();
 
+        // Memunculkan tombol kontrol musik
         document.getElementById('music-control').style.display = "flex";
         
         setTimeout(() => {
@@ -418,18 +468,18 @@
         }, 800);
     }
 
-    // Pause / Play Musik
+    // FUNGSI 2: Pause / Play Musik
     function toggleMusic() {
         let audio = document.getElementById("bg-music");
         let btn = document.getElementById("music-control");
         
         if (audio.paused) {
             audio.play();
-            btn.classList.add("spin-animation"); 
+            btn.classList.add("spin-animation"); // Muter lagi ikonnya
             btn.innerHTML = "🎵";
         } else {
             audio.pause();
-            btn.classList.remove("spin-animation"); 
+            btn.classList.remove("spin-animation"); // Berhenti muter
             btn.innerHTML = "🔇";
         }
     }
