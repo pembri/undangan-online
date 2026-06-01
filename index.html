@@ -283,16 +283,20 @@
 
 <div class="app-container">
 
+    <!-- AUDIO ELEMENT BACKSOUND (Disembunyikan) -->
     <audio id="bg-music" loop>
         <source src="https://github.com/pembri/undangan-online/raw/refs/heads/main/backsound/senandung-manis.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- TOMBOL KONTROL MUSIK -->
     <div id="music-control" class="music-control spin-animation" onclick="toggleMusic()">
         🎵
     </div>
 
+    <!-- ================= COVER SECTION ================= -->
     <div id="cover-section">
         
+        <!-- Foto Bulat di Atas -->
         <div class="cover-photo-circle">
             <img src="[URL_FOTO_COVER_DISINI]" alt="Foto Pasangan">
         </div>
@@ -303,17 +307,20 @@
         
         <div class="guest-box">
             <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <div id="nama-tamu" class="guest-name">Tamu Undangan</div>
+            <div id="nama-tamu" class="guest-name">Nama Tamu</div>
         </div>
 
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
+    <!-- ================= KONTEN UTAMA ================= -->
     <div id="main-content">
         
+        <!-- BAGIAN PROFIL -->
         <section id="profil" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color); margin-bottom: 40px;">Mempelai</h2>
             
+            <!-- Mempelai Wanita -->
             <div class="circle-frame">
                 <img src="[URL_FOTO_WANITA_DISINI]" alt="Mempelai Wanita">
             </div>
@@ -322,6 +329,7 @@
             
             <br><br>
 
+            <!-- Mempelai Pria -->
             <div class="circle-frame">
                 <img src="[URL_FOTO_PRIA_DISINI]" alt="Mempelai Pria">
             </div>
@@ -329,6 +337,7 @@
             <p class="parent-name">Putra dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
         </section>
 
+        <!-- BAGIAN ACARA -->
         <section id="acara" class="section-padding bg-green">
             <h2 class="font-serif">Rangkaian Acara</h2>
             <p style="font-size: 0.85rem; margin-bottom: 30px; opacity: 0.9;">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk hadir pada acara kami:</p>
@@ -354,6 +363,7 @@
             </div>
         </section>
 
+        <!-- BAGIAN MAPS -->
         <section id="lokasi" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color);">Peta Lokasi</h2>
             
@@ -366,6 +376,7 @@
             </a>
         </section>
 
+        <!-- BAGIAN KUTIPAN -->
         <section id="kutipan" class="section-padding" style="background-color: #fff;">
             <div class="circle-frame" style="height: 200px;">
                 <img src="[URL_FOTO_BERDUA_DISINI]" alt="Couple">
@@ -376,6 +387,7 @@
             <p style="font-size: 0.8rem; font-weight: bold; color: var(--primary-color);">[SUMBER KUTIPAN]</p>
         </section>
 
+        <!-- BOTTOM NAVIGATION BAR -->
         <nav class="bottom-nav">
             <a href="#profil" class="nav-item">
                 <span class="nav-icon">👤</span>
