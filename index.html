@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Undangan Pernikahan - [NAMA PRIA] & [NAMA WANITA]</title>
-    <!-- Menggunakan font Google untuk tampilan elegan -->
+    <title>Undangan Pernikahan</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         /* --- STYLING DASAR --- */
         :root {
-            --primary-color: #839b85; /* Sage Green */
-            --gold-accent: #c4a661;   /* Elegant Gold */
+            --primary-color: #839b85; 
+            --gold-accent: #c4a661;   
             --bg-light: #f7f9f7;
             --text-dark: #333333;
             --text-muted: #666666;
@@ -26,7 +25,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Container mirip layar HP untuk view di Desktop */
         .app-container {
             max-width: 480px;
             margin: 0 auto;
@@ -46,7 +44,7 @@
         #cover-section {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(247, 249, 247, 0.8), rgba(247, 249, 247, 0.9)), url('[URL_FOTO_BACKGROUND_COVER_OPSIONAL]') center/cover;
+            background: linear-gradient(rgba(247, 249, 247, 0.9), rgba(247, 249, 247, 0.95)), url('[URL_FOTO_BACKGROUND_COVER_OPSIONAL]') center/cover;
             background-color: var(--bg-light);
             z-index: 999;
             display: flex;
@@ -55,6 +53,23 @@
             align-items: center;
             text-align: center;
             padding: 30px;
+        }
+
+        .cover-photo-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 3px solid var(--gold-accent);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background-color: #ddd;
+        }
+
+        .cover-photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .cover-subtitle {
@@ -66,7 +81,7 @@
         }
 
         .cover-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--gold-accent);
             margin: 10px 0;
             line-height: 1.1;
@@ -80,8 +95,8 @@
         }
 
         .guest-box {
-            margin-top: 40px;
-            margin-bottom: 30px;
+            margin-top: 30px;
+            margin-bottom: 25px;
         }
 
         .guest-box p {
@@ -117,7 +132,7 @@
         /* --- KONTEN UTAMA --- */
         #main-content {
             display: none;
-            padding-bottom: 80px; /* Space untuk bottom nav */
+            padding-bottom: 80px;
         }
 
         .section-padding {
@@ -129,23 +144,23 @@
             background-color: var(--primary-color);
             color: #fff;
         }
-        .bg-green h2, .bg-green p {
+        
+        .bg-green > h2, .bg-green > p {
             color: #fff;
         }
 
-        /* Gaya Bingkai Melengkung (Arch) */
-        .arch-frame {
-            width: 220px;
-            height: 300px;
+        .circle-frame {
+            width: 200px;
+            height: 200px; 
             margin: 0 auto 20px auto;
-            border-radius: 150px 150px 0 0;
+            border-radius: 50%; 
             overflow: hidden;
             border: 5px solid #fff;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             background-color: #ddd;
         }
 
-        .arch-frame img {
+        .circle-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -163,7 +178,6 @@
             margin-top: 0;
         }
 
-        /* Detail Acara */
         .event-card {
             background: #fff;
             padding: 30px 20px;
@@ -171,6 +185,11 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             border-top: 3px solid var(--primary-color);
+            color: var(--text-dark); 
+        }
+
+        .event-card p {
+            color: var(--text-dark); 
         }
 
         .event-title {
@@ -187,7 +206,6 @@
             margin-bottom: 15px;
         }
 
-        /* Kutipan */
         .quote-text {
             font-size: 0.9rem;
             line-height: 1.8;
@@ -232,16 +250,55 @@
             font-size: 1.2rem;
             margin-bottom: 3px;
         }
+
+        /* --- MUSIC CONTROL --- */
+        .music-control {
+            position: fixed;
+            bottom: 80px; /* di atas menu navigasi bawah */
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--gold-accent);
+            border-radius: 50%;
+            display: none; /* Disembunyikan dulu sampai undangan dibuka */
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .spin-animation {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
 <div class="app-container">
 
-    <!-- ================= COVER SECTION ================= -->
+    <audio id="bg-music" loop>
+        <source src="https://github.com/pembri/undangan-online/raw/refs/heads/main/backsound/senandung-manis.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" class="music-control spin-animation" onclick="toggleMusic()">
+        🎵
+    </div>
+
     <div id="cover-section">
+        
+        <div class="cover-photo-circle">
+            <img src="[URL_FOTO_COVER_DISINI]" alt="Foto Pasangan">
+        </div>
+
         <div class="cover-subtitle">Pernikahan Dari</div>
-        <h1 class="cover-title">[NAMA WANITA]<br>&<br>[NAMA PRIA]</h1>
+        <h1 class="cover-title font-serif">[NAMA WANITA]<br>&<br>[NAMA PRIA]</h1>
         <div class="cover-date">[DD . MM . YYYY]</div>
         
         <div class="guest-box">
@@ -252,31 +309,26 @@
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
-    <!-- ================= KONTEN UTAMA ================= -->
     <div id="main-content">
         
-        <!-- BAGIAN PROFIL -->
         <section id="profil" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color); margin-bottom: 40px;">Mempelai</h2>
             
-            <!-- Mempelai Pria -->
-            <div class="arch-frame">
-                <img src="[URL_FOTO_PRIA_DISINI]" alt="Mempelai Pria">
-            </div>
-            <h3 class="profile-name">[Nama Pria Lengkap]</h3>
-            <p class="parent-name">Putra dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
-            
-            <br><br>
-
-            <!-- Mempelai Wanita -->
-            <div class="arch-frame">
+            <div class="circle-frame">
                 <img src="[URL_FOTO_WANITA_DISINI]" alt="Mempelai Wanita">
             </div>
             <h3 class="profile-name">[Nama Wanita Lengkap]</h3>
             <p class="parent-name">Putri dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
+            
+            <br><br>
+
+            <div class="circle-frame">
+                <img src="[URL_FOTO_PRIA_DISINI]" alt="Mempelai Pria">
+            </div>
+            <h3 class="profile-name">[Nama Pria Lengkap]</h3>
+            <p class="parent-name">Putra dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
         </section>
 
-        <!-- BAGIAN ACARA -->
         <section id="acara" class="section-padding bg-green">
             <h2 class="font-serif">Rangkaian Acara</h2>
             <p style="font-size: 0.85rem; margin-bottom: 30px; opacity: 0.9;">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk hadir pada acara kami:</p>
@@ -302,12 +354,10 @@
             </div>
         </section>
 
-        <!-- BAGIAN MAPS -->
         <section id="lokasi" class="section-padding">
             <h2 class="font-serif" style="color: var(--primary-color);">Peta Lokasi</h2>
             
             <div class="map-wrapper">
-                <!-- Ganti link src di bawah ini dengan embed link Google Maps lokasi Anda -->
                 <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen="" loading="lazy"></iframe>
             </div>
             
@@ -316,9 +366,8 @@
             </a>
         </section>
 
-        <!-- BAGIAN KUTIPAN -->
         <section id="kutipan" class="section-padding" style="background-color: #fff;">
-            <div class="arch-frame" style="height: 200px;">
+            <div class="circle-frame" style="height: 200px;">
                 <img src="[URL_FOTO_BERDUA_DISINI]" alt="Couple">
             </div>
             <p class="quote-text font-serif">
@@ -327,7 +376,6 @@
             <p style="font-size: 0.8rem; font-weight: bold; color: var(--primary-color);">[SUMBER KUTIPAN]</p>
         </section>
 
-        <!-- BOTTOM NAVIGATION BAR (Hanya muncul di konten utama) -->
         <nav class="bottom-nav">
             <a href="#profil" class="nav-item">
                 <span class="nav-icon">👤</span>
@@ -343,9 +391,9 @@
             </a>
         </nav>
 
-    </div> <!-- End Main Content -->
+    </div>
 
-</div> <!-- End App Container -->
+</div>
 
 <script>
     // FUNGSI 1: Format Slug URL ke Nama Tamu yang Rapi
@@ -354,36 +402,50 @@
         let namaDariUrl = urlParams.get('to');
         
         if (namaDariUrl) {
-            // Ubah underscore (_) atau strip (-) jadi spasi
             let namaRapi = namaDariUrl.replace(/[_-]/g, ' ');
-            
-            // Kapitalisasi huruf pertama tiap kata
             namaRapi = namaRapi.replace(/\b\w/g, function(char) {
                 return char.toUpperCase();
             });
-            
             document.getElementById('nama-tamu').innerText = namaRapi;
         }
     }
 
-    // FUNGSI 2: Transisi Buka Undangan
+    // FUNGSI 2: Transisi Buka Undangan & Play Musik
     function bukaUndangan() {
-        // Hilangkan Cover
         let cover = document.getElementById('cover-section');
         cover.style.transition = "opacity 0.8s ease";
         cover.style.opacity = "0";
         
+        // Memutar musik
+        let audio = document.getElementById("bg-music");
+        audio.play();
+
+        // Memunculkan tombol kontrol musik
+        document.getElementById('music-control').style.display = "flex";
+        
         setTimeout(() => {
             cover.style.display = "none";
-            // Munculkan Konten Utama
             document.getElementById('main-content').style.display = "block";
             window.scrollTo(0, 0);
-            
-            // OPSIONAL: Jika ingin play musik otomatis, tambahkan kode audio.play() di sini
         }, 800);
     }
 
-    // Jalankan fungsi nama tamu saat web diload
+    // FUNGSI 3: Pause / Play Musik
+    function toggleMusic() {
+        let audio = document.getElementById("bg-music");
+        let btn = document.getElementById("music-control");
+        
+        if (audio.paused) {
+            audio.play();
+            btn.classList.add("spin-animation"); // Muter lagi ikonnya
+            btn.innerHTML = "🎵";
+        } else {
+            audio.pause();
+            btn.classList.remove("spin-animation"); // Berhenti muter
+            btn.innerHTML = "🔇";
+        }
+    }
+
     window.onload = setNamaTamu;
 </script>
 
