@@ -15,14 +15,14 @@
     ║  Pembri             → nama singkat mempelai pria                 ║
     ║  /pembri&anggra/album/wedding.jpg   → link foto yang muncul di preview WhatsApp  ║
     ║                            (harus link langsung ke file jpg/png)      ║
-    ║  https://undangan.riraproject.com/pembri-anggra/  → alamat url lengkap halaman undangan ini    ║
+    ║  https://undangan.riraproject.com/anggra-pembri/  → alamat url lengkap halaman undangan ini    ║
     ║                                                                       ║
     ║  CONTOH NYATA:                                                        ║
     ║  Anggra          → Anggra                                      ║
     ║  Pembri            → Pembri                                      ║
     ║  /pembri&anggra/album/wedding.jpg  → https://undangan.riraproject.com            ║
     ║                           /anggra-pembri/foto-cover.jpg               ║
-    ║  https://undangan.riraproject.com/pembri-anggra/ → https://undangan.riraproject.com            ║
+    ║  https://undangan.riraproject.com/anggra-pembri/ → https://undangan.riraproject.com            ║
     ║                           /anggra-pembri/                             ║
     ╚═══════════════════════════════════════════════════════════════════════╝
     -->
@@ -30,7 +30,7 @@
     <meta property="og:title"       content="Undangan Pernikahan Anggra & Pembri" />
     <meta property="og:description" content="Kami mengundang kehadiran Anda di hari bahagia kami" />
     <meta property="og:image"       content="/pembri&anggra/album/wedding.jpg" />
-    <meta property="og:url"         content="https://undangan.riraproject.com/pembri-anggra/" />
+    <meta property="og:url"         content="https://undangan.riraproject.com/anggra-pembri/" />
     <meta property="og:type"        content="website" />
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -120,6 +120,13 @@
         .badge-ragu  { background: #fff3cd; color: #856404; font-size: 0.72rem; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
         .wish-time { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
         .wish-msg { font-size: 0.88rem; color: var(--text-dark); line-height: 1.6; }
+
+        .gift-card { background: #fff; border-radius: 15px; padding: 25px 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.06); border-top: 3px solid var(--gold-accent); text-align: center; }
+        .gift-card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 15px; }
+        .gift-bank { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .gift-rekening { font-size: 2rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--primary-color); margin-bottom: 15px; letter-spacing: 2px; }
+        .gift-atas-nama { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; margin-bottom: 0; }
+        .gift-alamat { font-size: 0.9rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 18px; }
 
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -389,7 +396,7 @@
             ┌───────────────────────────────────────────────────────────────────┐
             │  BAGIAN 10 — FOTO-FOTO GALERI (slider geser otomatis)            │
             │                                                                   │
-            │  Ganti masing-masing [URL_FOTO_GALERI_1] sampai [5] dengan       │
+            │  Ganti masing-masing  sampai [5] dengan       │
             │  link foto prewedding / foto bersama / foto keluarga, dll.       │
             │                                                                   │
             │  ✅ Bisa TAMBAH slide: copy paste blok <div class="slide">...</>  │
@@ -397,26 +404,26 @@
             │  ⚠️ Minimal 1 foto harus ada agar slider tidak error             │
             │                                                                   │
             │  CONTOH NYATA (isi dengan link foto berbeda-beda):               │
-            │  [URL_FOTO_GALERI_1] → https://undangan.riraproject.com          │
+            │   → https://undangan.riraproject.com          │
             │                        /anggra-pembri/foto1.jpg                  │
-            │  [URL_FOTO_GALERI_2] → https://undangan.riraproject.com          │
+            │   → https://undangan.riraproject.com          │
             │                        /anggra-pembri/foto2.jpg                  │
-            │  [URL_FOTO_GALERI_3] → https://undangan.riraproject.com          │
+            │   → https://undangan.riraproject.com          │
             │                        /anggra-pembri/foto3.jpg                  │
-            │  [URL_FOTO_GALERI_4] → https://undangan.riraproject.com          │
+            │   → https://undangan.riraproject.com          │
             │                        /anggra-pembri/foto4.jpg                  │
-            │  [URL_FOTO_GALERI_5] → https://undangan.riraproject.com          │
+            │   → https://undangan.riraproject.com          │
             │                        /anggra-pembri/foto5.jpg                  │
             └───────────────────────────────────────────────────────────────────┘
             -->
             <div class="slider-wrap">
                 <button class="slider-btn prev" onclick="slideGaleri(-1)">‹</button>
                 <div class="slider-track" id="sliderTrack">
-                    <div class="slide"><img src="/pembri-anggra/album/background.jpg" alt="Foto 1"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding.jpg" alt="Foto 2"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding2.jpg" alt="Foto 3"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding3.jpg" alt="Foto 4"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding4.jpg" alt="Foto 5"></div>
+                    <div class="slide"><img src="" alt="Foto 1"></div>
+                    <div class="slide"><img src="" alt="Foto 2"></div>
+                    <div class="slide"><img src="" alt="Foto 3"></div>
+                    <div class="slide"><img src="" alt="Foto 4"></div>
+                    <div class="slide"><img src="" alt="Foto 5"></div>
                 </div>
                 <button class="slider-btn next" onclick="slideGaleri(1)">›</button>
             </div>
@@ -474,6 +481,65 @@
             <a href="https://maps.app.goo.gl/x3AGHRj9CUUv99uw8?g_st=ac" target="_blank" style="text-decoration:none;">
                 <button class="btn-gold">Petunjuk Ke Lokasi 📍</button>
             </a>
+        </section>
+
+
+        <!-- ─────────────────────────────────────────────────────────────
+             TANDA KASIH (AMPLOP DIGITAL)
+        ──────────────────────────────────────────────────────────────── -->
+        <section id="hadiah" class="section-padding" style="background-color:#fff;">
+            <h2 class="font-serif fade-up" style="color:var(--primary-color);">Tanda Kasih</h2>
+            <p class="fade-up" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:35px;">
+                Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih untuk kami, dapat melalui:
+            </p>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 13 — INFO REKENING (CASHLESS)                            │
+            │                                                                   │
+            │  BRI            → nama bank mempelai                     │
+            │  625001039334530          → nomor rekening mempelai                │
+            │  Ahmad Supembri     → nama pemilik rekening sesuai buku      │
+            │                                                                   │
+            │  CONTOH NYATA:                                                    │
+            │  BRI        → BRI                                        │
+            │  625001039334530      → 625001039334530                            │
+            │  Ahmad Supembri → Ahmad Supembri                             │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="gift-card fade-up">
+                <div class="gift-card-title">💌 Cashless</div>
+                <div class="gift-bank">BRI</div>
+                <div class="gift-rekening" id="noRekening">625001039334530</div>
+                <button class="btn-gold" onclick="salinRekening()">Salin Rekening 📋</button>
+                <p class="gift-atas-nama">a.n. Ahmad Supembri</p>
+            </div>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 14 — KIRIM KADO & KONFIRMASI WHATSAPP                    │
+            │                                                                   │
+            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang  → alamat lengkap pengiriman kado           │
+            │                         tulis selengkap mungkin agar tidak salah │
+            │                                                                   │
+            │  6285748949707           → nomor WhatsApp mempelai untuk konfirmasi │
+            │                         FORMAT: angka saja, tanpa +, tanpa spasi │
+            │                         Mulai dari kode negara 62 (Indonesia)    │
+            │                                                                   │
+            │  CONTOH NYATA:                                                    │
+            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang → Dsn.Karangjati Ds.Karangpakis            │
+            │                        Kec.Kabuh Kab.Jombang 61453              │
+            │  6285748949707          → 6285748949707                             │
+            │                        (nomor 085748949707 → jadi 6285748949707) │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="gift-card fade-up" style="margin-top:20px;">
+                <div class="gift-card-title">🎁 Kirim Kado</div>
+                <p class="gift-alamat">Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang</p>
+                <a href="https://wa.me/6285748949707?text=Halo%2C+saya+ingin+mengkonfirmasi+pengiriman+kado+untuk+kalian+%F0%9F%8E%81" target="_blank" style="text-decoration:none;">
+                    <button class="btn-gold">Konfirmasi via WhatsApp 💬</button>
+                </a>
+            </div>
         </section>
 
 
@@ -557,6 +623,7 @@
             <a href="#acara"      class="nav-item"><span class="nav-icon">📅</span>Acara</a>
             <a href="#galeri"     class="nav-item"><span class="nav-icon">🖼️</span>Galeri</a>
             <a href="#lokasi"     class="nav-item"><span class="nav-icon">📍</span>Lokasi</a>
+            <a href="#hadiah"     class="nav-item"><span class="nav-icon">🎁</span>Hadiah</a>
             <a href="#ucapan"     class="nav-item"><span class="nav-icon">💌</span>Ucapan</a>
         </nav>
 
@@ -700,6 +767,17 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+
+    /* ─── FUNGSI SALIN REKENING — TIDAK PERLU DIUBAH ────────────────── */
+    function salinRekening() {
+        const noRek = document.getElementById('noRekening').innerText;
+        navigator.clipboard.writeText(noRek).then(() => {
+            alert('Nomor rekening ' + noRek + ' berhasil disalin! ✅');
+        }).catch(() => {
+            prompt('Salin nomor rekening berikut:', noRek);
+        });
+    }
 
 
     /* ─── NAMA TAMU OTOMATIS DARI URL — TIDAK PERLU DIUBAH ───────────────
