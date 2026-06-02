@@ -304,7 +304,7 @@
              COUNTDOWN TIMER — otomatis hitung mundur ke hari H
              (tanggal diatur di BAGIAN 16 di bagian script bawah)
         ──────────────────────────────────────────────────────────────── -->
-        <section class="countdown-section fade-up">
+        <section id="countdown" class="countdown-section fade-up">
             <h2 class="font-serif">Menuju Hari Bahagia</h2>
             <div class="countdown-wrap">
                 <div class="countdown-box"><div class="countdown-num" id="cd-hari">00</div><div class="countdown-label">Hari</div></div>
@@ -382,7 +382,7 @@
         <!-- ─────────────────────────────────────────────────────────────
              GALERI FOTO (SLIDER OTOMATIS)
         ──────────────────────────────────────────────────────────────── -->
-        <section class="gallery-section">
+        <section id="galeri" class="gallery-section">
             <h2 class="font-serif fade-up">Galeri Foto</h2>
 
             <!--
@@ -412,11 +412,11 @@
             <div class="slider-wrap">
                 <button class="slider-btn prev" onclick="slideGaleri(-1)">‹</button>
                 <div class="slider-track" id="sliderTrack">
-                    <div class="slide"><img src="" alt="Foto 1"></div>
-                    <div class="slide"><img src="" alt="Foto 2"></div>
-                    <div class="slide"><img src="" alt="Foto 3"></div>
-                    <div class="slide"><img src="" alt="Foto 4"></div>
-                    <div class="slide"><img src="" alt="Foto 5"></div>
+                    <div class="slide"><img src="/pembri-anggra/album/background.jpg" alt="Foto 1"></div>
+                    <div class="slide"><img src="/pembri-anggra/album/wedding.jpg" alt="Foto 2"></div>
+                    <div class="slide"><img src="/pembri-anggra/album/wedding2.jpg" alt="Foto 3"></div>
+                    <div class="slide"><img src="/pembri-anggra/album/wedding3.jpg" alt="Foto 4"></div>
+                    <div class="slide"><img src="/pembri-anggra/album/wedding4.jpg" alt="Foto 5"></div>
                 </div>
                 <button class="slider-btn next" onclick="slideGaleri(1)">›</button>
             </div>
@@ -552,10 +552,12 @@
 
         <!-- Bottom navigation bar — TIDAK PERLU DIUBAH -->
         <nav class="bottom-nav">
-            <a href="#profil"  class="nav-item"><span class="nav-icon">👤</span>Profil</a>
-            <a href="#acara"   class="nav-item"><span class="nav-icon">📅</span>Acara</a>
-            <a href="#lokasi"  class="nav-item"><span class="nav-icon">📍</span>Lokasi</a>
-            <a href="#ucapan"  class="nav-item"><span class="nav-icon">💌</span>Ucapan</a>
+            <a href="#profil"     class="nav-item"><span class="nav-icon">👤</span>Profil</a>
+            <a href="#countdown"  class="nav-item"><span class="nav-icon">⏳</span>Hitung</a>
+            <a href="#acara"      class="nav-item"><span class="nav-icon">📅</span>Acara</a>
+            <a href="#galeri"     class="nav-item"><span class="nav-icon">🖼️</span>Galeri</a>
+            <a href="#lokasi"     class="nav-item"><span class="nav-icon">📍</span>Lokasi</a>
+            <a href="#ucapan"     class="nav-item"><span class="nav-icon">💌</span>Ucapan</a>
         </nav>
 
     </div><!-- /main-content -->
