@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Undangan Pernikahan [MASUKAN NAMA]</title>
+    <meta property="og:title" content="Undangan Pernikahan [MASUKAN NAMA]" />
+    <meta property="og:description" content="Kami mengundang kehadiran Anda di hari bahagia kami" />
+    <meta property="og:image" content="[MASUKAN URL GAMBAR]" />
+    <meta property="og:url" content="[URL UNDANGAN]" />
+    <meta property="og:type" content="website" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0f0e0e;
+            --bg-card: #1a1818;
+            --bg-section: #141212;
+            --rose-gold: #c9917a;
+            --rose-light: #e8bfb0;
+            --cream: #f0e8df;
+            --text-main: #e8e0d8;
+            --text-muted: #8a8078;
+            --border: rgba(201, 145, 122, 0.25);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body, html {
+            font-family: 'Jost', sans-serif;
+            background-color: #080707;
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* ===== ORNAMEN SVG ===== */
+        .ornament {
+            display: block;
+            margin: 0 auto;
+            opacity: 0.4;
+        }
+
+        /* ===== COVER ===== */
+        #cover-section {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(201,145,122,0.12) 0%, transparent 60%),
+                linear-gradient(180deg, #0f0e0e 0%, #0a0909 100%),
+                url('[URL_FOTO_BACKGROUND_COVER_OPSIONAL]') center/cover no-repeat;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        /* Garis dekoratif atas */
+        .cover-deco-top {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+        }
+        .cover-deco-bottom {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+        }
+
+        .cover-tag {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .cover-photo-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 28px auto;
+            border: 1px solid var(--rose-gold);
+            box-shadow: 0 0 0 6px rgba(201,145,122,0.1), 0 15px 30px rgba(0,0,0,0.5);
+            background-color: #2a2525;
+        }
+
+        .cover-photo-circle img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .cover-amp {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            font-style: italic;
+            font-weight: 300;
+            display: block;
+            line-height: 1;
+            margin: 4px 0;
+        }
+
+        .cover-title {
+            font-size: 3.2rem;
+            color: var(--cream);
+            line-height: 1.05;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            margin: 20px auto;
+        }
+
+        .cover-date {
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .guest-box {
+            margin-top: 28px;
+            margin-bottom: 28px;
+        }
+
+        .guest-label {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .guest-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--cream);
+            padding: 6px 20px;
+            border: 1px solid var(--border);
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .btn-rosegold {
+            background: transparent;
+            color: var(--rose-gold);
+            padding: 12px 36px;
+            border: 1px solid var(--rose-gold);
+            border-radius: 2px;
+            font-size: 0.72rem;
+            font-family: 'Jost', sans-serif;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background: linear-gradient(135deg, transparent 0%, rgba(201,145,122,0.05) 100%);
+        }
+
+        .btn-rosegold:hover {
+            background: rgba(201,145,122,0.15);
+            box-shadow: 0 0 20px rgba(201,145,122,0.2);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        #main-content {
+            display: none;
+            padding-bottom: 80px;
+        }
+
+        .section-padding {
+            padding: 65px 24px;
+            text-align: center;
+        }
+
+        .section-tag {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            font-weight: 400;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .section-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--rose-gold);
+            margin: 16px auto 40px;
+            opacity: 0.5;
+        }
+
+        /* ===== PROFIL ===== */
+        .bg-profil {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(ellipse at 50% 100%, rgba(201,145,122,0.06) 0%, transparent 70%);
+        }
+
+        .arch-frame {
+            width: 190px;
+            height: 255px;
+            margin: 0 auto 18px auto;
+            border-radius: 95px 95px 0 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: #2a2525;
+            position: relative;
+        }
+
+        .arch-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 95px 95px 0 0;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
+        }
+
+        .arch-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.9rem;
+            color: var(--cream);
+            font-weight: 300;
+            margin-bottom: 6px;
+        }
+
+        .parent-name {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+        }
+
+        .profile-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0;
+            opacity: 0.4;
+        }
+
+        .profile-separator span {
+            font-size: 1.2rem;
+            color: var(--rose-gold);
+        }
+
+        .profile-separator::before,
+        .profile-separator::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: var(--rose-gold);
+        }
+
+        /* ===== ACARA ===== */
+        .bg-acara {
+            background-color: var(--bg-section);
+            background-image: 
+                radial-gradient(ellipse at 0% 50%, rgba(201,145,122,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 100% 50%, rgba(201,145,122,0.05) 0%, transparent 60%);
+        }
+
+        .event-card {
+            background: var(--bg-card);
+            padding: 28px 20px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--rose-gold);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 80px; height: 80px;
+            background: radial-gradient(circle at top right, rgba(201,145,122,0.08), transparent);
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            color: var(--rose-gold);
+            font-weight: 300;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .event-info-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .event-info-value {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 300;
+            margin-bottom: 14px;
+        }
+
+        /* ===== LOKASI ===== */
+        .bg-lokasi {
+            background-color: var(--bg-dark);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 240px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            filter: grayscale(80%) invert(90%);
+        }
+
+        /* ===== KUTIPAN ===== */
+        .bg-kutipan {
+            background-color: var(--bg-section);
+        }
+
+        .circle-frame {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 24px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 0 8px rgba(201,145,122,0.06);
+            background-color: #2a2525;
+        }
+
+        .circle-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .quote-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin: 0 10px 16px;
+        }
+
+        .quote-source {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            opacity: 0.7;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background-color: rgba(15,14,14,0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0;
+            box-shadow: 0 -1px 0 var(--border);
+            border-top: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--rose-gold);
+        }
+
+        .nav-icon { font-size: 1.1rem; }
+
+        /* ===== MUSIK ===== */
+        .music-control {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            background: var(--bg-card);
+            border: 1px solid var(--rose-gold);
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: var(--rose-gold);
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 15px rgba(201,145,122,0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .spin-animation { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* ===== ANIMASI MASUK ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.5s; opacity: 0; }
+        .delay-4 { animation-delay: 0.7s; opacity: 0; }
+        .delay-5 { animation-delay: 0.9s; opacity: 0; }
+    </style>
+</head>
+<body>
+<div class="app-container">
+
+    <audio id="bg-music" loop preload="auto">
+        <source src="[MASUKAN URL AUDIO]" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" class="music-control spin-animation" onclick="toggleMusic()">🎵</div>
+
+    <!-- ===== COVER ===== -->
+    <div id="cover-section">
+        <div class="cover-deco-top"></div>
+        <div class="cover-deco-bottom"></div>
+
+        <p class="cover-tag fade-up delay-1">The Wedding Of</p>
+
+        <div class="cover-photo-circle fade-up delay-2">
+            <img src="[URL_FOTO_COVER_DISINI]" alt="Foto Pasangan">
+        </div>
+
+        <h1 class="cover-title fade-up delay-3">
+            [NAMA WANITA]<br>
+            <span class="cover-amp">&</span>
+            [NAMA PRIA]
+        </h1>
+
+        <div class="cover-divider fade-up delay-3"></div>
+
+        <p class="cover-date fade-up delay-4">[DD · MM · YYYY]</p>
+
+        <div class="guest-box fade-up delay-4">
+            <p class="guest-label">Kepada Yth.</p>
+            <div class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
+        </div>
+
+        <button class="btn-rosegold fade-up delay-5" onclick="bukaUndangan()">Buka Undangan</button>
+    </div>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <div id="main-content">
+
+        <!-- PROFIL -->
+        <section id="profil" class="section-padding bg-profil">
+            <p class="section-tag">The Couple</p>
+            <h2 class="section-title font-serif">Mempelai</h2>
+            <div class="section-divider"></div>
+
+            <div class="arch-frame">
+                <img src="[URL_FOTO_WANITA_DISINI]" alt="Mempelai Wanita">
+            </div>
+            <h3 class="profile-name font-serif">[Nama Wanita Lengkap]</h3>
+            <p class="parent-name">Putri dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
+
+            <div class="profile-separator"><span>✦</span></div>
+
+            <div class="arch-frame">
+                <img src="[URL_FOTO_PRIA_DISINI]" alt="Mempelai Pria">
+            </div>
+            <h3 class="profile-name font-serif">[Nama Pria Lengkap]</h3>
+            <p class="parent-name">Putra dari<br>Bapak [Nama Bapak] & Ibu [Nama Ibu]</p>
+        </section>
+
+        <!-- ACARA -->
+        <section id="acara" class="section-padding bg-acara">
+            <p class="section-tag">Save The Date</p>
+            <h2 class="section-title font-serif">Rangkaian Acara</h2>
+            <div class="section-divider"></div>
+
+            <div class="event-card">
+                <h3 class="event-title font-serif">Akad Nikah</h3>
+                <p class="event-info-label">Tanggal</p>
+                <p class="event-info-value">[Hari, Tanggal Bulan Tahun]</p>
+                <p class="event-info-label">Waktu</p>
+                <p class="event-info-value">[Waktu Akad] – Selesai</p>
+                <p class="event-info-label">Lokasi</p>
+                <p class="event-info-value" style="margin-bottom:0;">
+                    <strong style="color:var(--cream); font-weight:400;">[Nama Tempat/Gedung]</strong><br>
+                    <span style="font-size:0.82rem; color:var(--text-muted);">[Alamat Lengkap]</span>
+                </p>
+            </div>
+
+            <div class="event-card">
+                <h3 class="event-title font-serif">Resepsi</h3>
+                <p class="event-info-label">Tanggal</p>
+                <p class="event-info-value">[Hari, Tanggal Bulan Tahun]</p>
+                <p class="event-info-label">Waktu</p>
+                <p class="event-info-value">[Waktu Resepsi] – Selesai</p>
+                <p class="event-info-label">Lokasi</p>
+                <p class="event-info-value" style="margin-bottom:0;">
+                    <strong style="color:var(--cream); font-weight:400;">[Nama Tempat/Gedung]</strong><br>
+                    <span style="font-size:0.82rem; color:var(--text-muted);">[Alamat Lengkap]</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- LOKASI -->
+        <section id="lokasi" class="section-padding bg-lokasi">
+            <p class="section-tag">Find Us</p>
+            <h2 class="section-title font-serif">Peta Lokasi</h2>
+            <div class="section-divider"></div>
+
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <a href="[LINK_GOOGLE_MAPS_ASLI]" target="_blank" style="text-decoration:none;">
+                <button class="btn-rosegold">Petunjuk Ke Lokasi</button>
+            </a>
+        </section>
+
+        <!-- KUTIPAN -->
+        <section id="kutipan" class="section-padding bg-kutipan">
+            <div class="circle-frame">
+                <img src="[URL_FOTO_BERDUA_DISINI]" alt="Couple">
+            </div>
+            <p class="quote-text font-serif">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."
+            </p>
+            <p class="quote-source">[SUMBER KUTIPAN]</p>
+        </section>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <a href="#profil" class="nav-item">
+                <span class="nav-icon">👤</span>Profil
+            </a>
+            <a href="#acara" class="nav-item">
+                <span class="nav-icon">📅</span>Acara
+            </a>
+            <a href="#lokasi" class="nav-item">
+                <span class="nav-icon">📍</span>Lokasi
+            </a>
+        </nav>
+
+    </div>
+</div>
+
+<script>
+    function bukaUndangan() {
+        let cover = document.getElementById('cover-section');
+        cover.style.transition = "opacity 1s ease";
+        cover.style.opacity = "0";
+
+        let audio = document.getElementById("bg-music");
+        audio.play().catch(() => {});
+
+        document.getElementById('music-control').style.display = "flex";
+
+        setTimeout(() => {
+            cover.style.display = "none";
+            document.getElementById('main-content').style.display = "block";
+            window.scrollTo(0, 0);
+        }, 1000);
+    }
+
+    function toggleMusic() {
+        let audio = document.getElementById("bg-music");
+        let btn = document.getElementById("music-control");
+        if (audio.paused) {
+            audio.play();
+            btn.classList.add("spin-animation");
+            btn.innerHTML = "🎵";
+        } else {
+            audio.pause();
+            btn.classList.remove("spin-animation");
+            btn.innerHTML = "🔇";
+        }
+    }
+</script>
+
+</body>
+</html>
