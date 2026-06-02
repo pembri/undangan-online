@@ -121,6 +121,13 @@
         .wish-time { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
         .wish-msg { font-size: 0.88rem; color: var(--text-dark); line-height: 1.6; }
 
+        .gift-card { background: #fff; border-radius: 15px; padding: 25px 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.06); border-top: 3px solid var(--gold-accent); text-align: center; }
+        .gift-card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 15px; }
+        .gift-bank { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .gift-rekening { font-size: 2rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--primary-color); margin-bottom: 15px; letter-spacing: 2px; }
+        .gift-atas-nama { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; margin-bottom: 0; }
+        .gift-alamat { font-size: 0.9rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 18px; }
+
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
@@ -478,6 +485,65 @@
 
 
         <!-- ─────────────────────────────────────────────────────────────
+             TANDA KASIH (AMPLOP DIGITAL)
+        ──────────────────────────────────────────────────────────────── -->
+        <section id="hadiah" class="section-padding" style="background-color:#fff;">
+            <h2 class="font-serif fade-up" style="color:var(--primary-color);">Tanda Kasih</h2>
+            <p class="fade-up" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:35px;">
+                Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih untuk kami, dapat melalui:
+            </p>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 13 — INFO REKENING (CASHLESS)                            │
+            │                                                                   │
+            │  [NAMA_BANK]            → nama bank mempelai                     │
+            │  [NO_REKENING]          → nomor rekening mempelai                │
+            │  [NAMA_PEMILIK_REK]     → nama pemilik rekening sesuai buku      │
+            │                                                                   │
+            │  CONTOH NYATA:                                                    │
+            │  [NAMA_BANK]        → BRI                                        │
+            │  [NO_REKENING]      → 625001039334530                            │
+            │  [NAMA_PEMILIK_REK] → Ahmad Supembri                             │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="gift-card fade-up">
+                <div class="gift-card-title">💌 Cashless</div>
+                <div class="gift-bank">[NAMA_BANK]</div>
+                <div class="gift-rekening" id="noRekening">[NO_REKENING]</div>
+                <button class="btn-gold" onclick="salinRekening()">Salin Rekening 📋</button>
+                <p class="gift-atas-nama">a.n. [NAMA_PEMILIK_REK]</p>
+            </div>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 14 — KIRIM KADO & KONFIRMASI WHATSAPP                    │
+            │                                                                   │
+            │  [ALAMAT_KIRIM_KADO]  → alamat lengkap pengiriman kado           │
+            │                         tulis selengkap mungkin agar tidak salah │
+            │                                                                   │
+            │  [NOMOR_WA]           → nomor WhatsApp mempelai untuk konfirmasi │
+            │                         FORMAT: angka saja, tanpa +, tanpa spasi │
+            │                         Mulai dari kode negara 62 (Indonesia)    │
+            │                                                                   │
+            │  CONTOH NYATA:                                                    │
+            │  [ALAMAT_KIRIM_KADO] → Dsn.Karangjati Ds.Karangpakis            │
+            │                        Kec.Kabuh Kab.Jombang 61453              │
+            │  [NOMOR_WA]          → 6285748949707                             │
+            │                        (nomor 085748949707 → jadi 6285748949707) │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="gift-card fade-up" style="margin-top:20px;">
+                <div class="gift-card-title">🎁 Kirim Kado</div>
+                <p class="gift-alamat">[ALAMAT_KIRIM_KADO]</p>
+                <a href="https://wa.me/[NOMOR_WA]?text=Halo%2C+saya+ingin+mengkonfirmasi+pengiriman+kado+untuk+kalian+%F0%9F%8E%81" target="_blank" style="text-decoration:none;">
+                    <button class="btn-gold">Konfirmasi via WhatsApp 💬</button>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- ─────────────────────────────────────────────────────────────
              FORM UCAPAN & RSVP (terhubung ke Firebase)
         ──────────────────────────────────────────────────────────────── -->
         <section id="ucapan" class="wishes-section">
@@ -557,6 +623,7 @@
             <a href="#acara"      class="nav-item"><span class="nav-icon">📅</span>Acara</a>
             <a href="#galeri"     class="nav-item"><span class="nav-icon">🖼️</span>Galeri</a>
             <a href="#lokasi"     class="nav-item"><span class="nav-icon">📍</span>Lokasi</a>
+            <a href="#hadiah"     class="nav-item"><span class="nav-icon">🎁</span>Hadiah</a>
             <a href="#ucapan"     class="nav-item"><span class="nav-icon">💌</span>Ucapan</a>
         </nav>
 
@@ -701,6 +768,17 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+
+    /* ─── FUNGSI SALIN REKENING — TIDAK PERLU DIUBAH ────────────────── */
+    function salinRekening() {
+        const noRek = document.getElementById('noRekening').innerText;
+        navigator.clipboard.writeText(noRek).then(() => {
+            alert('Nomor rekening ' + noRek + ' berhasil disalin! ✅');
+        }).catch(() => {
+            prompt('Salin nomor rekening berikut:', noRek);
+        });
+    }
 
 
     /* ─── NAMA TAMU OTOMATIS DARI URL — TIDAK PERLU DIUBAH ───────────────
