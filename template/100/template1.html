@@ -350,7 +350,7 @@
             <!-- Silakan ganti tulisan "[TULIS NAMA TAMU    -->
             <!-- DI SINI]" di bawah ini secara manual.      -->
             <!-- ========================================== -->
-            <div class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
+            <div id="nama-tamu" class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
         </div>
 
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan</button>
@@ -452,7 +452,18 @@
 </div>
 
 <script>
-    // FITUR BACA NAMA DARI LINK DIHAPUS UNTUK VERSI TEMPLATE MANUAL
+    
+
+    // FUNGSI 0: Nama Tamu dari URL
+    function setNamaTamu() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let nama = urlParams.get("to");
+        if (nama) {
+            nama = nama.replace(/[_-]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+            document.getElementById("nama-tamu").innerText = nama;
+        }
+    }
+    window.onload = setNamaTamu;
 
     // FUNGSI 1: Transisi Buka Undangan & Play Musik
     function bukaUndangan() {
