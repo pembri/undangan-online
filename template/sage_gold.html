@@ -137,18 +137,26 @@
             align-items: center;
             text-align: center;
             padding: 20px 20px 80px 20px; /* 80px bawah buat navbar */
-            overflow: hidden;
+            overflow-y: auto; /* bisa scroll internal kalau konten melebihi layar */
+            overflow-x: hidden;
             position: relative;
+            scrollbar-width: none;
         }
+        .snap-section::-webkit-scrollbar { display: none; }
 
-        /* ── UCAPAN & PENUTUP: free scroll tapi tetap snap masuk ── */
+        /* ── UCAPAN & PENUTUP: punya scroll sendiri, tidak di-snap paksa ── */
         .snap-free {
             scroll-snap-align: start;
-            scroll-snap-stop: always;
-            min-height: 100vh;
+            scroll-snap-stop: normal; /* tidak paksa stop, biar internal scroll dulu */
+            height: 100vh;
             box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
             padding: 40px 20px 100px 20px;
+            -webkit-overflow-scrolling: touch;
         }
+        .snap-free::-webkit-scrollbar { display: none; }
 
         /* ── SECTION COLORS ── */
         .bg-green { background-color: var(--primary-color); color: #fff; }
@@ -168,6 +176,11 @@
         .snap-section > *:nth-child(5), .snap-free > *:nth-child(5) { transition-delay: 0.4s; }
         .snap-section.in-view > *, .snap-free.in-view > * {
             opacity: 1; transform: translateY(0);
+        }
+        /* wishes-list dan wish-card tidak di-hide via animasi parent */
+        .snap-free.in-view .wishes-list,
+        .snap-free.in-view .wish-card {
+            opacity: 1; transform: none;
         }
 
         /* legacy fade-up untuk compat */
@@ -1123,6 +1136,10 @@
                 } else {
                     /* Reset animasi saat section keluar, biar tiap masuk bagus */
                     e.target.classList.remove('in-view');
+                    /* Reset scroll internal snap-free ke atas saat keluar */
+                    if (e.target.classList.contains('snap-free')) {
+                        e.target.scrollTop = 0;
+                    }
                 }
             });
         }, { root: mc, threshold: 0.4 });
@@ -1130,7 +1147,7 @@
         /* Navbar aktif berdasarkan section yang paling terlihat */
         const navObserver = new IntersectionObserver(entries => {
             entries.forEach(e => {
-                if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+                if (e.isIntersecting && e.intersectionRatio >= 0.3) {
                     const sid    = e.target.id;
                     const target = sectionNavMap[sid];
                     navItems.forEach(n => {
@@ -1138,7 +1155,7 @@
                     });
                 }
             });
-        }, { root: mc, threshold: 0.5 });
+        }, { root: mc, threshold: 0.3 });
 
         sections.forEach(s => {
             animObserver.observe(s);
@@ -1151,6 +1168,11 @@
                 e.preventDefault();
                 const target = mc.querySelector('#' + n.dataset.section);
                 if (!target) return;
+
+                /* Reset scroll internal snap-free sebelum navigasi */
+                if (target.classList.contains('snap-free')) {
+                    target.scrollTop = 0;
+                }
 
                 const pt = document.getElementById('page-transition');
                 // Wipe masuk
