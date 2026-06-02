@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- ============================================================ -->
+    <!-- NOTE [1] JUDUL & META                                        -->
+    <!-- Ganti semua teks [NAMA WANITA], [NAMA PRIA] dst             -->
+    <!-- sesuai data pasangan.                                        -->
+    <!-- ============================================================ -->
+    <title>Undangan Pernikahan [NAMA WANITA] & [NAMA PRIA]</title>
+
+    <!-- Open Graph — preview saat link dibagikan via WhatsApp -->
+    <meta property="og:title" content="Undangan Pernikahan [NAMA WANITA] & [NAMA PRIA]" />
+    <meta property="og:description" content="Kami mengundang kehadiran Anda di hari bahagia kami" />
+    <!-- NOTE [2] Ganti dengan URL foto yang akan muncul saat preview WhatsApp -->
+    <meta property="og:image" content="[URL_FOTO_PREVIEW_WHATSAPP]" />
+    <!-- NOTE [3] Ganti dengan URL lengkap halaman undangan ini -->
+    <meta property="og:url" content="[URL_HALAMAN_UNDANGAN]" />
+    <meta property="og:type" content="website" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== PALET WARNA — Midnight Romance ===== */
+        /* Untuk ganti tema warna, ubah nilai di bawah ini */
+        :root {
+            --primary:     #1a1f36;   /* navy gelap — warna dominan */
+            --secondary:   #2d3457;   /* navy medium — untuk section */
+            --rose-gold:   #c9956c;   /* rose gold — aksen utama */
+            --rose-light:  #f0d5c4;   /* blush — aksen terang */
+            --bg:          #f5f0eb;   /* krem — background utama */
+            --bg-dark:     #1a1f36;   /* navy — background gelap */
+            --text-dark:   #1a1f36;
+            --text-light:  #f5f0eb;
+            --text-muted:  #8a8fa8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background-color: #2a2a2a;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        /* ===== ORNAMEN GARIS ===== */
+        .ornament {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin: 16px auto;
+            color: var(--rose-gold);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+        }
+        .ornament::before, .ornament::after {
+            content: '';
+            flex: 1;
+            max-width: 60px;
+            height: 1px;
+            background: var(--rose-gold);
+            opacity: 0.6;
+        }
+
+        /* ===== COVER SECTION ===== */
+        #cover-section {
+            position: absolute;
+            inset: 0;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 30px;
+
+            /* ============================================================ */
+            /* NOTE [4] BACKGROUND COVER                                     */
+            /* Pilih salah satu:                                             */
+            /* A) Pakai foto: ganti [URL_FOTO_BACKGROUND] dengan link foto  */
+            /* B) Tanpa foto (warna polos): hapus baris url('...') nya saja */
+            /* ============================================================ */
+            background:
+                linear-gradient(160deg, rgba(26,31,54,0.92) 0%, rgba(26,31,54,0.85) 100%),
+                url('[URL_FOTO_BACKGROUND]') center/cover no-repeat;
+            background-color: var(--bg-dark);
+        }
+
+        /* Monogram lingkaran di cover */
+        .cover-monogram {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,149,108,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            position: relative;
+        }
+        .cover-monogram::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            border: 1px solid rgba(201,149,108,0.3);
+        }
+        .cover-monogram-inner {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(255,255,255,0.1);
+        }
+        .cover-monogram-inner img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .cover-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: var(--rose-gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .cover-names {
+            font-size: 3.2rem;
+            color: #fff;
+            line-height: 1.05;
+            margin: 0 0 4px 0;
+        }
+
+        .cover-ampersand {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            font-style: italic;
+            display: block;
+            margin: 2px 0;
+        }
+
+        .cover-date {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: var(--rose-light);
+            margin: 22px 0;
+            text-transform: uppercase;
+        }
+
+        /* Kotak nama tamu */
+        .guest-box {
+            margin: 10px 0 28px;
+            padding: 14px 24px;
+            border: 1px solid rgba(201,149,108,0.35);
+            border-radius: 2px;
+            width: 100%;
+            max-width: 280px;
+        }
+        .guest-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin: 0 0 6px 0;
+        }
+        .guest-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 0;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--rose-gold);
+            padding: 11px 32px;
+            border: 1px solid var(--rose-gold);
+            border-radius: 2px;
+            font-size: 0.78rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: var(--rose-gold);
+            color: #fff;
+        }
+
+        /* ===== KONTEN UTAMA ===== */
+        #main-content {
+            display: none;
+            padding-bottom: 80px;
+        }
+
+        .section {
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        /* ===== PROFIL MEMPELAI ===== */
+        #profil {
+            background: var(--bg);
+        }
+
+        .couple-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 36px;
+        }
+
+        .couple-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Bingkai foto mempelai — format portrait persegi panjang */
+        .portrait-frame {
+            width: 180px;
+            height: 240px;
+            overflow: hidden;
+            border-radius: 90px 90px 4px 4px;
+            border: 4px solid var(--primary);
+            box-shadow: 6px 6px 0 var(--rose-gold);
+            background: #ddd;
+            margin-bottom: 18px;
+        }
+        .portrait-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .couple-name {
+            font-size: 1.7rem;
+            color: var(--primary);
+            margin: 0 0 4px;
+        }
+        .couple-parent {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== ACARA ===== */
+        #acara {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        #acara .section-title {
+            color: #fff;
+        }
+
+        .event-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--rose-gold);
+            margin: 0 auto 32px;
+            opacity: 0.6;
+        }
+
+        .event-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(201,149,108,0.2);
+            border-radius: 4px;
+            padding: 28px 20px;
+            margin-bottom: 16px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .event-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--rose-gold);
+        }
+
+        .event-type {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--rose-gold);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .event-name {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0 0 14px;
+        }
+        .event-detail {
+            font-size: 0.82rem;
+            color: rgba(245,240,235,0.75);
+            margin: 4px 0;
+            line-height: 1.6;
+        }
+        .event-detail strong {
+            color: var(--rose-light);
+        }
+
+        /* ===== MAPS ===== */
+        #lokasi {
+            background: var(--bg);
+        }
+
+        .map-wrap {
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(26,31,54,0.15);
+            margin: 24px 0 20px;
+        }
+        .map-wrap iframe {
+            width: 100%;
+            height: 240px;
+            border: none;
+            display: block;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 2px;
+            font-size: 0.78rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn-outline:hover { background: var(--secondary); }
+
+        /* ===== PENUTUP / QUOTE ===== */
+        #penutup {
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 60px 32px;
+        }
+
+        .quote-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--rose-gold);
+            margin: 0 auto 24px;
+            background: rgba(255,255,255,0.1);
+        }
+        .quote-photo img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .quote-text {
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.9;
+            color: rgba(245,240,235,0.85);
+            margin: 0 0 16px;
+        }
+
+        /* ============================================================ */
+        /* NOTE [5] WATERMARK / NAMA WEBSITE                            */
+        /* Ganti teks di bawah dengan nama website/brand kamu           */
+        /* ============================================================ */
+        .watermark {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--rose-gold);
+            opacity: 0.7;
+        }
+
+        /* ===== BOTTOM NAVIGATION ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: var(--primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            border-radius: 16px 16px 0 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            color: rgba(245,240,235,0.7);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            transition: color 0.2s;
+        }
+        .nav-item:hover { color: var(--rose-gold); }
+        .nav-icon { font-size: 1.1rem; }
+
+        /* ===== MUSIC CONTROL ===== */
+        .music-btn {
+            position: fixed;
+            bottom: 78px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: var(--rose-gold);
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(201,149,108,0.5);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .spin { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div class="app-container">
+
+    <!-- ============================================================ -->
+    <!-- NOTE [6] AUDIO / MUSIK LATAR                                 -->
+    <!-- Ganti [URL_FILE_MUSIK_MP3] dengan link file musik .mp3       -->
+    <!-- Contoh: https://domain.com/musik/nama-lagu.mp3               -->
+    <!-- ============================================================ -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="[URL_FILE_MUSIK_MP3]" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol musik (muncul setelah undangan dibuka) -->
+    <div id="music-btn" class="music-btn spin" onclick="toggleMusic()">🎵</div>
+
+
+    <!-- ==================== COVER ==================== -->
+    <div id="cover-section">
+
+        <!-- Foto bulat kecil di cover -->
+        <div class="cover-monogram">
+            <div class="cover-monogram-inner">
+                <!-- ============================================================ -->
+                <!-- NOTE [7] FOTO COVER (lingkaran kecil di tengah cover)        -->
+                <!-- Ganti [URL_FOTO_PASANGAN_COVER] dengan link foto berdua      -->
+                <!-- ============================================================ -->
+                <img src="[URL_FOTO_PASANGAN_COVER]" alt="Foto Pasangan">
+            </div>
+        </div>
+
+        <div class="cover-label">The Wedding of</div>
+
+        <!-- ============================================================ -->
+        <!-- NOTE [8] NAMA MEMPELAI DI COVER                             -->
+        <!-- Ganti [NAMA WANITA] dan [NAMA PRIA]                         -->
+        <!-- ============================================================ -->
+        <h1 class="cover-names serif">
+            [NAMA WANITA]
+            <span class="cover-ampersand">&</span>
+            [NAMA PRIA]
+        </h1>
+
+        <!-- ============================================================ -->
+        <!-- NOTE [9] TANGGAL DI COVER                                   -->
+        <!-- Format bebas, contoh: 15 . 07 . 2026                        -->
+        <!-- ============================================================ -->
+        <div class="cover-date">[DD] . [MM] . [YYYY]</div>
+
+        <!-- Kotak nama tamu — otomatis dari URL ?to=nama-tamu -->
+        <div class="guest-box">
+            <p class="guest-label">Kepada Yth. Bapak / Ibu / Saudara/i</p>
+            <p id="nama-tamu" class="guest-name">Nama Tamu</p>
+        </div>
+
+        <button class="btn-primary" onclick="bukaUndangan()">Buka Undangan</button>
+    </div>
+
+
+    <!-- ==================== KONTEN UTAMA ==================== -->
+    <div id="main-content">
+
+        <!-- BAGIAN PROFIL -->
+        <section id="profil" class="section">
+            <p class="section-label">Bismillahirrahmanirrahim</p>
+            <h2 class="section-title serif">Mempelai</h2>
+            <div class="ornament">✦</div>
+
+            <div class="couple-grid">
+
+                <!-- Mempelai Wanita -->
+                <div class="couple-card">
+                    <!-- ============================================================ -->
+                    <!-- NOTE [10] FOTO MEMPELAI WANITA                              -->
+                    <!-- Ganti [URL_FOTO_WANITA] dengan link foto mempelai wanita    -->
+                    <!-- Ukuran ideal: portrait (tinggi > lebar), min 400x500px      -->
+                    <!-- ============================================================ -->
+                    <div class="portrait-frame">
+                        <img src="[URL_FOTO_WANITA]" alt="Mempelai Wanita">
+                    </div>
+                    <!-- NOTE [11] Nama lengkap & nama orang tua mempelai wanita -->
+                    <h3 class="couple-name serif">[Nama Lengkap Wanita]</h3>
+                    <p class="couple-parent">
+                        Putri dari<br>
+                        Bapak [Nama Ayah Wanita] &amp; Ibu [Nama Ibu Wanita]
+                    </p>
+                </div>
+
+                <!-- Mempelai Pria -->
+                <div class="couple-card">
+                    <!-- ============================================================ -->
+                    <!-- NOTE [12] FOTO MEMPELAI PRIA                                -->
+                    <!-- Ganti [URL_FOTO_PRIA] dengan link foto mempelai pria        -->
+                    <!-- Ukuran ideal: portrait (tinggi > lebar), min 400x500px      -->
+                    <!-- ============================================================ -->
+                    <div class="portrait-frame">
+                        <img src="[URL_FOTO_PRIA]" alt="Mempelai Pria">
+                    </div>
+                    <!-- NOTE [13] Nama lengkap & nama orang tua mempelai pria -->
+                    <h3 class="couple-name serif">[Nama Lengkap Pria]</h3>
+                    <p class="couple-parent">
+                        Putra dari<br>
+                        Bapak [Nama Ayah Pria] &amp; Ibu [Nama Ibu Pria]
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- BAGIAN ACARA -->
+        <section id="acara" class="section">
+            <p class="section-label">Rangkaian</p>
+            <h2 class="section-title serif">Acara</h2>
+            <div class="ornament" style="color:rgba(201,149,108,0.7);">✦</div>
+            <div class="event-divider"></div>
+
+            <!-- Event 1: Akad Nikah -->
+            <div class="event-card">
+                <p class="event-type">Akad Nikah</p>
+                <h3 class="event-name serif">Akad Nikah</h3>
+                <!-- ============================================================ -->
+                <!-- NOTE [14] DETAIL ACARA AKAD NIKAH                           -->
+                <!-- Isi hari, tanggal, waktu, nama tempat, dan alamat lengkap   -->
+                <!-- ============================================================ -->
+                <p class="event-detail"><strong>[Hari], [Tanggal Bulan Tahun]</strong></p>
+                <p class="event-detail">[Jam Mulai] WIB — Selesai</p>
+                <p class="event-detail" style="margin-top:10px;">
+                    <strong>[Nama Tempat / Gedung]</strong><br>
+                    [Alamat Lengkap, Kecamatan, Kota]
+                </p>
+            </div>
+
+            <!-- Event 2: Resepsi -->
+            <div class="event-card">
+                <p class="event-type">Resepsi Pernikahan</p>
+                <h3 class="event-name serif">Resepsi</h3>
+                <!-- ============================================================ -->
+                <!-- NOTE [15] DETAIL ACARA RESEPSI                              -->
+                <!-- Isi hari, tanggal, waktu, nama tempat, dan alamat lengkap   -->
+                <!-- ============================================================ -->
+                <p class="event-detail"><strong>[Hari], [Tanggal Bulan Tahun]</strong></p>
+                <p class="event-detail">[Jam Mulai] WIB — Selesai</p>
+                <p class="event-detail" style="margin-top:10px;">
+                    <strong>[Nama Tempat / Gedung]</strong><br>
+                    [Alamat Lengkap, Kecamatan, Kota]
+                </p>
+            </div>
+        </section>
+
+
+        <!-- BAGIAN PETA LOKASI -->
+        <section id="lokasi" class="section">
+            <p class="section-label">Temukan Kami</p>
+            <h2 class="section-title serif">Lokasi</h2>
+            <div class="ornament">✦</div>
+
+            <div class="map-wrap">
+                <!-- ============================================================ -->
+                <!-- NOTE [16] EMBED GOOGLE MAPS                                  -->
+                <!-- Cara dapat link embed:                                       -->
+                <!-- 1. Buka maps.google.com, cari lokasi                        -->
+                <!-- 2. Klik Share > Embed a map                                 -->
+                <!-- 3. Copy link yang ada di src="..." dan paste di bawah ini   -->
+                <!-- ============================================================ -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=[PASTE_EMBED_MAPS_DISINI]"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- NOTE [17] LINK GOOGLE MAPS (tombol petunjuk arah)           -->
+            <!-- Buka lokasi di Google Maps, copy link dari address bar,     -->
+            <!-- atau klik Share > Copy link                                 -->
+            <!-- ============================================================ -->
+            <a href="[LINK_GOOGLE_MAPS_UNTUK_TOMBOL]" target="_blank">
+                <button class="btn-outline">Petunjuk Arah</button>
+            </a>
+        </section>
+
+
+        <!-- BAGIAN PENUTUP / QUOTE -->
+        <section id="penutup" class="section" style="background:var(--secondary); color:var(--text-light); padding: 60px 32px;">
+            <!-- ============================================================ -->
+            <!-- NOTE [18] FOTO BERDUA DI BAGIAN BAWAH                       -->
+            <!-- Ganti [URL_FOTO_BERDUA] dengan link foto pasangan            -->
+            <!-- ============================================================ -->
+            <div class="quote-photo">
+                <img src="[URL_FOTO_BERDUA]" alt="Foto Pasangan">
+            </div>
+
+            <div class="ornament" style="color:var(--rose-gold);">✦</div>
+
+            <p class="quote-text serif">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."
+            </p>
+            <p style="font-size:0.75rem; color:var(--rose-gold); letter-spacing:1px; margin-bottom:24px;">
+                — QS. Ar-Rum: 21
+            </p>
+
+            <!-- NOTE [19] Ganti nama website/brand kamu di bawah ini -->
+            <p class="watermark">[NAMA WEBSITE / BRAND KAMU]</p>
+        </section>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav">
+            <a href="#profil" class="nav-item">
+                <span class="nav-icon">👤</span>Profil
+            </a>
+            <a href="#acara" class="nav-item">
+                <span class="nav-icon">📅</span>Acara
+            </a>
+            <a href="#lokasi" class="nav-item">
+                <span class="nav-icon">📍</span>Lokasi
+            </a>
+        </nav>
+
+    </div><!-- end #main-content -->
+
+</div><!-- end .app-container -->
+
+<script>
+    /* ============================================================
+     * FUNGSI NAMA TAMU OTOMATIS DARI URL
+     * Cara pakai: tambahkan ?to=nama-tamu di akhir link undangan
+     * Contoh: https://domain.com/undangan/?to=Budi-Santoso
+     * Tanda - atau _ akan otomatis diganti spasi & huruf kapital
+     * ============================================================ */
+    function setNamaTamu() {
+        const params = new URLSearchParams(window.location.search);
+        const raw = params.get('to');
+        if (raw) {
+            const nama = raw
+                .replace(/[_-]/g, ' ')
+                .replace(/\b\w/g, c => c.toUpperCase());
+            document.getElementById('nama-tamu').innerText = nama;
+        }
+    }
+
+    /* ============================================================
+     * FUNGSI BUKA UNDANGAN
+     * Klik tombol "Buka Undangan" → cover fade out, musik mulai
+     * ============================================================ */
+    function bukaUndangan() {
+        const cover = document.getElementById('cover-section');
+        cover.style.transition = 'opacity 0.9s ease';
+        cover.style.opacity = '0';
+
+        document.getElementById('bg-music').play().catch(() => {});
+        document.getElementById('music-btn').style.display = 'flex';
+
+        setTimeout(() => {
+            cover.style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            window.scrollTo(0, 0);
+        }, 900);
+    }
+
+    /* ============================================================
+     * FUNGSI TOGGLE MUSIK
+     * Klik ikon musik kanan bawah → play/pause
+     * ============================================================ */
+    function toggleMusic() {
+        const audio = document.getElementById('bg-music');
+        const btn   = document.getElementById('music-btn');
+        if (audio.paused) {
+            audio.play();
+            btn.classList.add('spin');
+            btn.innerHTML = '🎵';
+        } else {
+            audio.pause();
+            btn.classList.remove('spin');
+            btn.innerHTML = '🔇';
+        }
+    }
+
+    window.onload = setNamaTamu;
+</script>
+</body>
+</html>
