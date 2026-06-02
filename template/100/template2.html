@@ -504,7 +504,7 @@
 
         <div class="guest-box fade-up delay-4">
             <p class="guest-label">Kepada Yth.</p>
-            <div class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
+            <div id="nama-tamu" class="guest-name">[TULIS NAMA TAMU DI SINI]</div>
         </div>
 
         <button class="btn-rosegold fade-up delay-5" onclick="bukaUndangan()">Buka Undangan</button>
@@ -610,6 +610,19 @@
 </div>
 
 <script>
+    // FUNGSI 0: Nama Tamu dari URL
+    // Cara pakai: tambah ?to=nama_tamu di URL
+    // Contoh: website.com/?to=budi_santoso → tampil "Budi Santoso"
+    function setNamaTamu() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let nama = urlParams.get("to");
+        if (nama) {
+            nama = nama.replace(/[_-]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+            document.getElementById("nama-tamu").innerText = nama;
+        }
+    }
+    window.onload = setNamaTamu;
+
     function bukaUndangan() {
         let cover = document.getElementById('cover-section');
         cover.style.transition = "opacity 1s ease";
