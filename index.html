@@ -2,923 +2,270 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!--
-    ╔═══════════════════════════════════════════════════════════════════════╗
-    ║  ░░░  BAGIAN 1 — JUDUL TAB BROWSER & PREVIEW WHATSAPP  ░░░          ║
-    ╠═══════════════════════════════════════════════════════════════════════╣
-    ║                                                                       ║
-    ║  GANTI 4 hal berikut:                                                 ║
-    ║                                                                       ║
-    ║  Anggra           → nama singkat mempelai wanita               ║
-    ║  Pembri             → nama singkat mempelai pria                 ║
-    ║  /pembri-anggra/album/wedding.jpg   → link foto yang muncul di preview WhatsApp  ║
-    ║                            (harus link langsung ke file jpg/png)      ║
-    ║  https://riradigital.my.id/anggra-pembri/  → alamat url lengkap halaman undangan ini    ║
-    ║                                                                       ║
-    ║  CONTOH NYATA:                                                        ║
-    ║  Anggra          → Anggra                                      ║
-    ║  Pembri            → Pembri                                      ║
-    ║  /pembri-anggra/album/wedding.jpg  → https://riradigital.my.id            ║
-    ║                           /anggra-pembri/foto-cover.jpg               ║
-    ║  https://riradigital.my.id/anggra-pembri/ → https://riradigital.my.id            ║
-    ║                           /anggra-pembri/                             ║
-    ╚═══════════════════════════════════════════════════════════════════════╝
-    -->
-    <title>Undangan Pernikahan Anggra & Pembri</title>
-    <meta property="og:title"       content="Undangan Pernikahan Anggra & Pembri" />
-    <meta property="og:description" content="Kami mengundang kehadiran Anda di hari bahagia kami" />
-    <meta property="og:image"       content="https://riradigital.my.id/pembri-anggra/album/wedding.jpg" />
-    <meta property="og:url"         content="https://riradigital.my.id/pembri-anggra/" />
-    <meta property="og:type"        content="website" />
-    <meta name="twitter:card"       content="summary_large_image">
-    <meta name="twitter:image"      content="https://riradigital.my.id/pembri-anggra/album/wedding.jpg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rira Project - Jasa Pembuatan Undangan Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- STYLING DASAR --- */
         :root {
-            --primary-color: #839b85;
-            --gold-accent:   #c4a661;
-            --bg-light:      #f7f9f7;
-            --text-dark:     #333333;
-            --text-muted:    #666666;
+            --primary-color: #839b85; /* Sage Green elegan */
+            --gold-accent: #c4a661;   /* Aksen Emas */
+            --bg-light: #f9fbf9;
+            --text-dark: #2c3e50;
+            --text-muted: #666;
         }
 
-        body, html { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: #e0e0e0; color: var(--text-dark); }
-        .app-container { max-width: 480px; margin: 0 auto; background-color: var(--bg-light); height: 100vh; position: relative; overflow-x: hidden; overflow-y: scroll; scroll-snap-type: y mandatory; box-shadow: 0 0 20px rgba(0,0,0,0.1); scrollbar-width: none; -ms-overflow-style: none; }
-        .app-container::-webkit-scrollbar { display: none; }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; font-weight: 600; }
-
-        #cover-section {
-            position: sticky; top: 0; left: 0; right: 0;
-            min-height: 100vh; box-sizing: border-box;
-            scroll-snap-align: start;
-            background: linear-gradient(rgba(247,249,247,0.9), rgba(247,249,247,0.95)), var(--bg-light);
-            z-index: 999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 30px;
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e9ecef;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
         }
-        .cover-photo-circle { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin-bottom: 25px; border: 3px solid var(--gold-accent); box-shadow: 0 8px 15px rgba(0,0,0,0.1); background-color: #ddd; }
-        .cover-photo-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .cover-subtitle { font-size: 0.8rem; letter-spacing: 2px; color: var(--primary-color); text-transform: uppercase; margin-bottom: 10px; }
-        .cover-title { font-size: 3.5rem; color: var(--gold-accent); margin: 10px 0; line-height: 1.1; }
-        .cover-date { font-size: 1.1rem; letter-spacing: 3px; margin: 20px 0; color: var(--text-dark); }
-        .guest-box { margin-top: 30px; margin-bottom: 25px; }
-        .guest-box p { font-size: 0.85rem; margin: 0; color: var(--text-muted); }
-        .guest-name { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); margin-top: 8px; padding: 5px 15px; border-bottom: 1px solid var(--primary-color); display: inline-block; }
-        .btn-gold { background-color: var(--gold-accent); color: #fff; padding: 12px 30px; border: none; border-radius: 30px; font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer; box-shadow: 0 4px 15px rgba(196,166,97,0.4); transition: 0.3s; }
 
-        #main-content { display: none; }
-        .section-padding { padding: 60px 20px 100px; text-align: center; min-height: 100vh; box-sizing: border-box; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
-        .bg-green { background-color: var(--primary-color); color: #fff; }
-        .bg-green > h2, .bg-green > p { color: #fff; }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow-x: hidden;
+        }
 
-        .arch-frame { width: 220px; height: 280px; margin: 0 auto 20px auto; border-radius: 110px 110px 0 0; overflow: hidden; border: 5px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.05); background-color: #ddd; }
-        .arch-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .circle-frame { width: 200px; height: 200px; margin: 0 auto 20px auto; border-radius: 50%; overflow: hidden; border: 5px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.05); background-color: #ddd; }
-        .circle-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .profile-name { font-size: 1.8rem; color: var(--gold-accent); margin-bottom: 5px; }
-        .parent-name { font-size: 0.85rem; color: var(--text-muted); margin-top: 0; }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+        }
 
-        .event-card { background: #fff; padding: 30px 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-top: 3px solid var(--primary-color); color: var(--text-dark); }
-        .event-card p { color: var(--text-dark); }
-        .event-title { font-size: 1.5rem; color: var(--gold-accent); margin-bottom: 15px; }
-        .map-wrapper iframe { width: 100%; height: 250px; border-radius: 10px; border: none; margin-bottom: 15px; }
-        .quote-text { font-size: 0.9rem; line-height: 1.8; font-style: italic; color: var(--text-muted); margin-top: 20px; }
+        /* --- HEADER / HERO SECTION --- */
+        .hero {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
 
-        .countdown-section { background: linear-gradient(135deg, var(--primary-color), #6a8a6c); padding: 50px 20px 100px; text-align: center; color: #fff; min-height: 100vh; box-sizing: border-box; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; }
-        .countdown-section h2 { color: #fff; margin-bottom: 30px; }
-        .countdown-wrap { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .countdown-box { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 15px 20px; min-width: 70px; backdrop-filter: blur(5px); }
-        .countdown-num { font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--gold-accent); line-height: 1; }
-        .countdown-label { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.85; margin-top: 5px; }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
 
-        .gallery-section { padding: 60px 0 100px; background: #fff; text-align: center; min-height: 100vh; box-sizing: border-box; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; }
-        .gallery-section h2 { color: var(--primary-color); margin-bottom: 30px; padding: 0 20px; }
-        .slider-wrap { position: relative; overflow: hidden; }
-        .slider-track { display: flex; transition: transform 0.4s ease; align-items: flex-start; }
-        .slide { min-width: 100%; padding: 0 20px; box-sizing: border-box; }
-        .slide img { width: 100%; height: auto; max-height: 75vh; object-fit: contain; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: var(--gold-accent); width: 20px; border-radius: 4px; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; }
-        .slider-btn.prev { left: 25px; }
-        .slider-btn.next { right: 25px; }
+        .hero p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
 
-        .wishes-section { padding: 60px 20px 100px; background: var(--bg-light); min-height: 100vh; box-sizing: border-box; scroll-snap-align: start; overflow-y: auto; }
-        .wishes-section h2 { color: var(--primary-color); text-align: center; margin-bottom: 30px; }
-        .wishes-form { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .wishes-form input, .wishes-form select, .wishes-form textarea { width: 100%; box-sizing: border-box; padding: 12px 15px; margin-bottom: 12px; border: 1.5px solid #e0e0e0; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--text-dark); background: #fafafa; outline: none; transition: border 0.2s; }
-        .wishes-form input:focus, .wishes-form select:focus, .wishes-form textarea:focus { border-color: var(--gold-accent); }
-        .wishes-form textarea { resize: none; height: 100px; }
-        .char-count { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: -8px; margin-bottom: 12px; }
-        .btn-kirim { width: 100%; padding: 13px; background: var(--gold-accent); color: #fff; border: none; border-radius: 30px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-        .btn-kirim:disabled { opacity: 0.6; cursor: not-allowed; }
-        .wishes-list { display: flex; flex-direction: column; gap: 15px; }
-        .wish-card { background: #fff; border-radius: 12px; padding: 15px 18px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .wish-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
-        .wish-name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
-        .badge-hadir { background: #d4edda; color: #2d6a4f; font-size: 0.72rem; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-        .badge-tidak { background: #fde8e8; color: #c0392b; font-size: 0.72rem; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-        .badge-ragu  { background: #fff3cd; color: #856404; font-size: 0.72rem; padding: 2px 10px; border-radius: 20px; font-weight: 500; }
-        .wish-time { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
-        .wish-msg { font-size: 0.88rem; color: var(--text-dark); line-height: 1.6; }
+        .btn-order {
+            display: inline-block;
+            background-color: var(--gold-accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(196, 166, 97, 0.4);
+            transition: 0.3s;
+        }
 
-        .gift-card { background: #fff; border-radius: 15px; padding: 25px 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.06); border-top: 3px solid var(--gold-accent); text-align: center; }
-        .gift-card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); margin-bottom: 15px; }
-        .gift-bank { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-        .gift-rekening { font-size: 2rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--primary-color); margin-bottom: 15px; letter-spacing: 2px; }
-        .gift-atas-nama { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; margin-bottom: 0; }
-        .gift-alamat { font-size: 0.9rem; color: var(--text-dark); line-height: 1.7; margin-bottom: 18px; }
+        /* --- FITUR SECTION --- */
+        .features {
+            padding: 40px 20px;
+        }
 
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
 
-        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background-color: var(--primary-color); display: flex; justify-content: space-around; padding: 12px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); border-radius: 20px 20px 0 0; z-index: 100; }
-        .nav-item { color: #fff; text-decoration: none; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; opacity: 0.7; transition: all 0.3s; }
-        .nav-item:hover { opacity: 1; }
-        .nav-item.active { opacity: 1; font-weight: 600; color: var(--gold-accent); }
-        .nav-item.active .nav-icon { transform: scale(1.25); display: inline-block; }
-        .nav-icon { font-size: 1.2rem; margin-bottom: 3px; }
-        .music-control { position: fixed; bottom: 80px; right: 20px; width: 45px; height: 45px; background-color: var(--gold-accent); border-radius: 50%; display: none; justify-content: center; align-items: center; color: white; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 1000; }
-        .spin-animation { animation: spin 3s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item h3 {
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        /* --- CARA PESAN --- */
+        .how-to {
+            background-color: #fff;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .step-text p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- FOOTER / CTA BOTTOM --- */
+        .footer-cta {
+            text-align: center;
+            padding: 40px 20px 60px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .footer-cta h2 {
+            color: white;
+        }
+
+        /* Tombol WA Mengambang */
+        .float-wa {
+            position: fixed;
+            bottom: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            width: max-content;
+        }
+
+        .float-wa img {
+            width: 20px;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
-<div class="app-container">
 
-    <!--
-    ╔═══════════════════════════════════════════════════════════════════════╗
-    ║  ░░░  BAGIAN 2 — BACKSOUND / MUSIK LATAR  ░░░                        ║
-    ╠═══════════════════════════════════════════════════════════════════════╣
-    ║                                                                       ║
-    ║  Ganti https://riradigital.my.id/backsound/janji-suci.mp3 dengan link file mp3 lagu yang diinginkan.     ║
-    ║                                                                       ║
-    ║  Tips: Gunakan link dari hosting statis (bukan Google Drive).         ║
-    ║  Kalau pakai hosting sendiri, upload file mp3 ke sana dulu.          ║
-    ║                                                                       ║
-    ║  CONTOH NYATA:                                                        ║
-    ║  → https://riradigital.my.id/backsound/perfect.mp3             ║
-    ║  → https://riradigital.my.id/backsound/janji-suci.mp3    ║
-    ║  → https://cdn.namadomain.com/audio/a-thousand-years.mp3             ║
-    ╚═══════════════════════════════════════════════════════════════════════╝
-    -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="https://riradigital.my.id/backsound/janji-suci.mp3" type="audio/mpeg">
-    </audio>
+<div class="container">
 
-    <!-- Tombol musik muncul otomatis saat undangan dibuka — TIDAK PERLU DIUBAH -->
-    <div id="music-control" class="music-control spin-animation" onclick="toggleMusic()">🎵</div>
-
-
-    <!-- ═══════════════════════════════════════════════════════════════════
-         COVER SECTION — Halaman pertama yang dilihat tamu
-    ════════════════════════════════════════════════════════════════════ -->
-    <div id="cover-section">
-
-        <!--
-        ┌───────────────────────────────────────────────────────────────────┐
-        │  BAGIAN 3 — FOTO COVER (lingkaran kecil di bagian atas cover)    │
-        │                                                                   │
-        │  Ganti /pembri-anggra/album/wedding.jpg dengan link foto pasangan / foto berdua  │
-        │  untuk ditampilkan di lingkaran atas halaman cover.              │
-        │                                                                   │
-        │  ⚠️ Pastikan link langsung ke file gambar (berakhiran .jpg/.png) │
-        │                                                                   │
-        │  CONTOH NYATA:                                                    │
-        │  → https://riradigital.my.id/anggra-pembri/cover.jpg      │
-        │  → https://i.ibb.co/abc123/cover.jpg  (jika pakai imgbb)        │
-        └───────────────────────────────────────────────────────────────────┘
-        -->
-        <div class="cover-photo-circle">
-            <img src="/pembri-anggra/album/wedding.jpg" alt="Foto Pasangan">
-        </div>
-
-        <div class="cover-subtitle">Pernikahan Dari</div>
-
-        <!--
-        ┌───────────────────────────────────────────────────────────────────┐
-        │  BAGIAN 4 — NAMA PASANGAN DI COVER (besar, ditengah)             │
-        │                                                                   │
-        │  Ganti Anggra dan Pembri dengan nama singkat/panggil │
-        │  mempelai. Nama ini tampil besar di cover undangan.              │
-        │                                                                   │
-        │  CONTOH NYATA:                                                    │
-        │  Anggra → Anggra                                          │
-        │  Pembri   → Pembri                                          │
-        │                                                                   │
-        │  Hasil tampilan:   Anggra                                         │
-        │                      &                                            │
-        │                    Pembri                                         │
-        └───────────────────────────────────────────────────────────────────┘
-        -->
-        <h1 class="cover-title font-serif">Anggra<br>&<br>Pembri</h1>
-
-        <!--
-        ┌───────────────────────────────────────────────────────────────────┐
-        │  BAGIAN 5 — TANGGAL PERNIKAHAN DI COVER (tampilan teks saja)     │
-        │                                                                   │
-        │  Ini hanya teks tampilan di cover. Format bebas.                 │
-        │  Countdown timer otomatis diatur di BAGIAN 16 (script bawah).   │
-        │                                                                   │
-        │  CONTOH NYATA:                                                    │
-        │  → 15 . 07 . 2026                                                 │
-        │  → 20 . 01 . 2027                                                 │
-        │  → 05 . 12 . 2026                                                 │
-        └───────────────────────────────────────────────────────────────────┘
-        -->
-        <div class="cover-date">02 . 11 . 2022</div>
-
-        <div class="guest-box">
-            <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <!--
-                Nama tamu ini OTOMATIS diambil dari parameter ?to= di URL.
-                TIDAK PERLU DIUBAH. Sistem sudah menangani otomatis.
-
-                Cara kerja:
-                Kamu kirim link: https://riradigital.my.id/anggra-pembri/?to=Budi_Santoso
-                Maka di sini otomatis tampil: "Budi Santoso"
-                (tanda _ atau - otomatis berubah jadi spasi, huruf jadi kapital)
-            -->
-            <div id="nama-tamu" class="guest-name">Nama Tamu</div>
-        </div>
-
-        <!-- Tombol buka undangan — TIDAK PERLU DIUBAH -->
-        <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan 💌</button>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <h1>Rira Project</h1>
+        <p>Solusi Cerdas Buat Undangan Digital Tampil Elegan, Praktis, & Kekinian.</p>
+        
+        <!-- Ganti Nomor WA di href bawah ini -->
+        <a href="https://wa.me/6281234567890?text=Halo%20Rira%20Project,%20saya%20mau%20tanya-tanya%20soal%20pembuatan%20undangan%20online." class="btn-order" target="_blank">Konsultasi Sekarang</a>
     </div>
 
-
-    <!-- ═══════════════════════════════════════════════════════════════════
-         KONTEN UTAMA — muncul setelah tombol "Buka Undangan" diklik
-    ════════════════════════════════════════════════════════════════════ -->
-    <div id="main-content">
-
-        <!-- ─────────────────────────────────────────────────────────────
-             PROFIL MEMPELAI
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="profil" class="section-padding">
-            <h2 class="font-serif fade-up" style="color: var(--primary-color); margin-bottom: 40px;">Mempelai</h2>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 6 — FOTO & DATA MEMPELAI WANITA                          │
-            │                                                                   │
-            │  /pembri-anggra/album/anggra.png       → link foto mempelai wanita             │
-            │                            (foto portrait, close-up lebih bagus) │
-            │  Anggrainita   → nama lengkap mempelai wanita          │
-            │  Satim     → nama bapak kandung mempelai wanita    │
-            │  Sumini       → nama ibu kandung mempelai wanita      │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  /pembri-anggra/album/anggra.png      → https://riradigital.my.id       │
-            │                           /anggra-pembri/anggra.jpg              │
-            │  Anggrainita  → Anggrainita                            │
-            │  Satim    → Satim                                  │
-            │  Sumini      → Sumini                                 │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="arch-frame fade-up">
-                <img src="/pembri-anggra/album/anggra.png" alt="Mempelai Wanita">
+    <!-- FITUR SECTION -->
+    <div class="features">
+        <h2 class="section-title">Fitur Spesial</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">👤</div>
+                <h3>Nama Tamu Otomatis</h3>
             </div>
-            <h3 class="profile-name fade-up">Anggrainita</h3>
-            <p class="parent-name fade-up">Putri dari<br>Bapak Satim & Ibu Sumini</p>
-
-            <br><br>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 7 — FOTO & DATA MEMPELAI PRIA                            │
-            │                                                                   │
-            │  /pembri-anggra/album/pembri.png         → link foto mempelai pria               │
-            │                            (foto portrait, close-up lebih bagus) │
-            │  Ahmad Supembri     → nama lengkap mempelai pria            │
-            │  Husin       → nama bapak kandung mempelai pria      │
-            │  Mujayanah         → nama ibu kandung mempelai pria        │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  /pembri-anggra/album/pembri.png        → https://riradigital.my.id       │
-            │                           /anggra-pembri/pembri.jpg              │
-            │  Ahmad Supembri    → Ahmad Supembri                         │
-            │  Husin      → Husin                                  │
-            │  Mujayanah        → Mujayanah                              │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="arch-frame fade-up">
-                <img src="/pembri-anggra/album/pembri.png" alt="Mempelai Pria">
+            <div class="feature-item">
+                <div class="feature-icon">🎵</div>
+                <h3>Autoplay Musik</h3>
             </div>
-            <h3 class="profile-name fade-up">Ahmad Supembri</h3>
-            <p class="parent-name fade-up">Putra dari<br>Bapak Husin & Ibu Mujayanah</p>
-        </section>
-
-
-        <!-- ─────────────────────────────────────────────────────────────
-             COUNTDOWN TIMER — otomatis hitung mundur ke hari H
-             (tanggal diatur di BAGIAN 16 di bagian script bawah)
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="countdown" class="countdown-section fade-up">
-            <h2 class="font-serif">Menuju Hari Bahagia</h2>
-            <div class="countdown-wrap">
-                <div class="countdown-box"><div class="countdown-num" id="cd-hari">00</div><div class="countdown-label">Hari</div></div>
-                <div class="countdown-box"><div class="countdown-num" id="cd-jam">00</div><div class="countdown-label">Jam</div></div>
-                <div class="countdown-box"><div class="countdown-num" id="cd-menit">00</div><div class="countdown-label">Menit</div></div>
-                <div class="countdown-box"><div class="countdown-num" id="cd-detik">00</div><div class="countdown-label">Detik</div></div>
+            <div class="feature-item">
+                <div class="feature-icon">📍</div>
+                <h3>Integrasi Google Maps</h3>
             </div>
-        </section>
-
-
-        <!-- ─────────────────────────────────────────────────────────────
-             RANGKAIAN ACARA
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="acara" class="section-padding bg-green">
-            <h2 class="font-serif fade-up">Rangkaian Acara</h2>
-            <p class="fade-up" style="font-size:0.85rem; margin-bottom:30px; opacity:0.9;">Dengan memohon rahmat Tuhan, kami mengundang Anda untuk hadir:</p>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 8 — INFO AKAD NIKAH                                      │
-            │                                                                   │
-            │  Rabu      → hari pelaksanaan akad                        │
-            │  15 Juli 2026   → tanggal lengkap akad                         │
-            │  09.00       → jam mulai akad                               │
-            │  KUA Kabuh    → nama tempat / gedung akad                    │
-            │  Ds.Karangpakis Kec.Kabuh Kab.Jombang    → alamat lengkap tempat akad                   │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  Rabu    → Rabu                                           │
-            │  15 Juli 2026 → 15 Juli 2026                                   │
-            │  09.00     → 09.00                                          │
-            │  KUA Kabuh  → KUA Kabuh                                      │
-            │  Ds.Karangpakis Kec.Kabuh Kab.Jombang  → Ds.Karangpakis Kec.Kabuh Kab.Jombang          │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="event-card fade-up">
-                <h3 class="event-title font-serif">Akad Nikah</h3>
-                <p><strong>Rabu, 02 November 2022</strong></p>
-                <p>09.00 - Selesai</p>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:15px;">
-                    <strong>KUA Kabuh</strong><br>Ds.Karangpakis Kec.Kabuh Kab.Jombang
-                </p>
+            <div class="feature-item">
+                <div class="feature-icon">⏱️</div>
+                <h3>Pengerjaan Cepat</h3>
             </div>
+        </div>
+    </div>
 
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 9 — INFO RESEPSI                                         │
-            │                                                                   │
-            │  Rabu      → hari pelaksanaan resepsi                  │
-            │  15 Juli 2026   → tanggal lengkap resepsi                   │
-            │  11.00       → jam mulai resepsi                         │
-            │  Kediaman Mempelai Wanita    → nama tempat / gedung resepsi              │
-            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang    → alamat lengkap tempat resepsi             │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  Rabu    → Rabu                                        │
-            │  15 Juli 2026 → 15 Juli 2026                                │
-            │  11.00     → 11.00                                       │
-            │  Kediaman Mempelai Wanita  → Kediaman Mempelai Wanita                    │
-            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang  → Dsn.Karangjati Ds.Karangpakis Kec.Kabuh    │
-            │                      Kab.Jombang                                 │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="event-card fade-up">
-                <h3 class="event-title font-serif">Resepsi</h3>
-                <p><strong>Rabu, 22 November 2022</strong></p>
-                <p>11.00 - Selesai</p>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:15px;">
-                    <strong>Kediaman Mempelai Wanita</strong><br>Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang
-                </p>
+    <!-- CARA PESAN -->
+    <div class="how-to">
+        <h2 class="section-title">Cara Pemesanan</h2>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+                <h4>Konsultasi via WhatsApp</h4>
+                <p>Klik tombol order dan chat admin kami untuk memilih desain template.</p>
             </div>
-        </section>
-
-
-        <!-- ─────────────────────────────────────────────────────────────
-             GALERI FOTO (SLIDER OTOMATIS)
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="galeri" class="gallery-section">
-            <h2 class="font-serif fade-up">Galeri Foto</h2>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 10 — FOTO-FOTO GALERI (slider geser otomatis)            │
-            │                                                                   │
-            │  Ganti masing-masing  sampai [5] dengan       │
-            │  link foto prewedding / foto bersama / foto keluarga, dll.       │
-            │                                                                   │
-            │  ✅ Bisa TAMBAH slide: copy paste blok <div class="slide">...</>  │
-            │  ✅ Bisa KURANGI slide: hapus blok <div class="slide">...</>      │
-            │  ⚠️ Minimal 1 foto harus ada agar slider tidak error             │
-            │                                                                   │
-            │  CONTOH NYATA (isi dengan link foto berbeda-beda):               │
-            │   → https://riradigital.my.id          │
-            │                        /anggra-pembri/foto1.jpg                  │
-            │   → https://riradigital.my.id          │
-            │                        /anggra-pembri/foto2.jpg                  │
-            │   → https://riradigital.my.id          │
-            │                        /anggra-pembri/foto3.jpg                  │
-            │   → https://riradigital.my.id          │
-            │                        /anggra-pembri/foto4.jpg                  │
-            │   → https://riradigital.my.id          │
-            │                        /anggra-pembri/foto5.jpg                  │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="slider-wrap">
-                <button class="slider-btn prev" onclick="slideGaleri(-1)">‹</button>
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slide"><img src="/pembri-anggra/album/background.jpg" alt="Foto 1"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding.jpg" alt="Foto 2"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding2.jpg" alt="Foto 3"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding3.jpg" alt="Foto 4"></div>
-                    <div class="slide"><img src="/pembri-anggra/album/wedding4.jpg" alt="Foto 5"></div>
-                </div>
-                <button class="slider-btn next" onclick="slideGaleri(1)">›</button>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+                <h4>Isi Formulir Data</h4>
+                <p>Admin akan memberikan form untuk diisi (nama, tanggal, foto, lokasi).</p>
             </div>
-            <div class="slider-dots" id="sliderDots"></div>
-        </section>
+        </div>
 
-
-        <!-- ─────────────────────────────────────────────────────────────
-             PETA LOKASI
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="lokasi" class="section-padding">
-            <h2 class="font-serif fade-up" style="color:var(--primary-color);">Peta Lokasi</h2>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 11 — EMBED GOOGLE MAPS (peta yang tampil di halaman)     │
-            │                                                                   │
-            │  Cara mendapatkan link embed:                                     │
-            │  1. Buka Google Maps di browser (bukan HP)                        │
-            │  2. Cari lokasi yang diinginkan                                   │
-            │  3. Klik tombol "Share" (Bagikan)                                 │
-            │  4. Pilih tab "Embed a map"                                       │
-            │  5. Copy HANYA bagian yang ada di dalam src="..."                 │
-            │     (jangan copy seluruh tag <iframe>-nya)                        │
-            │                                                                   │
-            │  CONTOH NYATA (isi setelah src=):                                 │
-            │  → https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d...     │
-            │  → https://maps.google.com/maps?q=J64H%2B9G2,+Karang+Pakis,     │
-            │    +Kabupaten+Jombang,+Jawa+Timur&output=embed                   │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="map-wrapper fade-up">
-                <iframe src="https://maps.google.com/maps?q=J64H%2B9G2,+Karang+Pakis,+Kabupaten+Jombang,+Jawa+Timur&output=embed" allowfullscreen="" loading="lazy"></iframe>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+                <h4>Proses Pengerjaan</h4>
+                <p>Duduk manis, undangan kamu akan selesai dan siap disebar pakai link!</p>
             </div>
+        </div>
+    </div>
 
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 12 — LINK TOMBOL "PETUNJUK KE LOKASI"                    │
-            │                                                                   │
-            │  Ini link yang dibuka saat tamu klik tombol petunjuk arah.       │
-            │  Bedanya dengan Bagian 11: ini link pendek untuk buka di app     │
-            │  Google Maps HP tamu, bukan embed.                                │
-            │                                                                   │
-            │  Cara mendapatkan link:                                           │
-            │  1. Buka Google Maps                                               │
-            │  2. Cari lokasi → klik "Share" (Bagikan)                          │
-            │  3. Pilih tab "Send a link"                                        │
-            │  4. Copy link pendeknya (biasanya maps.app.goo.gl/...)            │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  → https://maps.app.goo.gl/x3AGHRj9CUUv99uw8                     │
-            │  → https://maps.app.goo.gl/abc123xyz456                           │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <a href="https://maps.app.goo.gl/x3AGHRj9CUUv99uw8?g_st=ac" target="_blank" style="text-decoration:none;">
-                <button class="btn-gold">Petunjuk Ke Lokasi 📍</button>
-            </a>
-        </section>
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <h2>Siap Bikin Undanganmu?</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 20px;">Harga bersahabat, hasil maksimal. Yuk amankan slot pengerjaanmu sekarang.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Rira Project.</p>
+    </div>
 
+    <!-- TOMBOL WA MENGAMBANG DI BAWAH -->
+    <!-- GANTI 6281234567890 DENGAN NOMOR WA ASLI LO -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Rira%20Project,%20saya%20mau%20pesan%20undangan%20online." class="float-wa" target="_blank">
+        Order via WhatsApp
+    </a>
 
-        <!-- ─────────────────────────────────────────────────────────────
-             TANDA KASIH (AMPLOP DIGITAL)
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="hadiah" class="section-padding" style="background-color:#fff;">
-            <h2 class="font-serif fade-up" style="color:var(--primary-color);">Tanda Kasih</h2>
-            <p class="fade-up" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:35px;">
-                Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih untuk kami, dapat melalui:
-            </p>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 13 — INFO REKENING (CASHLESS)                            │
-            │                                                                   │
-            │  BRI            → nama bank mempelai                     │
-            │  625001039334530          → nomor rekening mempelai                │
-            │  Ahmad Supembri     → nama pemilik rekening sesuai buku      │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  BRI        → BRI                                        │
-            │  625001039334530      → 625001039334530                            │
-            │  Ahmad Supembri → Ahmad Supembri                             │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="gift-card fade-up">
-                <div class="gift-card-title">💌 Cashless</div>
-                <div class="gift-bank">BRI</div>
-                <div class="gift-rekening" id="noRekening">625001039334530</div>
-                <button class="btn-gold" onclick="salinRekening()">Salin Rekening 📋</button>
-                <p class="gift-atas-nama">a.n. Ahmad Supembri</p>
-            </div>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 14 — KIRIM KADO & KONFIRMASI WHATSAPP                    │
-            │                                                                   │
-            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang  → alamat lengkap pengiriman kado           │
-            │                         tulis selengkap mungkin agar tidak salah │
-            │                                                                   │
-            │  6285748949707           → nomor WhatsApp mempelai untuk konfirmasi │
-            │                         FORMAT: angka saja, tanpa +, tanpa spasi │
-            │                         Mulai dari kode negara 62 (Indonesia)    │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang → Dsn.Karangjati Ds.Karangpakis            │
-            │                        Kec.Kabuh Kab.Jombang 61453              │
-            │  6285748949707          → 6285748949707                             │
-            │                        (nomor 085748949707 → jadi 6285748949707) │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="gift-card fade-up" style="margin-top:20px;">
-                <div class="gift-card-title">🎁 Kirim Kado</div>
-                <p class="gift-alamat">Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang</p>
-                <a href="https://wa.me/6285748949707?text=Halo%2C+saya+ingin+mengkonfirmasi+pengiriman+kado+untuk+kalian+%F0%9F%8E%81" target="_blank" style="text-decoration:none;">
-                    <button class="btn-gold">Konfirmasi via WhatsApp 💬</button>
-                </a>
-            </div>
-        </section>
-
-
-        <!-- ─────────────────────────────────────────────────────────────
-             FORM UCAPAN & RSVP (terhubung ke Firebase)
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="ucapan" class="wishes-section">
-            <h2 class="font-serif fade-up">Ucapan & RSVP</h2>
-
-            <!--
-                Form ini SUDAH OTOMATIS terhubung ke Firebase.
-                TIDAK PERLU DIUBAH apapun di bagian form ini.
-                Semua data masuk ke Firebase sesuai nama koleksi di BAGIAN 15.
-            -->
-            <div class="wishes-form fade-up">
-                <input      type="text" id="inputNama"      placeholder="Nama kamu"             maxlength="50">
-                <select     id="inputKehadiran">
-                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
-                    <option value="Hadir">✅ Hadir</option>
-                    <option value="Tidak Hadir">❌ Tidak Hadir</option>
-                    <option value="Masih Ragu">🤔 Masih Ragu</option>
-                </select>
-                <textarea   id="inputPesan" placeholder="Tulis pesan & doa untuk pasangan..." maxlength="200" oninput="updateChar()"></textarea>
-                <div class="char-count"><span id="charCount">0</span>/200</div>
-                <button class="btn-kirim" id="btnKirim" onclick="kirimUcapan()">Kirim ✈️</button>
-            </div>
-
-            <!-- Daftar ucapan dari tamu tampil otomatis di sini -->
-            <div class="wishes-list" id="wishesList">
-                <p style="text-align:center; color:var(--text-muted); font-size:0.85rem;">Memuat ucapan...</p>
-            </div>
-        </section>
-
-
-        <!-- ─────────────────────────────────────────────────────────────
-             KUTIPAN & FOTO BERDUA (BAGIAN PENUTUP)
-        ──────────────────────────────────────────────────────────────── -->
-        <section id="penutup" class="section-padding" style="background-color:#fff;">
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 13 — FOTO BERDUA (tampil di bagian kutipan / penutup)    │
-            │                                                                   │
-            │  Biasanya pakai foto romantis / foto berdua yang bagus.          │
-            │  Tampil dalam bingkai bulat (circle).                            │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  → https://riradigital.my.id/anggra-pembri/berdua.jpg     │
-            │  → https://i.ibb.co/xyz789/couple.jpg                            │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <div class="circle-frame fade-up" style="height:200px;">
-                <img src="/pembri-anggra/album/wedding.jpg" alt="Couple">
-            </div>
-
-            <!-- Ayat Quran / kutipan — bisa diganti jika klien minta kutipan lain -->
-            <p class="quote-text font-serif fade-up">
-                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."
-            </p>
-
-            <!--
-            ┌───────────────────────────────────────────────────────────────────┐
-            │  BAGIAN 14 — NAMA BRAND / WEBSITE KAMU (credit / watermark)      │
-            │                                                                   │
-            │  Isi dengan nama website atau brand undanganmu.                  │
-            │  Tampil kecil di bagian paling bawah sebagai kredit.            │
-            │                                                                   │
-            │  CONTOH NYATA:                                                    │
-            │  → riradigital.my.id                                       │
-            │  → undangan-online.riraproject.com                                │
-            └───────────────────────────────────────────────────────────────────┘
-            -->
-            <p class="fade-up" style="font-size:0.8rem; font-weight:bold; color:var(--primary-color);">riradigital.my.id</p>
-        </section>
-
-
-        <!-- Bottom navigation bar — TIDAK PERLU DIUBAH -->
-        <nav class="bottom-nav">
-            <a href="#profil"     class="nav-item"><span class="nav-icon">👤</span>Profil</a>
-            <a href="#countdown"  class="nav-item"><span class="nav-icon">⏳</span>Hitung</a>
-            <a href="#acara"      class="nav-item"><span class="nav-icon">📅</span>Acara</a>
-            <a href="#galeri"     class="nav-item"><span class="nav-icon">🖼️</span>Galeri</a>
-            <a href="#lokasi"     class="nav-item"><span class="nav-icon">📍</span>Lokasi</a>
-            <a href="#hadiah"     class="nav-item"><span class="nav-icon">🎁</span>Hadiah</a>
-            <a href="#ucapan"     class="nav-item"><span class="nav-icon">💌</span>Ucapan</a>
-        </nav>
-
-    </div><!-- /main-content -->
-</div><!-- /app-container -->
-
-
-<!-- ═══════════════════════════════════════════════════════════════════════
-     FIREBASE — CONFIG TETAP, JANGAN PERNAH DIUBAH
-     Semua klien pakai config yang sama. Yang beda hanya nama koleksinya
-     (diatur di BAGIAN 15 di bawah ini).
-════════════════════════════════════════════════════════════════════════ -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp }
-        from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey:            "AIzaSyAqi-twRPE9IuVu3msYtUZjJEFMHuMwrdQ",
-        authDomain:        "undangan-online-5ae33.firebaseapp.com",
-        projectId:         "undangan-online-5ae33",
-        storageBucket:     "undangan-online-5ae33.firebasestorage.app",
-        messagingSenderId: "51791632815",
-        appId:             "1:51791632815:web:d542ade36077bf6e5fb75a"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-
-    /*
-    ╔═══════════════════════════════════════════════════════════════════════╗
-    ║  ░░░  BAGIAN 15 — NAMA KOLEKSI FIREBASE  ░░░  ← WAJIB GANTI!        ║
-    ╠═══════════════════════════════════════════════════════════════════════╣
-    ║                                                                       ║
-    ║  INI SATU-SATUNYA YANG HARUS DIUBAH DI BAGIAN FIREBASE.              ║
-    ║                                                                       ║
-    ║  Ganti anggra dan pembri dengan nama         ║
-    ║  pasangan klien. Gunakan huruf kecil semua, tanpa spasi.             ║
-    ║                                                                       ║
-    ║  ⚠️ WAJIB BERBEDA tiap klien! Kalau sama, ucapan dari klien          ║
-    ║     yang satu akan tercampur ke undangan klien lainnya!              ║
-    ║                                                                       ║
-    ║  FORMAT  : "ucapan_[namawanita]_[namapria]"                          ║
-    ║                                                                       ║
-    ║  CONTOH NYATA:                                                        ║
-    ║  Klien Anggra & Pembri   → "ucapan_anggra_pembri"                    ║
-    ║  Klien Dita & Reza       → "ucapan_dita_reza"                        ║
-    ║  Klien Sari & Budi       → "ucapan_sari_budi"                        ║
-    ║  Klien Ratna & Hendra    → "ucapan_ratna_hendra"                     ║
-    ╚═══════════════════════════════════════════════════════════════════════╝
-    */
-    const KOLEKSI = "ucapan_anggra_pembri";
-
-    window.kirimUcapan = async function() {
-        const nama      = document.getElementById('inputNama').value.trim();
-        const kehadiran = document.getElementById('inputKehadiran').value;
-        const pesan     = document.getElementById('inputPesan').value.trim();
-        const btn       = document.getElementById('btnKirim');
-
-        if (!nama || !kehadiran || !pesan) { alert('Mohon isi semua kolom ya! 🙏'); return; }
-
-        btn.disabled = true;
-        btn.textContent = 'Mengirim...';
-
-        try {
-            await addDoc(collection(db, KOLEKSI), { nama, kehadiran, pesan, timestamp: serverTimestamp() });
-            document.getElementById('inputNama').value      = '';
-            document.getElementById('inputKehadiran').value = '';
-            document.getElementById('inputPesan').value     = '';
-            document.getElementById('charCount').textContent = '0';
-            btn.textContent = 'Terkirim ✅';
-            setTimeout(() => { btn.disabled = false; btn.innerHTML = 'Kirim ✈️'; }, 2000);
-            loadUcapan();
-        } catch(e) {
-            alert('Gagal mengirim, coba lagi.');
-            btn.disabled = false;
-            btn.innerHTML = 'Kirim ✈️';
-        }
-    };
-
-    window.loadUcapan = async function() {
-        const list = document.getElementById('wishesList');
-        try {
-            const q    = query(collection(db, KOLEKSI), orderBy("timestamp", "desc"));
-            const snap = await getDocs(q);
-            if (snap.empty) {
-                list.innerHTML = '<p style="text-align:center;color:#999;font-size:0.85rem;">Belum ada ucapan. Jadilah yang pertama! 💐</p>';
-                return;
-            }
-            list.innerHTML = '';
-            snap.forEach(doc => {
-                const d          = doc.data();
-                const waktu      = d.timestamp ? timeAgo(d.timestamp.toDate()) : '';
-                const badgeClass = d.kehadiran === 'Hadir' ? 'badge-hadir' : d.kehadiran === 'Tidak Hadir' ? 'badge-tidak' : 'badge-ragu';
-                list.innerHTML  += `<div class="wish-card"><div class="wish-header"><span class="wish-name">${d.nama}</span><span class="${badgeClass}">${d.kehadiran}</span></div><div class="wish-time">🕐 ${waktu}</div><div class="wish-msg">${d.pesan}</div></div>`;
-            });
-        } catch(e) {
-            list.innerHTML = '<p style="text-align:center;color:#999;font-size:0.85rem;">Gagal memuat ucapan.</p>';
-        }
-    };
-
-    loadUcapan();
-</script>
-
-
-<script>
-    /*
-    ╔═══════════════════════════════════════════════════════════════════════╗
-    ║  ░░░  BAGIAN 16 — TANGGAL PERNIKAHAN UNTUK COUNTDOWN TIMER  ░░░      ║
-    ╠═══════════════════════════════════════════════════════════════════════╣
-    ║                                                                       ║
-    ║  Ganti TAHUN, BULAN, TANGGAL sesuai tanggal pernikahan klien.        ║
-    ║                                                                       ║
-    ║  FORMAT: new Date(TAHUN, BULAN, TANGGAL)                             ║
-    ║                                                                       ║
-    ║  ⚠️ PERHATIAN PENTING — BULAN DIHITUNG MULAI DARI 0 (NOL):           ║
-    ║  Januari   = 0    Februari  = 1    Maret     = 2    April    = 3     ║
-    ║  Mei       = 4    Juni      = 5    Juli      = 6    Agustus  = 7     ║
-    ║  September = 8    Oktober   = 9    November  = 10   Desember = 11    ║
-    ║                                                                       ║
-    ║  CONTOH NYATA:                                                        ║
-    ║  Nikah 15 Juli 2026      → new Date(2026,  6, 15)  ← Juli = 6       ║
-    ║  Nikah 20 Januari 2027   → new Date(2027,  0, 20)  ← Jan  = 0       ║
-    ║  Nikah  5 Desember 2026  → new Date(2026, 11,  5)  ← Des  = 11      ║
-    ║  Nikah 10 Oktober 2026   → new Date(2026,  9, 10)  ← Okt  = 9       ║
-    ║  Nikah  3 Maret 2027     → new Date(2027,  2,  3)  ← Mar  = 2       ║
-    ╚═══════════════════════════════════════════════════════════════════════╝
-    */
-    const TANGGAL_NIKAH = new Date(2022, 11, 2); /* 15 Juli 2026 */
-
-    function updateCountdown() {
-        const diff = TANGGAL_NIKAH - new Date();
-        if (diff <= 0) {
-            document.querySelector('.countdown-wrap').innerHTML = '<p style="color:#fff;font-size:1.2rem;">🎉 Hari Bahagia Telah Tiba!</p>';
-            return;
-        }
-        document.getElementById('cd-hari').textContent   = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
-        document.getElementById('cd-jam').textContent    = String(Math.floor((diff % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
-        document.getElementById('cd-menit').textContent  = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2,'0');
-        document.getElementById('cd-detik').textContent  = String(Math.floor((diff % (1000*60)) / 1000)).padStart(2,'0');
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-
-    /* ─── FUNGSI SALIN REKENING — TIDAK PERLU DIUBAH ────────────────── */
-    function salinRekening() {
-        const noRek = document.getElementById('noRekening').innerText;
-        navigator.clipboard.writeText(noRek).then(() => {
-            alert('Nomor rekening ' + noRek + ' berhasil disalin! ✅');
-        }).catch(() => {
-            prompt('Salin nomor rekening berikut:', noRek);
-        });
-    }
-
-
-    /* ─── NAMA TAMU OTOMATIS DARI URL — TIDAK PERLU DIUBAH ───────────────
-       Cara kirim link ke tamu:
-       https://riradigital.my.id/anggra-pembri/?to=Budi_Santoso
-       Tanda _ atau - otomatis jadi spasi. Huruf pertama jadi kapital.
-       Hasil tampil: "Budi Santoso"
-    ─────────────────────────────────────────────────────────────────── */
-    function setNamaTamu() {
-        const urlParams = new URLSearchParams(window.location.search);
-        let nama = urlParams.get('to');
-        if (nama) {
-            nama = nama.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            document.getElementById('nama-tamu').innerText = nama;
-        }
-    }
-
-
-    /* ─── FUNGSI BUKA UNDANGAN — TIDAK PERLU DIUBAH ──────────────────── */
-    function bukaUndangan() {
-        const cover = document.getElementById('cover-section');
-        cover.style.transition = "opacity 0.8s ease";
-        cover.style.opacity    = "0";
-        document.getElementById('bg-music').play();
-        document.getElementById('music-control').style.display = "flex";
-        setTimeout(() => {
-            cover.style.display = "none";
-            document.getElementById('main-content').style.display = "block";
-            window.scrollTo(0, 0);
-            initScroll();
-        }, 800);
-    }
-
-
-    /* ─── FUNGSI KONTROL MUSIK — TIDAK PERLU DIUBAH ──────────────────── */
-    function toggleMusic() {
-        const audio = document.getElementById("bg-music");
-        const btn   = document.getElementById("music-control");
-        if (audio.paused) {
-            audio.play();
-            btn.classList.add("spin-animation");
-            btn.innerHTML = "🎵";
-        } else {
-            audio.pause();
-            btn.classList.remove("spin-animation");
-            btn.innerHTML = "🔇";
-        }
-    }
-
-
-    /* ─── SLIDER GALERI — TIDAK PERLU DIUBAH ─────────────────────────── */
-    let slideIndex  = 0;
-    const track     = document.getElementById('sliderTrack');
-    const totalSlides = track ? track.children.length : 0;
-    const dotsWrap  = document.getElementById('sliderDots');
-
-    function initDots() {
-        for (let i = 0; i < totalSlides; i++) {
-            const d = document.createElement('div');
-            d.className = 'dot' + (i === 0 ? ' active' : '');
-            d.onclick   = () => goToSlide(i);
-            dotsWrap.appendChild(d);
-        }
-    }
-    function goToSlide(n) {
-        slideIndex = (n + totalSlides) % totalSlides;
-        track.style.transform = `translateX(-${slideIndex * 100}%)`;
-        document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === slideIndex));
-    }
-    function slideGaleri(dir) { goToSlide(slideIndex + dir); }
-    setInterval(() => slideGaleri(1), 4000);
-    initDots();
-
-
-    /* ─── ANIMASI SCROLL FADE-UP — TIDAK PERLU DIUBAH ────────────────── */
-    function initScroll() {
-        const container = document.querySelector('.app-container');
-
-        // Fade-up observer
-        const fadeObs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.15, root: container });
-        document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
-
-        // Active nav observer — deteksi section mana yg sedang tampil
-        const sections = ['profil','countdown','acara','galeri','lokasi','hadiah','ucapan','penutup'];
-        const navLinks  = document.querySelectorAll('.nav-item');
-
-        const navObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    const id = e.target.id;
-                    navLinks.forEach(a => {
-                        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-                    });
-                }
-            });
-        }, { threshold: 0.5, root: container });
-
-        sections.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) navObs.observe(el);
-        });
-
-        // Intercept nav clicks → snap scroll ke section
-        navLinks.forEach(a => {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'instant' });
-            });
-        });
-    }
-
-
-    /* ─── COUNTER KARAKTER PESAN — TIDAK PERLU DIUBAH ────────────────── */
-    function updateChar() {
-        document.getElementById('charCount').textContent = document.getElementById('inputPesan').value.length;
-    }
-
-
-    /* ─── FUNGSI FORMAT WAKTU UCAPAN — TIDAK PERLU DIUBAH ────────────── */
-    function timeAgo(date) {
-        const diff = Math.floor((Date.now() - date) / 1000);
-        if (diff < 60)      return 'Baru saja';
-        if (diff < 3600)    return Math.floor(diff / 60) + ' menit yang lalu';
-        if (diff < 86400)   return Math.floor(diff / 3600) + ' jam yang lalu';
-        if (diff < 2592000) return Math.floor(diff / 86400) + ' hari yang lalu';
-        return date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
-    }
-
-
-    window.onload = setNamaTamu;
-</script>
+</div>
 
 </body>
 </html>
