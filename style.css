@@ -144,6 +144,20 @@ main {
     object-fit: cover;
     border-radius: 8px;
 }
+.product-category {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+.category-wedding    { background: #fdf0f5; color: #c2627a; border: 1px solid #f5c9d5; }
+.category-khitanan   { background: #eef4ff; color: #4a72c4; border: 1px solid #c2d4f0; }
+.category-birthday   { background: #fff8ec; color: #c07a1a; border: 1px solid #f5dba0; }
+.category-reunion    { background: #f0fdf4; color: #2e7d52; border: 1px solid #b2dfc5; }
 .product-price {
     font-size: 1.1rem;
     font-weight: 700;
