@@ -1,14 +1,5 @@
 [
   {
-    "id": 171000001,
-    "name": "Luxury Royal Wedding",
-    "price": "39.000",
-    "category": "wedding",
-    "image": "assets/image_product/wedding_luxury.jpg",
-    "demoUrl": "https://riradigital.com/demo/royal-wedding",
-    "whatsapp": "628123456789"
-  },
-  {
     "id": 171000002,
     "name": "Khitan Modern Blue Gold",
     "price": "39.000",
