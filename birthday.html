@@ -77,11 +77,13 @@
                     filteredData.forEach(product => {
                         const card = document.createElement('div');
                         card.className = 'product-card';
+                        const categoryLabels = { wedding: "Wedding", khitanan: "Khitanan", birthday: "Birthday", reunion: "Reunion" };
                         card.innerHTML = `
                             <div class="mockup-container">
                                 <img src="${product.image}" alt="${product.name}" class="mockup-img" onerror="this.src='https://via.placeholder.com/240x426/f8f8f8/111111?text=RIRA+DIGITAL'">
                             </div>
-                            <div class="product-price">Rp.${product.price}</div>
+                            <span class="product-category category-${product.category}">${categoryLabels[product.category] || product.category}</span>
+                            <div class="product-price">Rp ${product.price}</div>
                             <div class="product-name">${product.name}</div>
                             <div class="btn-group">
                                 <a href="${product.demoUrl}" target="_blank" class="btn btn-demo">Demo</a>
