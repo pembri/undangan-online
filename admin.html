@@ -49,34 +49,139 @@
             border-radius: 6px;
             outline: none;
             font-family: inherit;
+            box-sizing: border-box;
         }
         .form-control:focus { border-color: #1a1a1a; }
+
+        /* Category Filter Tabs */
+        .cat-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .cat-filter-btn {
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            border: 1.5px solid #e0e0e0;
+            background: #f7f7f7;
+            color: #555;
+            transition: all 0.15s;
+        }
+        .cat-filter-btn.active-all   { background:#1a1a1a; color:#fff; border-color:#1a1a1a; }
+        .cat-filter-btn.active-wedding  { background:#fdf0f5; color:#c2627a; border-color:#c2627a; }
+        .cat-filter-btn.active-khitanan { background:#eef4ff; color:#4a72c4; border-color:#4a72c4; }
+        .cat-filter-btn.active-birthday { background:#fff8ec; color:#c07a1a; border-color:#c07a1a; }
+        .cat-filter-btn.active-reunion  { background:#f0fdf4; color:#2e7d52; border-color:#2e7d52; }
+
+        /* Product List Item */
         .product-list-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #f4f4f4;
+            gap: 8px;
         }
         .product-list-item:last-child { border-bottom: none; }
-        .item-info h4 { font-size: 0.95rem; font-weight: 600; }
-        .item-info p { font-size: 0.8rem; color: #777; }
-        .action-btns { display: flex; gap: 8px; }
+        .item-info h4 { font-size: 0.92rem; font-weight: 600; margin: 0 0 3px; }
+        .item-info p { font-size: 0.78rem; color: #777; margin: 0; display:flex; align-items:center; gap:6px; }
+
+        /* Action buttons */
+        .action-btns { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
         .btn-sm {
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
+            border: none;
+            line-height: 1.4;
         }
-        .btn-edit { background: #f0f0f0; border: 1px solid #ccc; color: #333; }
-        .btn-delete { background: #ff4d4d; border: 1px solid #ff4d4d; color: #fff; }
+        .btn-edit   { background: #f0f0f0; border: 1px solid #ccc !important; color: #333; }
+        .btn-delete { background: #ff4d4d; color: #fff; }
+        .btn-move {
+            background: #f7f7f7;
+            border: 1.5px solid #ddd !important;
+            color: #444;
+            padding: 4px 7px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .btn-move:disabled { opacity: 0.25; cursor: default; }
+        .btn-move:not(:disabled):hover { background: #e8e8e8; }
+
+        /* Sync button */
+        .btn-sync {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: opacity 0.15s;
+            margin-top: 4px;
+        }
+        .btn-sync:hover { opacity: 0.82; }
+        .btn-sync:disabled { opacity: 0.4; cursor: not-allowed; }
+        .sync-icon { font-size: 1rem; display: inline-block; transition: transform 0.5s; }
+        .btn-sync.spinning .sync-icon { animation: spin 0.7s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .panel-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f4f4f4;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .panel-header-row h3 {
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
         .status-msg {
             margin-top: 15px;
             font-size: 0.85rem;
             font-weight: 500;
             text-align: center;
+        }
+        .badge-new {
+            font-size: 0.6rem;
+            background: #ff4d4d;
+            color: #fff;
+            border-radius: 6px;
+            padding: 1px 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+        .prod-count {
+            font-size: 0.72rem;
+            color: #999;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -107,12 +212,12 @@
             </nav>
         </div>
     </header>
-    
 
     <main>
         <h2 class="page-title">CMS Admin Dashboard</h2>
         
-        <div class="panel" style="max-width: 600px; margin: 0 auto 40px auto;">
+        <!-- GitHub Config Panel -->
+        <div class="panel" style="max-width: 620px; margin: 0 auto 40px auto;">
             <h3>Koneksi GitHub Repository</h3>
             <div class="form-group">
                 <label>GitHub Personal Access Token (PAT)</label>
@@ -128,11 +233,17 @@
                     <input type="text" id="gh-repo" class="form-control" placeholder="undangan-online">
                 </div>
             </div>
-            <button id="btn-save-config" class="btn btn-demo" style="padding: 8px;">Simpan & Muat Data</button>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button id="btn-save-config" class="btn btn-demo" style="padding: 8px 16px;">Simpan & Muat Data</button>
+                <button id="btn-sync" class="btn-sync" title="Sinkronkan ulang data dari GitHub">
+                    <span class="sync-icon">⟳</span> Sinkronisasi
+                </button>
+            </div>
             <div id="config-status" class="status-msg"></div>
         </div>
 
         <div class="admin-container">
+            <!-- Form Panel -->
             <div class="panel">
                 <h3 id="form-title">Tambah Produk Baru</h3>
                 <form id="product-form">
@@ -171,8 +282,21 @@
                 </form>
             </div>
 
+            <!-- Product List Panel -->
             <div class="panel">
-                <h3>Semua Produk Saat Ini</h3>
+                <div class="panel-header-row">
+                    <h3 style="margin:0; border:none; padding:0;">Semua Produk <span id="prod-total-count" class="prod-count"></span></h3>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="cat-filter-bar" id="cat-filter-bar">
+                    <button class="cat-filter-btn active-all" data-cat="all">Semua</button>
+                    <button class="cat-filter-btn" data-cat="wedding">Wedding</button>
+                    <button class="cat-filter-btn" data-cat="khitanan">Khitanan</button>
+                    <button class="cat-filter-btn" data-cat="birthday">Birthday</button>
+                    <button class="cat-filter-btn" data-cat="reunion">Reunion</button>
+                </div>
+
                 <div id="admin-product-list">
                     <p style="color: #888; text-align: center;">Silakan konfigurasi GitHub Token di atas untuk memuat data.</p>
                 </div>
@@ -184,204 +308,297 @@
         &copy; 2026 RIRA DIGITAL. Admin GitHub Sync System.
     </footer>
 
-    
 <script>
     document.getElementById('hamburger-btn').addEventListener('click', function() {
         document.getElementById('nav-menu').classList.toggle('active');
     });
 </script>
 
+<script>
+    let localProducts = [];
+    let fileSha = "";
+    let activeFilter = "all"; // current active category filter
 
-    <script>
-        let localProducts = [];
-        let fileSha = "";
+    // ── Restore saved config ──────────────────────────────────────────────────
+    document.getElementById('gh-token').value = localStorage.getItem('rira_gh_token') || '';
+    document.getElementById('gh-user').value  = localStorage.getItem('rira_gh_user')  || 'pembri';
+    document.getElementById('gh-repo').value  = localStorage.getItem('rira_gh_repo')  || 'undangan-online';
 
-        document.getElementById('gh-token').value = localStorage.getItem('rira_gh_token') || '';
-        document.getElementById('gh-user').value = localStorage.getItem('rira_gh_user') || 'pembri';
-        document.getElementById('gh-repo').value = localStorage.getItem('rira_gh_repo') || 'undangan-online';
+    if (localStorage.getItem('rira_gh_token')) {
+        loadDataFromGitHub();
+    }
 
-        if(localStorage.getItem('rira_gh_token')) {
-            loadDataFromGitHub();
+    // ── Save config & load ────────────────────────────────────────────────────
+    document.getElementById('btn-save-config').addEventListener('click', function() {
+        const ghUser = document.getElementById('gh-user').value.trim() || 'pembri';
+        const ghRepo = document.getElementById('gh-repo').value.trim() || 'undangan-online';
+        document.getElementById('gh-user').value = ghUser;
+        document.getElementById('gh-repo').value = ghRepo;
+        localStorage.setItem('rira_gh_token', document.getElementById('gh-token').value.trim());
+        localStorage.setItem('rira_gh_user', ghUser);
+        localStorage.setItem('rira_gh_repo', ghRepo);
+        loadDataFromGitHub();
+    });
+
+    // ── Sync button ───────────────────────────────────────────────────────────
+    document.getElementById('btn-sync').addEventListener('click', function() {
+        const btn = this;
+        btn.disabled = true;
+        btn.classList.add('spinning');
+        loadDataFromGitHub(function() {
+            btn.disabled = false;
+            btn.classList.remove('spinning');
+        });
+    });
+
+    // ── Load from GitHub ──────────────────────────────────────────────────────
+    function loadDataFromGitHub(callback) {
+        const token = localStorage.getItem('rira_gh_token');
+        const user  = localStorage.getItem('rira_gh_user');
+        const repo  = localStorage.getItem('rira_gh_repo');
+        const statusDiv = document.getElementById('config-status');
+
+        if (!token || !user || !repo) {
+            statusDiv.innerHTML = "<span style='color:red;'>Mohon isi semua kolom konfigurasi GitHub!</span>";
+            if (callback) callback();
+            return;
         }
 
-        document.getElementById('btn-save-config').addEventListener('click', function() {
-            const ghUser = document.getElementById('gh-user').value.trim() || 'pembri';
-            const ghRepo = document.getElementById('gh-repo').value.trim() || 'undangan-online';
-            document.getElementById('gh-user').value = ghUser;
-            document.getElementById('gh-repo').value = ghRepo;
-            localStorage.setItem('rira_gh_token', document.getElementById('gh-token').value.trim());
-            localStorage.setItem('rira_gh_user', ghUser);
-            localStorage.setItem('rira_gh_repo', ghRepo);
-            loadDataFromGitHub();
+        statusDiv.innerHTML = "<span style='color:#666;'>Menghubungkan ke GitHub...</span>";
+
+        const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
+
+        fetch(url, {
+            headers: {
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Repository/file tidak ditemukan atau token salah.');
+            return res.json();
+        })
+        .then(data => {
+            fileSha = data.sha;
+            const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+            localProducts = JSON.parse(content);
+            renderAdminProducts();
+            statusDiv.innerHTML = "<span style='color:green;'>✔ Sinkronisasi Sukses! Data berhasil dimuat.</span>";
+            if (callback) callback();
+        })
+        .catch(err => {
+            statusDiv.innerHTML = `<span style='color:red;'>Error: ${err.message}</span>`;
+            console.error(err);
+            if (callback) callback();
+        });
+    }
+
+    // ── Category filter bar click ─────────────────────────────────────────────
+    document.getElementById('cat-filter-bar').addEventListener('click', function(e) {
+        const btn = e.target.closest('.cat-filter-btn');
+        if (!btn) return;
+        activeFilter = btn.dataset.cat;
+
+        // Update active classes
+        document.querySelectorAll('.cat-filter-btn').forEach(b => {
+            b.className = 'cat-filter-btn'; // reset
+            if (b.dataset.cat === activeFilter) {
+                b.classList.add('active-' + (activeFilter === 'all' ? 'all' : activeFilter));
+            }
         });
 
-        function loadDataFromGitHub() {
-            const token = localStorage.getItem('rira_gh_token');
-            const user = localStorage.getItem('rira_gh_user');
-            const repo = localStorage.getItem('rira_gh_repo');
-            const statusDiv = document.getElementById('config-status');
+        renderAdminProducts();
+    });
 
-            if(!token || !user || !repo) {
-                statusDiv.innerHTML = "<span style='color:red;'>Mohon isi semua kolom konfigurasi GitHub!</span>";
-                return;
-            }
+    // ── Render product list ───────────────────────────────────────────────────
+    function renderAdminProducts() {
+        const listContainer = document.getElementById('admin-product-list');
+        listContainer.innerHTML = '';
 
-            statusDiv.innerHTML = "<span style='color:#666;'>Menghubungkan ke GitHub...</span>";
+        // Sort newest first (highest id = latest added)
+        const sorted = [...localProducts].reverse();
 
-            const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
-            
-            fetch(url, {
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            })
-            .then(res => {
-                if(!res.ok) throw new Error('Repository/file tidak ditemukan atau token salah.');
-                return res.json();
-            })
-            .then(data => {
-                fileSha = data.sha;
-                const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
-                localProducts = JSON.parse(content);
-                renderAdminProducts();
-                statusDiv.innerHTML = "<span style='color:green;'>Koneksi Sukses! Data Sinkron.</span>";
-            })
-            .catch(err => {
-                statusDiv.innerHTML = `<span style='color:red;'>Error: ${err.message}</span>`;
-                console.error(err);
-            });
+        // Filter by active category
+        const filtered = activeFilter === 'all'
+            ? sorted
+            : sorted.filter(p => p.category === activeFilter);
+
+        // Update total count display
+        const totalCount = localProducts.length;
+        const filteredCount = filtered.length;
+        document.getElementById('prod-total-count').textContent =
+            activeFilter === 'all'
+                ? `(${totalCount})`
+                : `(${filteredCount} dari ${totalCount})`;
+
+        if (filtered.length === 0) {
+            listContainer.innerHTML = '<p style="color: #888; text-align: center; padding: 20px 0;">Tidak ada produk' +
+                (activeFilter !== 'all' ? ' di kategori ini' : '') + '.</p>';
+            return;
         }
 
-        function renderAdminProducts() {
-            const listContainer = document.getElementById('admin-product-list');
-            listContainer.innerHTML = '';
-            
-            if(localProducts.length === 0) {
-                listContainer.innerHTML = '<p style="color: #888; text-align: center;">Tidak ada produk.</p>';
-                return;
-            }
+        const catColors = { wedding:'#c2627a', khitanan:'#4a72c4', birthday:'#c07a1a', reunion:'#2e7d52' };
+        const catBg     = { wedding:'#fdf0f5', khitanan:'#eef4ff', birthday:'#fff8ec', reunion:'#f0fdf4' };
 
-            localProducts.forEach(prod => {
-                const div = document.createElement('div');
-                div.className = 'product-list-item';
-                const catColors = { wedding:'#c2627a', khitanan:'#4a72c4', birthday:'#c07a1a', reunion:'#2e7d52' };
-                const catBg = { wedding:'#fdf0f5', khitanan:'#eef4ff', birthday:'#fff8ec', reunion:'#f0fdf4' };
-                div.innerHTML = `
-                    <div class="item-info">
-                        <h4>${prod.name}</h4>
-                        <p style="display:flex;align-items:center;gap:6px;margin-top:3px;">
-                          <span style="background:${catBg[prod.category]||'#f4f4f4'};color:${catColors[prod.category]||'#666'};padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">${prod.category}</span>
-                          <span style="color:#aaa;">Rp ${prod.price}</span>
-                        </p>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-sm btn-edit" onclick="startEdit(${prod.id})">Edit</button>
-                        <button class="btn-sm btn-delete" onclick="deleteProduct(${prod.id})">Hapus</button>
-                    </div>
-                `;
-                listContainer.appendChild(div);
-            });
-        }
+        // We'll determine "newest" badge — the very first item in the full reversed list
+        const newestId = sorted[0] ? sorted[0].id : null;
 
-        document.getElementById('product-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const idInput = document.getElementById('product-id').value;
-            const name = document.getElementById('prod-name').value.trim();
-            const price = document.getElementById('prod-price').value.trim();
-            const category = document.getElementById('prod-category').value;
-            const image = document.getElementById('prod-image').value.trim();
-            const demoUrl = document.getElementById('prod-demo').value.trim();
-            const whatsapp = document.getElementById('prod-wa').value.trim();
+        filtered.forEach((prod, idx) => {
+            // Real index in localProducts array (for move operations)
+            const realIdx = localProducts.findIndex(p => p.id === prod.id);
 
-            if(idInput) {
-                const index = localProducts.findIndex(p => p.id == idInput);
-                if(index !== -1) {
-                    localProducts[index] = { id: parseInt(idInput), name, price, category, image, demoUrl, whatsapp };
-                }
-            } else {
-                const newId = Date.now();
-                localProducts.push({ id: newId, name, price, category, image, demoUrl, whatsapp });
-            }
+            const div = document.createElement('div');
+            div.className = 'product-list-item';
+            div.dataset.id = prod.id;
 
-            pushToGitHub("Update daftar produk via Web Admin CMS");
-            resetForm();
+            const isNewest = (prod.id === newestId && idx === 0);
+            const newBadge = isNewest ? `<span class="badge-new">Baru</span>` : '';
+
+            div.innerHTML = `
+                <div class="action-btns" style="flex-direction:column; gap:3px;">
+                    <button class="btn-move" title="Geser ke atas" onclick="moveProduct(${prod.id}, -1)" ${realIdx === 0 ? 'disabled' : ''}>▲</button>
+                    <button class="btn-move" title="Geser ke bawah" onclick="moveProduct(${prod.id}, 1)" ${realIdx === localProducts.length - 1 ? 'disabled' : ''}>▼</button>
+                </div>
+                <div class="item-info" style="flex:1; min-width:0; padding: 0 6px;">
+                    <h4>${prod.name}${newBadge}</h4>
+                    <p>
+                      <span style="background:${catBg[prod.category]||'#f4f4f4'};color:${catColors[prod.category]||'#666'};padding:2px 8px;border-radius:10px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;">${prod.category}</span>
+                      <span style="color:#aaa;">Rp ${prod.price}</span>
+                    </p>
+                </div>
+                <div class="action-btns">
+                    <button class="btn-sm btn-edit" onclick="startEdit(${prod.id})">Edit</button>
+                    <button class="btn-sm btn-delete" onclick="deleteProduct(${prod.id})">Hapus</button>
+                </div>
+            `;
+            listContainer.appendChild(div);
         });
+    }
 
-        // Use global window functions for inline onclick handlers
-        window.startEdit = function(id) {
-            const prod = localProducts.find(p => p.id == id);
-            if(!prod) return;
+    // ── Move product up or down ───────────────────────────────────────────────
+    window.moveProduct = function(id, direction) {
+        const idx = localProducts.findIndex(p => p.id === id);
+        if (idx === -1) return;
+        const newIdx = idx + direction;
+        if (newIdx < 0 || newIdx >= localProducts.length) return;
 
-            document.getElementById('product-id').value = prod.id;
-            document.getElementById('prod-name').value = prod.name;
-            document.getElementById('prod-price').value = prod.price;
-            document.getElementById('prod-category').value = prod.category;
-            document.getElementById('prod-image').value = prod.image;
-            document.getElementById('prod-demo').value = prod.demoUrl;
-            document.getElementById('prod-wa').value = prod.whatsapp;
+        // Swap
+        [localProducts[idx], localProducts[newIdx]] = [localProducts[newIdx], localProducts[idx]];
 
-            document.getElementById('form-title').innerText = "Edit Produk";
-            document.getElementById('btn-submit').innerText = "Simpan Perubahan";
-            document.getElementById('btn-cancel-edit').style.display = "block";
-        };
+        renderAdminProducts();
+        // Push to GitHub silently
+        pushToGitHub("Ubah urutan produk via Web Admin CMS");
+    };
 
-        document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
+    // ── Form submit (add / edit) ──────────────────────────────────────────────
+    document.getElementById('product-form').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-        function resetForm() {
-            document.getElementById('product-form').reset();
-            document.getElementById('product-id').value = "";
-            document.getElementById('form-title').innerText = "Tambah Produk Baru";
-            document.getElementById('btn-submit').innerText = "Kirim Produk";
-            document.getElementById('btn-cancel-edit').style.display = "none";
-        }
+        const idInput  = document.getElementById('product-id').value;
+        const name     = document.getElementById('prod-name').value.trim();
+        const price    = document.getElementById('prod-price').value.trim();
+        const category = document.getElementById('prod-category').value;
+        const image    = document.getElementById('prod-image').value.trim();
+        const demoUrl  = document.getElementById('prod-demo').value.trim();
+        const whatsapp = document.getElementById('prod-wa').value.trim();
 
-        window.deleteProduct = function(id) {
-            if(confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
-                localProducts = localProducts.filter(p => p.id != id);
-                pushToGitHub("Hapus produk via Web Admin CMS");
+        if (idInput) {
+            // Edit existing
+            const index = localProducts.findIndex(p => p.id == idInput);
+            if (index !== -1) {
+                localProducts[index] = { id: parseInt(idInput), name, price, category, image, demoUrl, whatsapp };
             }
-        };
-
-        function pushToGitHub(commitMessage) {
-            const token = localStorage.getItem('rira_gh_token');
-            const user = localStorage.getItem('rira_gh_user');
-            const repo = localStorage.getItem('rira_gh_repo');
-            const statusDiv = document.getElementById('config-status');
-
-            statusDiv.innerHTML = "<span style='color:#666;'>Menyimpan perubahan ke GitHub...</span>";
-
-            const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
-            const updatedContentB64 = btoa(unescape(encodeURIComponent(JSON.stringify(localProducts, null, 2))));
-
-            fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: commitMessage,
-                    content: updatedContentB64,
-                    sha: fileSha
-                })
-            })
-            .then(res => {
-                if(!res.ok) throw new Error('Gagal push data ke GitHub. Cek koneksi internet Anda.');
-                return res.json();
-            })
-            .then(data => {
-                fileSha = data.content.sha;
-                renderAdminProducts();
-                statusDiv.innerHTML = "<span style='color:green;'>Perubahan berhasil disimpan & ter-publish!</span>";
-            })
-            .catch(err => {
-                statusDiv.innerHTML = `<span style='color:red;'>Push Gagal: ${err.message}</span>`;
-                console.error(err);
-            });
+            pushToGitHub("Edit produk via Web Admin CMS");
+        } else {
+            // Add new — push to front (index 0) so it shows as newest
+            const newId = Date.now();
+            localProducts.unshift({ id: newId, name, price, category, image, demoUrl, whatsapp });
+            pushToGitHub("Tambah produk baru via Web Admin CMS");
         }
-    </script>
+
+        resetForm();
+    });
+
+    // ── Start edit ────────────────────────────────────────────────────────────
+    window.startEdit = function(id) {
+        const prod = localProducts.find(p => p.id == id);
+        if (!prod) return;
+
+        document.getElementById('product-id').value   = prod.id;
+        document.getElementById('prod-name').value    = prod.name;
+        document.getElementById('prod-price').value   = prod.price;
+        document.getElementById('prod-category').value = prod.category;
+        document.getElementById('prod-image').value   = prod.image;
+        document.getElementById('prod-demo').value    = prod.demoUrl;
+        document.getElementById('prod-wa').value      = prod.whatsapp;
+
+        document.getElementById('form-title').innerText          = "Edit Produk";
+        document.getElementById('btn-submit').innerText          = "Simpan Perubahan";
+        document.getElementById('btn-cancel-edit').style.display = "block";
+
+        // Scroll to form on mobile
+        document.getElementById('product-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
+
+    function resetForm() {
+        document.getElementById('product-form').reset();
+        document.getElementById('product-id').value             = "";
+        document.getElementById('form-title').innerText         = "Tambah Produk Baru";
+        document.getElementById('btn-submit').innerText         = "Kirim Produk";
+        document.getElementById('btn-cancel-edit').style.display = "none";
+    }
+
+    // ── Delete ────────────────────────────────────────────────────────────────
+    window.deleteProduct = function(id) {
+        const prod = localProducts.find(p => p.id == id);
+        const name = prod ? prod.name : 'produk ini';
+        if (confirm(`Hapus "${name}"?\nTindakan ini tidak dapat dibatalkan.`)) {
+            localProducts = localProducts.filter(p => p.id != id);
+            pushToGitHub("Hapus produk via Web Admin CMS");
+        }
+    };
+
+    // ── Push to GitHub ────────────────────────────────────────────────────────
+    function pushToGitHub(commitMessage) {
+        const token = localStorage.getItem('rira_gh_token');
+        const user  = localStorage.getItem('rira_gh_user');
+        const repo  = localStorage.getItem('rira_gh_repo');
+        const statusDiv = document.getElementById('config-status');
+
+        statusDiv.innerHTML = "<span style='color:#666;'>⏳ Menyimpan perubahan ke GitHub...</span>";
+
+        const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
+        const updatedContentB64 = btoa(unescape(encodeURIComponent(JSON.stringify(localProducts, null, 2))));
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: commitMessage,
+                content: updatedContentB64,
+                sha: fileSha
+            })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Gagal push data ke GitHub. Cek koneksi internet Anda.');
+            return res.json();
+        })
+        .then(data => {
+            fileSha = data.content.sha;
+            renderAdminProducts();
+            statusDiv.innerHTML = "<span style='color:green;'>✔ Perubahan berhasil disimpan & ter-publish!</span>";
+        })
+        .catch(err => {
+            statusDiv.innerHTML = `<span style='color:red;'>✘ Push Gagal: ${err.message}</span>`;
+            console.error(err);
+        });
+    }
+</script>
 </body>
 </html>
