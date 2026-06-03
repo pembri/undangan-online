@@ -16,5 +16,14 @@
     "image": "/assets/product/luxury_dark_gold.png",
     "demoUrl": "https://riradigital.my.id/demo/wedding/luxury_dark_gold",
     "whatsapp": "6288231198485"
+  },
+  {
+    "id": 1780516559013,
+    "name": "Dark Mocha",
+    "price": "100.00",
+    "category": "wedding",
+    "image": "/assets/product/dark_mocha.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/dark_mocha",
+    "whatsapp": "6288231198485"
   }
 ]
