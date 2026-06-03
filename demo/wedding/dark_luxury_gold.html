@@ -1144,7 +1144,7 @@
             └──────────────────────────────────────────────────────────────────┘
             -->
             <div class="closing-photo reveal scale-in">
-                <img src="[URL_FOTO_BERDUA]" alt="Couple">
+                <img src="/demo/album/wedding.jpg" alt="Couple">
             </div>
 
             <p class="closing-quote reveal reveal-delay-1">
@@ -1237,7 +1237,7 @@
     ║  CONTOH  : Shinta & Rama → "ucapan_shinta_rama"                     ║
     ╚══════════════════════════════════════════════════════════════════════╝
     */
-    const KOLEKSI = "ucapan_anggra_pembri";
+    const KOLEKSI = "ucapan_pembri_anggra";
 
     window.kirimUcapan = async function() {
         const nama      = document.getElementById('inputNama').value.trim();
@@ -1297,7 +1297,7 @@
     ║  CONTOH: Nikah 31 Desember 2025 → new Date(2025, 11, 31)            ║
     ╚══════════════════════════════════════════════════════════════════════╝
     */
-    const TANGGAL_NIKAH = new Date(2025, 11, 31); // ← GANTI: new Date(TAHUN, BULAN, TANGGAL)
+    const TANGGAL_NIKAH = new Date(2026, 11, 31); // ← GANTI: new Date(TAHUN, BULAN, TANGGAL)
 
     function updateCountdown() {
         const diff = TANGGAL_NIKAH - new Date();
