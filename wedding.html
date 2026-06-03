@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Wedding - RIRA DIGITAL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">RIRA DIGITAL</a>
+            <div class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-item ">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-item active">Kategori ▾</a>
+                    <div class="dropdown-content">
+                        <a href="wedding.html">Wedding</a>
+                        <a href="khitanan.html">Khitanan</a>
+                        <a href="birthday.html">Birthday</a>
+                        <a href="reunion.html">Reunion</a>
+                    </div>
+                </div>
+                <a href="privacy.html" class="nav-item ">Privacy Policy</a>
+                <a href="contact.html" class="nav-item ">Contact</a>
+                <a href="admin.html" class="nav-item ">Admin</a>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <h2 class="page-title">Kategori Wedding</h2>
+        <div class="product-grid" id="product-container">
+            <!-- Data loaded dynamically from database.json -->
+        </div>
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/628123456789?text=Halo%20RIRA%20DIGITAL,%20saya%20tertarik%20dengan%20undangan%20digitalnya." class="whatsapp-float" target="_blank">
+        <svg style="width:30px;height:30px;fill:#fff;margin-top:15px;" viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.76.459 3.413 1.261 4.866l-1.285 4.698 4.811-1.261c1.405.766 3.003 1.206 4.701 1.206 5.507 0 9.988-4.479 9.988-9.987 0-5.508-4.481-9.987-9.988-9.987zm4.723 14.244c-.214.601-1.242 1.161-1.71 1.206-.431.042-.991.066-2.927-.698-2.476-.976-4.062-3.504-4.186-3.668-.124-.165-1.011-1.345-1.011-2.564 0-1.22.639-1.819.866-2.066.227-.248.496-.309.661-.309.165 0 .33 0 .474.007.151.006.35-.057.548.421.206.495.701 1.71.763 1.833.062.124.103.268.021.433-.082.165-.124.268-.248.412-.124.144-.26.322-.371.433-.124.124-.254.26-.11.507.144.247.639 1.053 1.371 1.703.946.84 1.744 1.103 1.992 1.227.247.124.391.103.536-.062.144-.165.619-.722.784-.97.165-.247.33-.206.557-.124.227.082 1.443.68 1.691.804.248.124.412.186.474.289.062.103.062.6-.152 1.201z"/></svg>
+    </a>
+
+    <footer>
+        &copy; 2026 RIRA DIGITAL. All Rights Reserved. Luxury Minimalist Invitation Templates.
+    </footer>
+
+    
+<script>
+    document.getElementById('hamburger-btn').addEventListener('click', function() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    });
+</script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('database.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('product-container');
+                    const filter = 'wedding';
+                    
+                    const filteredData = filter ? data.filter(item => item.category === filter) : data;
+                    
+                    if(filteredData.length === 0) {
+                        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Belum ada produk untuk kategori ini.</p>';
+                        return;
+                    }
+
+                    filteredData.forEach(product => {
+                        const card = document.createElement('div');
+                        card.className = 'product-card';
+                        card.innerHTML = `
+                            <div class="mockup-container">
+                                <img src="${product.image}" alt="${product.name}" class="mockup-img" onerror="this.src='https://via.placeholder.com/240x426/f8f8f8/111111?text=RIRA+DIGITAL'">
+                            </div>
+                            <div class="product-price">Rp.${product.price}</div>
+                            <div class="product-name">${product.name}</div>
+                            <div class="btn-group">
+                                <a href="${product.demoUrl}" target="_blank" class="btn btn-demo">Demo</a>
+                                <a href="https://wa.me/${product.whatsapp}?text=Halo%20RIRA%20DIGITAL,%20saya%20mau%20order%20undangan%20digital%20tema%20*${encodeURIComponent(product.name)}*" target="_blank" class="btn btn-order">Order</a>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('product-container').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red;">Gagal memuat produk dari database.json.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

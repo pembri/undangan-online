@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - RIRA DIGITAL</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        @media (max-width: 768px) {
+            .admin-container { grid-template-columns: 1fr; }
+        }
+        .panel {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+        .panel h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #f4f4f4;
+            padding-bottom: 10px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 6px;
+            outline: none;
+            font-family: inherit;
+        }
+        .form-control:focus { border-color: #1a1a1a; }
+        .product-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+        .product-list-item:last-child { border-bottom: none; }
+        .item-info h4 { font-size: 0.95rem; font-weight: 600; }
+        .item-info p { font-size: 0.8rem; color: #777; }
+        .action-btns { display: flex; gap: 8px; }
+        .btn-sm {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .btn-edit { background: #f0f0f0; border: 1px solid #ccc; color: #333; }
+        .btn-delete { background: #ff4d4d; border: 1px solid #ff4d4d; color: #fff; }
+        .status-msg {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">RIRA DIGITAL</a>
+            <div class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-item ">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-item ">Kategori ▾</a>
+                    <div class="dropdown-content">
+                        <a href="wedding.html">Wedding</a>
+                        <a href="khitanan.html">Khitanan</a>
+                        <a href="birthday.html">Birthday</a>
+                        <a href="reunion.html">Reunion</a>
+                    </div>
+                </div>
+                <a href="privacy.html" class="nav-item ">Privacy Policy</a>
+                <a href="contact.html" class="nav-item ">Contact</a>
+                <a href="admin.html" class="nav-item active">Admin</a>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <h2 class="page-title">CMS Admin Dashboard</h2>
+        
+        <div class="panel" style="max-width: 600px; margin: 0 auto 40px auto;">
+            <h3>Koneksi GitHub Repository</h3>
+            <div class="form-group">
+                <label>GitHub Personal Access Token (PAT)</label>
+                <input type="password" id="gh-token" class="form-control" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxx">
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div>
+                    <label>Username GitHub</label>
+                    <input type="text" id="gh-user" class="form-control" placeholder="username_kamu">
+                </div>
+                <div>
+                    <label>Nama Repository</label>
+                    <input type="text" id="gh-repo" class="form-control" placeholder="rira-digital">
+                </div>
+            </div>
+            <button id="btn-save-config" class="btn btn-demo" style="padding: 8px;">Simpan & Muat Data</button>
+            <div id="config-status" class="status-msg"></div>
+        </div>
+
+        <div class="admin-container">
+            <div class="panel">
+                <h3 id="form-title">Tambah Produk Baru</h3>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="form-group">
+                        <label>Nama Produk / Tema</label>
+                        <input type="text" id="prod-name" class="form-control" required placeholder="Contoh: Modern Sage Green">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga (Format string)</label>
+                        <input type="text" id="prod-price" class="form-control" required placeholder="Contoh: 39.000">
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="prod-category" class="form-control" required>
+                            <option value="wedding">Wedding</option>
+                            <option value="khitanan">Khitanan</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="reunion">Reunion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>URL Gambar Produk</label>
+                        <input type="text" id="prod-image" class="form-control" required placeholder="/assets/image_product/xxx.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label>URL Link Demo</label>
+                        <input type="url" id="prod-demo" class="form-control" required placeholder="https://riradigital.com/demo/xxx">
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp Order (Format: 628xxx)</label>
+                        <input type="text" id="prod-wa" class="form-control" required placeholder="628123456789">
+                    </div>
+                    <button type="submit" id="btn-submit" class="btn btn-order">Kirim Produk</button>
+                    <button type="button" id="btn-cancel-edit" class="btn btn-demo" style="margin-top: 10px; display: none;">Batal Edit</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Semua Produk Saat Ini</h3>
+                <div id="admin-product-list">
+                    <p style="color: #888; text-align: center;">Silakan konfigurasi GitHub Token di atas untuk memuat data.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 RIRA DIGITAL. Admin GitHub Sync System.
+    </footer>
+
+    
+<script>
+    document.getElementById('hamburger-btn').addEventListener('click', function() {
+        document.getElementById('nav-menu').classList.toggle('active');
+    });
+</script>
+
+
+    <script>
+        let localProducts = [];
+        let fileSha = "";
+
+        document.getElementById('gh-token').value = localStorage.getItem('rira_gh_token') || '';
+        document.getElementById('gh-user').value = localStorage.getItem('rira_gh_user') || '';
+        document.getElementById('gh-repo').value = localStorage.getItem('rira_gh_repo') || '';
+
+        if(localStorage.getItem('rira_gh_token')) {
+            loadDataFromGitHub();
+        }
+
+        document.getElementById('btn-save-config').addEventListener('click', function() {
+            localStorage.setItem('rira_gh_token', document.getElementById('gh-token').value.trim());
+            localStorage.setItem('rira_gh_user', document.getElementById('gh-user').value.trim());
+            localStorage.setItem('rira_gh_repo', document.getElementById('gh-repo').value.trim());
+            loadDataFromGitHub();
+        });
+
+        function loadDataFromGitHub() {
+            const token = localStorage.getItem('rira_gh_token');
+            const user = localStorage.getItem('rira_gh_user');
+            const repo = localStorage.getItem('rira_gh_repo');
+            const statusDiv = document.getElementById('config-status');
+
+            if(!token || !user || !repo) {
+                statusDiv.innerHTML = "<span style='color:red;'>Mohon isi semua kolom konfigurasi GitHub!</span>";
+                return;
+            }
+
+            statusDiv.innerHTML = "<span style='color:#666;'>Menghubungkan ke GitHub...</span>";
+
+            const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
+            
+            fetch(url, {
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            })
+            .then(res => {
+                if(!res.ok) throw new Error('Repository/file tidak ditemukan atau token salah.');
+                return res.json();
+            })
+            .then(data => {
+                fileSha = data.sha;
+                const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+                localProducts = JSON.parse(content);
+                renderAdminProducts();
+                statusDiv.innerHTML = "<span style='color:green;'>Koneksi Sukses! Data Sinkron.</span>";
+            })
+            .catch(err => {
+                statusDiv.innerHTML = `<span style='color:red;'>Error: ${err.message}</span>`;
+                console.error(err);
+            });
+        }
+
+        function renderAdminProducts() {
+            const listContainer = document.getElementById('admin-product-list');
+            listContainer.innerHTML = '';
+            
+            if(localProducts.length === 0) {
+                listContainer.innerHTML = '<p style="color: #888; text-align: center;">Tidak ada produk.</p>';
+                return;
+            }
+
+            localProducts.forEach(prod => {
+                const div = document.createElement('div');
+                div.className = 'product-list-item';
+                div.innerHTML = `
+                    <div class="item-info">
+                        <h4>${prod.name}</h4>
+                        <p>Rp.${prod.price} | <span style="text-transform:uppercase;">${prod.category}</span></p>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-sm btn-edit" onclick="startEdit(${prod.id})">Edit</button>
+                        <button class="btn-sm btn-delete" onclick="deleteProduct(${prod.id})">Hapus</button>
+                    </div>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        document.getElementById('product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const idInput = document.getElementById('product-id').value;
+            const name = document.getElementById('prod-name').value.trim();
+            const price = document.getElementById('prod-price').value.trim();
+            const category = document.getElementById('prod-category').value;
+            const image = document.getElementById('prod-image').value.trim();
+            const demoUrl = document.getElementById('prod-demo').value.trim();
+            const whatsapp = document.getElementById('prod-wa').value.trim();
+
+            if(idInput) {
+                const index = localProducts.findIndex(p => p.id == idInput);
+                if(index !== -1) {
+                    localProducts[index] = { id: parseInt(idInput), name, price, category, image, demoUrl, whatsapp };
+                }
+            } else {
+                const newId = Date.now();
+                localProducts.push({ id: newId, name, price, category, image, demoUrl, whatsapp });
+            }
+
+            pushToGitHub("Update daftar produk via Web Admin CMS");
+            resetForm();
+        });
+
+        // Use global window functions for inline onclick handlers
+        window.startEdit = function(id) {
+            const prod = localProducts.find(p => p.id == id);
+            if(!prod) return;
+
+            document.getElementById('product-id').value = prod.id;
+            document.getElementById('prod-name').value = prod.name;
+            document.getElementById('prod-price').value = prod.price;
+            document.getElementById('prod-category').value = prod.category;
+            document.getElementById('prod-image').value = prod.image;
+            document.getElementById('prod-demo').value = prod.demoUrl;
+            document.getElementById('prod-wa').value = prod.whatsapp;
+
+            document.getElementById('form-title').innerText = "Edit Produk";
+            document.getElementById('btn-submit').innerText = "Simpan Perubahan";
+            document.getElementById('btn-cancel-edit').style.display = "block";
+        };
+
+        document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
+
+        function resetForm() {
+            document.getElementById('product-form').reset();
+            document.getElementById('product-id').value = "";
+            document.getElementById('form-title').innerText = "Tambah Produk Baru";
+            document.getElementById('btn-submit').innerText = "Kirim Produk";
+            document.getElementById('btn-cancel-edit').style.display = "none";
+        }
+
+        window.deleteProduct = function(id) {
+            if(confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
+                localProducts = localProducts.filter(p => p.id != id);
+                pushToGitHub("Hapus produk via Web Admin CMS");
+            }
+        };
+
+        function pushToGitHub(commitMessage) {
+            const token = localStorage.getItem('rira_gh_token');
+            const user = localStorage.getItem('rira_gh_user');
+            const repo = localStorage.getItem('rira_gh_repo');
+            const statusDiv = document.getElementById('config-status');
+
+            statusDiv.innerHTML = "<span style='color:#666;'>Menyimpan perubahan ke GitHub...</span>";
+
+            const url = `https://api.github.com/repos/${user}/${repo}/contents/database.json`;
+            const updatedContentB64 = btoa(unescape(encodeURIComponent(JSON.stringify(localProducts, null, 2))));
+
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: commitMessage,
+                    content: updatedContentB64,
+                    sha: fileSha
+                })
+            })
+            .then(res => {
+                if(!res.ok) throw new Error('Gagal push data ke GitHub. Cek koneksi internet Anda.');
+                return res.json();
+            })
+            .then(data => {
+                fileSha = data.content.sha;
+                renderAdminProducts();
+                statusDiv.innerHTML = "<span style='color:green;'>Perubahan berhasil disimpan & ter-publish!</span>";
+            })
+            .catch(err => {
+                statusDiv.innerHTML = `<span style='color:red;'>Push Gagal: ${err.message}</span>`;
+                console.error(err);
+            });
+        }
+    </script>
+</body>
+</html>

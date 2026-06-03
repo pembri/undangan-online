@@ -1,0 +1,38 @@
+[
+  {
+    "id": 171000001,
+    "name": "Luxury Royal Wedding",
+    "price": "39.000",
+    "category": "wedding",
+    "image": "assets/image_product/wedding_luxury.jpg",
+    "demoUrl": "https://riradigital.com/demo/royal-wedding",
+    "whatsapp": "628123456789"
+  },
+  {
+    "id": 171000002,
+    "name": "Khitan Modern Blue Gold",
+    "price": "39.000",
+    "category": "khitanan",
+    "image": "assets/image_product/khitan_modern.jpg",
+    "demoUrl": "https://riradigital.com/demo/khitan-blue",
+    "whatsapp": "628123456789"
+  },
+  {
+    "id": 171000003,
+    "name": "Sweet Seventeen Minimalist",
+    "price": "39.000",
+    "category": "birthday",
+    "image": "assets/image_product/birthday_sweet.jpg",
+    "demoUrl": "https://riradigital.com/demo/birthday-sweet",
+    "whatsapp": "628123456789"
+  },
+  {
+    "id": 171000004,
+    "name": "Classic Reunion White",
+    "price": "39.000",
+    "category": "reunion",
+    "image": "assets/image_product/reunion_classic.jpg",
+    "demoUrl": "https://riradigital.com/demo/reunion-classic",
+    "whatsapp": "628123456789"
+  }
+]
