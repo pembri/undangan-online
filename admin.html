@@ -120,11 +120,11 @@
             <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div>
                     <label>Username GitHub</label>
-                    <input type="text" id="gh-user" class="form-control" placeholder="username_kamu">
+                    <input type="text" id="gh-user" class="form-control" placeholder="pembri">
                 </div>
                 <div>
                     <label>Nama Repository</label>
-                    <input type="text" id="gh-repo" class="form-control" placeholder="rira-digital">
+                    <input type="text" id="gh-repo" class="form-control" placeholder="undangan-online">
                 </div>
             </div>
             <button id="btn-save-config" class="btn btn-demo" style="padding: 8px;">Simpan & Muat Data</button>
@@ -196,17 +196,21 @@
         let fileSha = "";
 
         document.getElementById('gh-token').value = localStorage.getItem('rira_gh_token') || '';
-        document.getElementById('gh-user').value = localStorage.getItem('rira_gh_user') || '';
-        document.getElementById('gh-repo').value = localStorage.getItem('rira_gh_repo') || '';
+        document.getElementById('gh-user').value = localStorage.getItem('rira_gh_user') || 'pembri';
+        document.getElementById('gh-repo').value = localStorage.getItem('rira_gh_repo') || 'undangan-online';
 
         if(localStorage.getItem('rira_gh_token')) {
             loadDataFromGitHub();
         }
 
         document.getElementById('btn-save-config').addEventListener('click', function() {
+            const ghUser = document.getElementById('gh-user').value.trim() || 'pembri';
+            const ghRepo = document.getElementById('gh-repo').value.trim() || 'undangan-online';
+            document.getElementById('gh-user').value = ghUser;
+            document.getElementById('gh-repo').value = ghRepo;
             localStorage.setItem('rira_gh_token', document.getElementById('gh-token').value.trim());
-            localStorage.setItem('rira_gh_user', document.getElementById('gh-user').value.trim());
-            localStorage.setItem('rira_gh_repo', document.getElementById('gh-repo').value.trim());
+            localStorage.setItem('rira_gh_user', ghUser);
+            localStorage.setItem('rira_gh_repo', ghRepo);
             loadDataFromGitHub();
         });
 
@@ -260,10 +264,15 @@
             localProducts.forEach(prod => {
                 const div = document.createElement('div');
                 div.className = 'product-list-item';
+                const catColors = { wedding:'#c2627a', khitanan:'#4a72c4', birthday:'#c07a1a', reunion:'#2e7d52' };
+                const catBg = { wedding:'#fdf0f5', khitanan:'#eef4ff', birthday:'#fff8ec', reunion:'#f0fdf4' };
                 div.innerHTML = `
                     <div class="item-info">
                         <h4>${prod.name}</h4>
-                        <p>Rp.${prod.price} | <span style="text-transform:uppercase;">${prod.category}</span></p>
+                        <p style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+                          <span style="background:${catBg[prod.category]||'#f4f4f4'};color:${catColors[prod.category]||'#666'};padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">${prod.category}</span>
+                          <span style="color:#aaa;">Rp ${prod.price}</span>
+                        </p>
                     </div>
                     <div class="action-btns">
                         <button class="btn-sm btn-edit" onclick="startEdit(${prod.id})">Edit</button>
