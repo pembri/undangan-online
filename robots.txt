@@ -1,0 +1,22 @@
+# =============================================
+# ROBOTS.TXT - RIRA DIGITAL
+# =============================================
+
+User-agent: *
+Allow: /
+
+# =============================================
+# BLOKIR HALAMAN ADMIN & FOLDER TEMPLATE
+# =============================================
+
+# Blokir halaman admin
+Disallow: /admin.html
+Disallow: /admin
+
+# Blokir folder /template/ beserta seluruh isinya
+Disallow: /template/
+
+# =============================================
+# SITEMAP
+# =============================================
+Sitemap: https://riradigital.my.id/sitemap.xml
