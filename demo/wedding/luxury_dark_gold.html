@@ -84,7 +84,7 @@
             top: 0; left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 480px;
             height: 100vh;
-            height: 100dvh;
+            height: 100dvh; /* fix Chrome Android address bar */
             z-index: 9000;
             display: flex; flex-direction: column;
             justify-content: flex-end; align-items: center;
@@ -224,6 +224,25 @@
         }
         .btn-open:hover { color: var(--black); }
         .btn-open:hover::before { transform: scaleX(1); }
+
+
+        /* ─── COVER CLEAN (bagian pertama #main, tanpa nama tamu & tombol) ─── */
+        /* NOTE: Ini adalah cover versi clean yang muncul setelah tombol buka undangan diklik.
+           Isinya sama dengan cover asli (foto + nama pasangan + tanggal),
+           TANPA .cover-guest (nama tamu) dan TANPA .btn-open (tombol buka).
+           Jika ingin mengganti foto/nama/tanggal, samakan dengan cover asli di atas. */
+        #cover-clean {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            display: flex; flex-direction: column;
+            justify-content: flex-end; align-items: center;
+            overflow: hidden;
+        }
+        #cover-clean .cover-photo {
+            transform: scale(1);
+        }
 
         /* ─── GOLD DIVIDER LINE ─── */
         .gold-line {
@@ -828,6 +847,52 @@
          KONTEN UTAMA
     ═══════════════════════════════════════════ -->
     <div id="main">
+
+
+        <!-- ══════════════════════════════════════════
+             COVER CLEAN
+        ═══════════════════════════════════════════ -->
+        <!-- NOTE: Cover versi clean — muncul sebagai halaman pertama setelah tombol buka undangan diklik.
+             Samakan URL foto, nama pasangan, dan tanggal dengan cover asli di atas.
+             JANGAN tambahkan cover-guest atau btn-open di sini. -->
+        <div id="cover-clean">
+            <div class="cover-bg">
+                <div class="cover-photo"
+                     style="background-image: url('/demo/album/wedding.jpg')"></div>
+                <div class="cover-vignette"></div>
+                <!-- Ornamen wayang kiri kanan — sama dengan cover asli -->
+                <svg class="cover-wayang left" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40 5 C20 20 5 50 10 80 C15 110 5 130 15 160 C20 175 30 185 40 195" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+                    <path d="M40 5 C60 20 75 50 70 80 C65 110 75 130 65 160 C60 175 50 185 40 195" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="40" rx="18" ry="22" stroke="#c9a84c" stroke-width="1" fill="rgba(201,168,76,0.08)"/>
+                    <path d="M22 60 Q40 75 58 60" stroke="#c9a84c" stroke-width="1" fill="none"/>
+                    <path d="M15 90 Q40 105 65 90" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+                    <path d="M18 120 Q40 135 62 120" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+                    <circle cx="40" cy="25" r="5" fill="rgba(201,168,76,0.3)" stroke="#c9a84c" stroke-width="1"/>
+                    <path d="M28 150 L40 165 L52 150" stroke="#c9a84c" stroke-width="1" fill="none"/>
+                </svg>
+                <svg class="cover-wayang right" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40 5 C20 20 5 50 10 80 C15 110 5 130 15 160 C20 175 30 185 40 195" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+                    <path d="M40 5 C60 20 75 50 70 80 C65 110 75 130 65 160 C60 175 50 185 40 195" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+                    <ellipse cx="40" cy="40" rx="18" ry="22" stroke="#c9a84c" stroke-width="1" fill="rgba(201,168,76,0.08)"/>
+                    <path d="M22 60 Q40 75 58 60" stroke="#c9a84c" stroke-width="1" fill="none"/>
+                    <path d="M15 90 Q40 105 65 90" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+                    <path d="M18 120 Q40 135 62 120" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+                    <circle cx="40" cy="25" r="5" fill="rgba(201,168,76,0.3)" stroke="#c9a84c" stroke-width="1"/>
+                    <path d="M28 150 L40 165 L52 150" stroke="#c9a84c" stroke-width="1" fill="none"/>
+                </svg>
+            </div>
+            <div class="cover-content">
+                <p class="cover-label">Undangan Pernikahan</p>
+                <div class="cover-names">
+                    Anggra
+                    <span class="amp">&</span>
+                    Pembri
+                </div>
+                <div class="cover-date">02 · November · 2022</div>
+                <!-- cover-guest dan btn-open SENGAJA DIHILANGKAN -->
+            </div>
+        </div>
 
         <!-- ── PROFIL MEMPELAI ── -->
         <section id="profil" class="section">
