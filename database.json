@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780561946833,
+    "name": "White Floral Gold",
+    "price": "100.000",
+    "category": "wedding",
+    "image": "/assets/product/white_floral_gold.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/white_floral_gold",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780559635698,
     "name": "Blue Floral",
     "price": "100.000",
