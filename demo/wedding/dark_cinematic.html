@@ -953,6 +953,84 @@
         }
         .music-btn.spin { animation: spin360 4s linear infinite; }
 
+
+        /* Bingkai aesthetic */
+        .frame-section {
+            position: relative;
+        }
+        .frame-section::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 1px solid rgba(201,169,110,0.25);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .frame-section::after {
+            content: '';
+            position: absolute;
+            inset: 26px;
+            border: 1px solid rgba(201,169,110,0.1);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ornamen sudut */
+        .corner-ornament {
+            position: absolute;
+            width: 28px; height: 28px;
+            border-color: var(--gold);
+            border-style: solid;
+            opacity: 0.5;
+            z-index: 2;
+        }
+        .corner-ornament.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+        .corner-ornament.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+        .corner-ornament.bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
+        .corner-ornament.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+
+        /* Ayat quran box */
+        .ayat-box {
+            background: rgba(201,169,110,0.08);
+            border: 1px solid rgba(201,169,110,0.25);
+            border-radius: 12px;
+            padding: 20px 18px;
+            margin-bottom: 28px;
+            text-align: center;
+            width: 100%;
+        }
+        .ayat-arab {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            line-height: 2.2;
+            margin-bottom: 10px;
+            font-family: serif;
+        }
+        .ayat-latin {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: rgba(240,235,227,0.55);
+            line-height: 1.8;
+            margin-bottom: 6px;
+        }
+        .ayat-source {
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        /* Event card tanpa foto */
+        .event-card-header-plain {
+            background: rgba(201,169,110,0.1);
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         /* ═══════════════════════════════
            ANIMATIONS
         ═══════════════════════════════ */
@@ -1118,7 +1196,7 @@
 
 
         <!-- ── PROFIL MEMPELAI ── -->
-        <section id="profil" class="screen">
+        <section id="profil" class="frame-section" class="screen">
             <p class="sec-label anim-up">Mempelai</p>
             <h2 class="sec-title anim-up anim-delay-1">Dengan Penuh Cinta</h2>
 
@@ -1171,7 +1249,12 @@
 
 
         <!-- ── COUNTDOWN ── -->
-        <section id="countdown" class="screen">
+        <section id="countdown" class="frame-section" class="screen">
+            <div class="ayat-box anim-up">
+                <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</div>
+                <div class="ayat-latin">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya"</div>
+                <div class="ayat-source">QS. Ar-Rum : 21</div>
+            </div>
             <p class="sec-label anim-up">Hitung Mundur</p>
             <h2 class="sec-title anim-up anim-delay-1">Menuju Hari Bahagia</h2>
             <div class="cd-wrap anim-scale anim-delay-2">
@@ -1184,13 +1267,18 @@
 
 
         <!-- ── RANGKAIAN ACARA ── -->
-        <section id="acara" class="screen">
+        <section id="acara" class="frame-section" class="screen">
             <p class="sec-label anim-up">Rangkaian</p>
             <h2 class="sec-title anim-up anim-delay-1">Save The Date</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
                 Dengan memohon rahmat Tuhan, kami mengundang kehadiran Anda
             </p>
 
+            <div class="ayat-box anim-up anim-delay-2">
+                <div class="ayat-arab">وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ وَالصَّالِحِينَ مِنْ عِبَادِكُمْ وَإِمَائِكُمْ</div>
+                <div class="ayat-latin">"Dan nikahkanlah orang-orang yang masih membujang di antara kamu, dan juga orang-orang yang layak dari hamba sahayamu"</div>
+                <div class="ayat-source">QS. An-Nur : 32</div>
+            </div>
             <!--
             ┌───────────────────────────────────────────────────────────────────┐
             │  BAGIAN 8 — INFO AKAD NIKAH                                      │
@@ -1205,11 +1293,9 @@
             └───────────────────────────────────────────────────────────────────┘
             -->
             <div class="event-card anim-left">
-                <div class="event-card-header">
-                    <img src="/demo/album/anggra.jpg" alt="Akad">
-                    <div class="event-card-header-text">
-                        <span class="event-type-name">Akad Nikah</span>
-                    </div>
+                <div class="event-card-header-plain">
+                    <span style="font-size:1.2rem;">🕌</span>
+                    <span class="event-type-name">Akad Nikah</span>
                 </div>
                 <div class="event-body">
                     <div class="event-date-big">02</div>
@@ -1240,11 +1326,9 @@
             └───────────────────────────────────────────────────────────────────┘
             -->
             <div class="event-card anim-right anim-delay-2">
-                <div class="event-card-header">
-                    <img src="/demo/album/pembri.jpg" alt="Resepsi">
-                    <div class="event-card-header-text">
-                        <span class="event-type-name">Resepsi</span>
-                    </div>
+                <div class="event-card-header-plain">
+                    <span style="font-size:1.2rem;">💍</span>
+                    <span class="event-type-name">Resepsi</span>
                 </div>
                 <div class="event-body">
                     <div class="event-date-big">22</div>
@@ -1320,7 +1404,7 @@
 
 
         <!-- ── PETA LOKASI ── -->
-        <section id="lokasi" class="screen">
+        <section id="lokasi" class="frame-section" class="screen">
             <p class="sec-label anim-up">Lokasi Acara</p>
             <h2 class="sec-title anim-up anim-delay-1">Peta Lokasi</h2>
 
@@ -1352,7 +1436,7 @@
 
 
         <!-- ── TANDA KASIH ── -->
-        <section id="hadiah" class="screen">
+        <section id="hadiah" class="frame-section" class="screen">
             <p class="sec-label anim-up">Amplop Digital</p>
             <h2 class="sec-title anim-up anim-delay-1">Titip Hadiah</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
@@ -1441,7 +1525,7 @@
 
 
         <!-- ── PENUTUP ── -->
-        <section id="penutup" class="screen">
+        <section id="penutup" class="frame-section" class="screen">
             <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
 
             <!--
