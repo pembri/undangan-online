@@ -95,6 +95,18 @@
         /* ── MAIN ── */
         #main-content { display: none; padding-bottom: var(--nav-height); }
 
+        /* ── COVER CLEAN (bagian dari #main) ── */
+#cover-clean {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: linear-gradient(rgba(247,249,247,0.9), rgba(247,249,247,0.95)), var(--bg-light);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 30px;
+}
+
         /* ── SECTIONS — setiap section tinggi penuh layar ── */
         .section-screen {
             min-height: 100vh;
@@ -333,12 +345,29 @@
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan 💌</button>
     </div>
 
+    <div id="main">
+
 
     <!-- ═══════════════════════════════════════════
          KONTEN UTAMA
     ════════════════════════════════════════════ -->
     <div id="main-content">
 
+        <div id="main">
+
+  <!-- COVER CLEAN — tambah di sini -->
+  <div id="cover-clean">
+    <div class="cover-photo-circle"><img src="...foto..." /></div>
+    <div class="cover-subtitle">The Wedding of</div>
+    <div class="cover-title">Anggra & Pembri</div>
+    <div class="cover-date">02 November 2022</div>
+    <!-- TANPA guest-box dan TANPA btn-gold -->
+  </div>
+
+  <!-- section profil, countdown, dst seperti biasa -->
+  ...
+</div>
+        
         <!-- ── PROFIL MEMPELAI ── -->
         <section id="profil" class="section-screen">
             <p class="section-label fade-up">Mempelai</p>
