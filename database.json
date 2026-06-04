@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780559635698,
+    "name": "Blue Floral",
+    "price": "100.000",
+    "category": "wedding",
+    "image": "/assets/product/blue_floral.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/blue_floral",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780556591464,
     "name": "Ivory Marble",
     "price": "120.000",
