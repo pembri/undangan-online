@@ -457,7 +457,7 @@
             border-radius: 16px;
             overflow: hidden;
             width: 100%;
-            margin-bottom: 0;
+            margin-bottom: 16px;
             border: 1px solid rgba(201,169,110,0.15);
             text-align: left;
         }
@@ -1004,7 +1004,48 @@
             opacity: 0.55;
         }
 
+        /* ── Info card — wrapper untuk data mempelai ── */
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid rgba(201,169,110,0.15);
+            text-align: center;
+        }
+        .info-card-header {
+            background: rgba(201,169,110,0.1);
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .info-card-header-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-light);
+        }
+        .info-card-body {
+            padding: 20px 18px 24px;
+        }
+
+        /* ── Info card — wrapper untuk ayat ── */
+        .ayat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid rgba(201,169,110,0.15);
+            padding: 24px 20px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
         /* ── Ornamen bunga sudut cover ── */
+
         .floral-corner {
             position: absolute;
             width: 90px; height: 90px;
@@ -1012,10 +1053,10 @@
             pointer-events: none;
             z-index: 4;
         }
-        .floral-corner.tl { top: 10px; left: 10px; transform: rotate(0deg); transform-origin: top left; }
-        .floral-corner.tr { top: 10px; right: 10px; transform: rotate(90deg); transform-origin: top right; }
-        .floral-corner.bl { bottom: 10px; left: 10px; transform: rotate(-90deg); transform-origin: bottom left; }
-        .floral-corner.br { bottom: 10px; right: 10px; transform: rotate(180deg); transform-origin: bottom right; }
+        .floral-corner.tl { top: 10px; left: 10px; transform: rotate(0deg); }
+        .floral-corner.tr { top: 10px; right: 10px; transform: rotate(90deg); }
+        .floral-corner.bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
+        .floral-corner.br { bottom: 10px; right: 10px; transform: rotate(180deg); }
         .cover-frame-css {
             position: absolute;
             inset: 0;
@@ -1079,15 +1120,6 @@
             letter-spacing: 2px;
             color: var(--gold);
             text-transform: uppercase;
-        }
-
-        /* Event cards wrapper — supaya card tidak meluber */
-        .event-cards-wrap {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            padding: 0 4px;
         }
 
         /* Event card tanpa foto */
@@ -1194,12 +1226,6 @@
     └───────────────────────────────────────────────────────────────────┘
     -->
     <div id="cover">
-        <div class="cover-frame-css"></div>
-        <!-- ornamen bunga pojok -->
-        <svg class="floral-corner tl" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-        <svg class="floral-corner tr" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-        <svg class="floral-corner bl" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-        <svg class="floral-corner br" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
         <p class="cover-label">Happy Wedding</p>
 
         <!--
@@ -1259,12 +1285,7 @@
         └───────────────────────────────────────────────────────────────────┘
         -->
         <div id="cover-clean">
-            <div class="cover-frame-css"></div>
             <!-- ornamen bunga pojok -->
-            <svg class="floral-corner tl" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-            <svg class="floral-corner tr" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-            <svg class="floral-corner bl" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
-            <svg class="floral-corner br" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 85 Q20 60 45 45" stroke="#c9a96e" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M5 85 Q35 70 45 45" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/><circle cx="14" cy="74" r="3.5" fill="#c9a96e" opacity="0.7"/><circle cx="14" cy="74" r="1.5" fill="#e8d5b0"/><path d="M10 70 Q14 66 18 70" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M10 78 Q14 82 18 78" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="30" cy="62" r="4" fill="#c9a96e" opacity="0.75"/><circle cx="30" cy="62" r="1.8" fill="#e8d5b0"/><path d="M25 58 Q30 53 35 58" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M25 66 Q30 71 35 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M26 58 Q21 62 26 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><path d="M34 58 Q39 62 34 66" stroke="#c9a96e" stroke-width="0.9" fill="none"/><circle cx="46" cy="44" r="4.5" fill="#c9a96e" opacity="0.8"/><circle cx="46" cy="44" r="2" fill="#e8d5b0"/><path d="M41 39 Q46 34 51 39" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 49 Q46 54 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M41 39 Q36 44 41 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M51 39 Q56 44 51 49" stroke="#c9a96e" stroke-width="1" fill="none"/><path d="M18 78 Q22 72 28 68" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="8" cy="82" r="1.2" fill="#c9a96e" opacity="0.5"/><circle cx="38" cy="52" r="1" fill="#c9a96e" opacity="0.4"/></svg>
             <p class="cover-label" style="animation:none; opacity:1;">Happy Wedding</p>
 
             <!-- BAGIAN 3 — samakan dengan cover asli -->
@@ -1281,7 +1302,7 @@
 
 
         <!-- ── PROFIL MEMPELAI ── -->
-        <section id="profil" class="frame-section">
+        <section id="profil">
             <p class="sec-label anim-up" style="position:relative;z-index:1;">Mempelai</p>
             <h2 class="sec-title anim-up anim-delay-1" style="position:relative;z-index:1;">Dengan Penuh Cinta</h2>
 
@@ -1298,24 +1319,23 @@
                 │  @anggra_ig → username Instagram mempelai wanita (tanpa @)       │
                 └───────────────────────────────────────────────────────────────────┘
                 -->
-                <div class="mempelai-card anim-left">
-                    <p class="sec-label">Mempelai Wanita</p>
-                    <div class="photo-polaroid">
-                        <img src="/demo/album/anggra.jpg" alt="Mempelai Wanita">
+                <div class="info-card anim-left">
+                    <div class="info-card-header">
+                        <span style="font-size:1.1rem;">👰</span>
+                        <span class="info-card-header-title">Mempelai Wanita</span>
                     </div>
-                    <div class="m-name">Anggra</div>
-                    <div class="m-fullname">Anggrainita</div>
-                    <p class="m-parent">Putri dari<br>Bapak Satim & Ibu Sumini</p>
-                    <!--
-                    ┌──────────────────────────────────────────────────────────────┐
-                    │  Ganti href ke link Instagram mempelai wanita               │
-                    │  CONTOH: https://instagram.com/anggrainita                  │
-                    └──────────────────────────────────────────────────────────────┘
-                    -->
-                    <a href="https://instagram.com/anggrainita" target="_blank" class="btn-instagram">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-                        @anggrainita
-                    </a>
+                    <div class="info-card-body">
+                        <div class="photo-polaroid" style="margin: 0 auto 16px;">
+                            <img src="/demo/album/anggra.jpg" alt="Mempelai Wanita">
+                        </div>
+                        <div class="m-name">Anggra</div>
+                        <div class="m-fullname">Anggrainita</div>
+                        <p class="m-parent">Putri dari<br>Bapak Satim & Ibu Sumini</p>
+                        <a href="https://instagram.com/anggrainita" target="_blank" class="btn-instagram">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                            @anggrainita
+                        </a>
+                    </div>
                 </div>
 
                 <div class="and-divider anim-up anim-delay-2">&</div>
@@ -1331,24 +1351,23 @@
                 │  @pembri_ig → username Instagram mempelai pria (tanpa @)         │
                 └───────────────────────────────────────────────────────────────────┘
                 -->
-                <div class="mempelai-card anim-right">
-                    <p class="sec-label">Mempelai Pria</p>
-                    <div class="photo-polaroid">
-                        <img src="/demo/album/pembri.jpg" alt="Mempelai Pria">
+                <div class="info-card anim-right">
+                    <div class="info-card-header">
+                        <span style="font-size:1.1rem;">🤵</span>
+                        <span class="info-card-header-title">Mempelai Pria</span>
                     </div>
-                    <div class="m-name">Pembri</div>
-                    <div class="m-fullname">Ahmad Supembri</div>
-                    <p class="m-parent">Putra dari<br>Bapak Husin & Ibu Mujayanah</p>
-                    <!--
-                    ┌──────────────────────────────────────────────────────────────┐
-                    │  Ganti href ke link Instagram mempelai pria                  │
-                    │  CONTOH: https://instagram.com/ahmadsupembri                 │
-                    └──────────────────────────────────────────────────────────────┘
-                    -->
-                    <a href="https://instagram.com/ahmadsupembri" target="_blank" class="btn-instagram">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-                        @ahmadsupembri
-                    </a>
+                    <div class="info-card-body">
+                        <div class="photo-polaroid" style="margin: 0 auto 16px;">
+                            <img src="/demo/album/pembri.jpg" alt="Mempelai Pria">
+                        </div>
+                        <div class="m-name">Pembri</div>
+                        <div class="m-fullname">Ahmad Supembri</div>
+                        <p class="m-parent">Putra dari<br>Bapak Husin & Ibu Mujayanah</p>
+                        <a href="https://instagram.com/ahmadsupembri" target="_blank" class="btn-instagram">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                            @ahmadsupembri
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -1356,7 +1375,7 @@
 
 
         <!-- ── COUNTDOWN ── -->
-        <section id="countdown" class="frame-section screen">            <div class="ayat-box anim-up">
+        <section id="countdown" class="screen">            <div class="ayat-card anim-up">
                 <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</div>
                 <div class="ayat-latin">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya"</div>
                 <div class="ayat-source">QS. Ar-Rum : 21</div>
@@ -1373,13 +1392,13 @@
 
 
         <!-- ── RANGKAIAN ACARA ── -->
-        <section id="acara" class="frame-section screen">            <p class="sec-label anim-up">Rangkaian</p>
+        <section id="acara" class="screen">            <p class="sec-label anim-up">Rangkaian</p>
             <h2 class="sec-title anim-up anim-delay-1">Save The Date</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
                 Dengan memohon rahmat Tuhan, kami mengundang kehadiran Anda
             </p>
 
-            <div class="ayat-box anim-up anim-delay-2">
+            <div class="ayat-card anim-up anim-delay-2">
                 <div class="ayat-arab">وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ وَالصَّالِحِينَ مِنْ عِبَادِكُمْ وَإِمَائِكُمْ</div>
                 <div class="ayat-latin">"Dan nikahkanlah orang-orang yang masih membujang di antara kamu, dan juga orang-orang yang layak dari hamba sahayamu"</div>
                 <div class="ayat-source">QS. An-Nur : 32</div>
@@ -1397,57 +1416,55 @@
             │  Ds.Karangpakis Kec.Kabuh Kab.Jombang → alamat lengkap         │
             └───────────────────────────────────────────────────────────────────┘
             -->
-            <div class="event-cards-wrap">
-                <div class="event-card anim-left">
-                    <div class="event-card-header-plain">
-                        <span style="font-size:1.2rem;">🕌</span>
-                        <span class="event-type-name">Akad Nikah</span>
+            <div class="event-card anim-left" style="margin-top:16px;">
+                <div class="event-card-header-plain">
+                    <span style="font-size:1.2rem;">🕌</span>
+                    <span class="event-type-name">Akad Nikah</span>
+                </div>
+                <div class="event-body">
+                    <div class="event-date-big">02</div>
+                    <div class="event-month-year">November 2022 &nbsp;·&nbsp; Rabu</div>
+                    <div class="event-divider"></div>
+                    <div class="event-detail">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>09.00 – Selesai</span>
                     </div>
-                    <div class="event-body">
-                        <div class="event-date-big">02</div>
-                        <div class="event-month-year">November 2022 &nbsp;·&nbsp; Rabu</div>
-                        <div class="event-divider"></div>
-                        <div class="event-detail">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            <span>09.00 – Selesai</span>
-                        </div>
-                        <div class="event-detail">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                            <span><strong style="color:var(--text-light);">KUA Kabuh</strong><br>Ds.Karangpakis Kec.Kabuh Kab.Jombang</span>
-                        </div>
+                    <div class="event-detail">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                        <span><strong style="color:var(--text-light);">KUA Kabuh</strong><br>Ds.Karangpakis Kec.Kabuh Kab.Jombang</span>
                     </div>
                 </div>
+            </div>
 
-                <!--
-                ┌───────────────────────────────────────────────────────────────────┐
-                │  BAGIAN 9 — INFO RESEPSI                                         │
-                │  /demo/album/pembri.jpg  → foto header card resepsi              │
-                │  CONTOH foto: → https://i.ibb.co/xxx/resepsi.jpg                │
-                │  Rabu              → hari          CONTOH: Rabu                  │
-                │  22                → tanggal besar CONTOH: 22                   │
-                │  November 2022     → bulan & tahun CONTOH: November 2022        │
-                │  11.00             → jam mulai     CONTOH: 11.00                │
-                │  Kediaman Mempelai Wanita → nama tempat                         │
-                │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang → alamat  │
-                └───────────────────────────────────────────────────────────────────┘
-                -->
-                <div class="event-card anim-right anim-delay-2">
-                    <div class="event-card-header-plain">
-                        <span style="font-size:1.2rem;">💍</span>
-                        <span class="event-type-name">Resepsi</span>
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 9 — INFO RESEPSI                                         │
+            │  /demo/album/pembri.jpg  → foto header card resepsi              │
+            │  CONTOH foto: → https://i.ibb.co/xxx/resepsi.jpg                │
+            │  Rabu              → hari          CONTOH: Rabu                  │
+            │  22                → tanggal besar CONTOH: 22                   │
+            │  November 2022     → bulan & tahun CONTOH: November 2022        │
+            │  11.00             → jam mulai     CONTOH: 11.00                │
+            │  Kediaman Mempelai Wanita → nama tempat                         │
+            │  Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang → alamat  │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="event-card anim-right anim-delay-2" style="margin-top:16px;">
+                <div class="event-card-header-plain">
+                    <span style="font-size:1.2rem;">💍</span>
+                    <span class="event-type-name">Resepsi</span>
+                </div>
+                <div class="event-body">
+                    <div class="event-date-big">22</div>
+                    <div class="event-month-year">November 2022 &nbsp;·&nbsp; Rabu</div>
+                    <div class="event-divider"></div>
+                    <div class="event-detail">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>11.00 – Selesai</span>
                     </div>
-                    <div class="event-body">
-                        <div class="event-date-big">22</div>
-                        <div class="event-month-year">November 2022 &nbsp;·&nbsp; Rabu</div>
-                        <div class="event-divider"></div>
-                        <div class="event-detail">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            <span>11.00 – Selesai</span>
-                        </div>
-                        <div class="event-detail">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                            <span><strong style="color:var(--text-light);">Kediaman Mempelai Wanita</strong><br>Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang</span>
-                        </div>
+                    <div class="event-detail">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                        <span><strong style="color:var(--text-light);">Kediaman Mempelai Wanita</strong><br>Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang</span>
                     </div>
                 </div>
             </div>
@@ -1511,7 +1528,7 @@
 
 
         <!-- ── PETA LOKASI ── -->
-        <section id="lokasi" class="frame-section screen">            <p class="sec-label anim-up">Lokasi Acara</p>
+        <section id="lokasi" class="screen">            <p class="sec-label anim-up">Lokasi Acara</p>
             <h2 class="sec-title anim-up anim-delay-1">Peta Lokasi</h2>
 
             <!--
@@ -1542,7 +1559,7 @@
 
 
         <!-- ── TANDA KASIH ── -->
-        <section id="hadiah" class="frame-section screen">            <p class="sec-label anim-up">Amplop Digital</p>
+        <section id="hadiah" class="screen">            <p class="sec-label anim-up">Amplop Digital</p>
             <h2 class="sec-title anim-up anim-delay-1">Titip Hadiah</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
                 Tanpa mengurangi rasa hormat, bagi yang ingin memberikan tanda kasih dapat melalui:
@@ -1644,7 +1661,7 @@
 
 
         <!-- ── PENUTUP ── -->
-        <section id="penutup" class="frame-section screen">            <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
+        <section id="penutup" class="screen">            <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
 
             <!--
             ┌───────────────────────────────────────────────────────────────────┐
