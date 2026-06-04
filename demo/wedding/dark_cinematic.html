@@ -96,7 +96,6 @@
         #cover-bg {
             position: absolute;
             inset: 0;
-            background-image: url('/demo/album/wedding.jpg');
             background-size: cover;
             background-position: center;
             filter: blur(14px) brightness(0.3);
@@ -228,7 +227,6 @@
         #cover-clean-bg {
             position: absolute;
             inset: 0;
-            background-image: url('/demo/album/wedding.jpg');
             background-size: cover;
             background-position: center;
             filter: blur(14px) brightness(0.3);
@@ -820,7 +818,6 @@
         #penutup-bg {
             position: absolute;
             inset: 0;
-            background-image: url('/demo/album/wedding.jpg');
             background-size: cover;
             background-position: center;
             filter: blur(8px) brightness(0.2);
@@ -997,7 +994,7 @@
     ╚═══════════════════════════════════════════════════════════════════════╝
     -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://riradigital.my.id/backsound/married_life.mp3" type="audio/mpeg">
+        <source src="https://riradigital.my.id/backsound/janji-suci.mp3" type="audio/mpeg">
     </audio>
     <div id="music-btn" class="music-btn" onclick="toggleMusic()">🎵</div>
 
@@ -1580,7 +1577,7 @@
     ║  CONTOH: Nikah 15 Juli 2026 → new Date(2026, 6, 15)                  ║
     ╚═══════════════════════════════════════════════════════════════════════╝
     */
-    const TANGGAL_NIKAH = new Date(2026, 10, 2); // ← GANTI: new Date(TAHUN, BULAN, TANGGAL)
+    const TANGGAL_NIKAH = new Date(2022, 10, 2); // ← GANTI: new Date(TAHUN, BULAN, TANGGAL)
 
     function updateCountdown() {
         const diff = TANGGAL_NIKAH - new Date();
@@ -1604,6 +1601,39 @@
         if (nama) {
             nama = nama.replace(/[_-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
             document.getElementById('nama-tamu').innerText = nama;
+        }
+    }
+
+
+    /*
+     * ─── SYNC BLUR BACKGROUNDS ───────────────────────────────────────────
+     * Otomatis ambil src dari foto polaroid (BAGIAN 3) dan
+     * terapkan ke semua elemen bg-blur: cover, cover-clean, penutup.
+     * Dengan begitu admin cukup ganti src foto di BAGIAN 3,
+     * blur background langsung ikut berubah tanpa edit CSS.
+     * ─────────────────────────────────────────────────────────────────────
+     */
+    function syncBlurBackgrounds() {
+        // Ambil src foto polaroid di cover (BAGIAN 3 — foto polaroid tengah)
+        const coverPolaroidImg = document.querySelector('#cover .polaroid img');
+        const coverSrc = coverPolaroidImg ? coverPolaroidImg.src : '';
+
+        if (coverSrc) {
+            const bgUrl = `url("${coverSrc}")`;
+            // Cover blur bg
+            const coverBg = document.getElementById('cover-bg');
+            if (coverBg) coverBg.style.backgroundImage = bgUrl;
+            // Cover-clean blur bg (samakan)
+            const cleanBg = document.getElementById('cover-clean-bg');
+            if (cleanBg) cleanBg.style.backgroundImage = bgUrl;
+        }
+
+        // Penutup bg — ambil dari foto polaroid penutup
+        const penutupImg = document.querySelector('.penutup-polaroid img');
+        const penutupSrc = penutupImg ? penutupImg.src : coverSrc;
+        if (penutupSrc) {
+            const penutupBg = document.getElementById('penutup-bg');
+            if (penutupBg) penutupBg.style.backgroundImage = `url("${penutupSrc}")`;
         }
     }
 
@@ -1659,7 +1689,7 @@
             entries.forEach(e => {
                 if (e.isIntersecting) {
                     e.target.classList.add('in');
-                    obs.unobserve(e.target); // animasi sekali saja
+                    obs.unobserve(e.target);
                 }
             });
         }, { threshold: 0.12 });
@@ -1727,6 +1757,7 @@
 
     window.onload = () => {
         setNamaTamu();
+        syncBlurBackgrounds();
         initParallax();
     };
 </script>
