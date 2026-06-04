@@ -1006,16 +1006,21 @@
 
         <!--
         ┌───────────────────────────────────────────────────────────────────┐
-        │  BAGIAN 3 — FOTO BG BLUR COVER (full blurred background)         │
-        │  ⚡ TEMA INI PUNYA 2 SLOT FOTO DI COVER:                         │
-        │    → BG BLUR (id="cover-bg"): foto yang dijadikan background blur │
-        │    → POLAROID (polaroid img src): foto di bingkai polaroid tengah │
-        │  Bisa diisi foto yang SAMA atau foto yang BERBEDA.                │
-        │  Ganti /demo/album/wedding.jpg sesuai link foto pasangan.         │
+        │  BAGIAN 3 — FOTO COVER (BG BLUR + POLAROID)                      │
+        │                                                                   │
+        │  ⚡ TEMA INI: GANTI DI 3 TEMPAT setiap kali ganti foto cover:    │
+        │                                                                   │
+        │  [1] BG BLUR COVER       → style="background-image:url('...')"   │
+        │      di div id="cover-bg" (baris tepat di bawah NOTE ini)        │
+        │  [2] FOTO POLAROID COVER → img src="..." (2 baris di bawah)      │
+        │  [3] BG BLUR COVER CLEAN → style="background-image:url('...')"   │
+        │      di div id="cover-clean-bg" (di dalam #cover-clean)          │
+        │                                                                   │
+        │  Ketiganya bisa diisi foto SAMA atau foto BERBEDA.               │
         │  CONTOH: → https://i.ibb.co/abc123/cover.jpg                     │
         └───────────────────────────────────────────────────────────────────┘
         -->
-        <div id="cover-bg"></div>
+        <div id="cover-bg" style="background-image:url('/demo/album/wedding.jpg')"></div>
 
         <p class="cover-label">Happy Wedding</p>
 
@@ -1076,7 +1081,7 @@
         └───────────────────────────────────────────────────────────────────┘
         -->
         <div id="cover-clean">
-            <div id="cover-clean-bg"></div>
+            <div id="cover-clean-bg" style="background-image:url('/demo/album/wedding.jpg')"></div>
             <p class="cover-label" style="animation:none; opacity:1;">Happy Wedding</p>
 
             <!-- BAGIAN 3 — samakan dengan cover asli -->
@@ -1417,7 +1422,7 @@
 
         <!-- ── PENUTUP ── -->
         <section id="penutup" class="screen">
-            <div id="penutup-bg"></div>
+            <div id="penutup-bg" style="background-image:url('/demo/album/wedding.jpg')"></div>
 
             <!--
             ┌───────────────────────────────────────────────────────────────────┐
@@ -1605,37 +1610,8 @@
     }
 
 
-    /*
-     * ─── SYNC BLUR BACKGROUNDS ───────────────────────────────────────────
-     * Otomatis ambil src dari foto polaroid (BAGIAN 3) dan
-     * terapkan ke semua elemen bg-blur: cover, cover-clean, penutup.
-     * Dengan begitu admin cukup ganti src foto di BAGIAN 3,
-     * blur background langsung ikut berubah tanpa edit CSS.
-     * ─────────────────────────────────────────────────────────────────────
-     */
-    function syncBlurBackgrounds() {
-        // Ambil src foto polaroid di cover (BAGIAN 3 — foto polaroid tengah)
-        const coverPolaroidImg = document.querySelector('#cover .polaroid img');
-        const coverSrc = coverPolaroidImg ? coverPolaroidImg.src : '';
-
-        if (coverSrc) {
-            const bgUrl = `url("${coverSrc}")`;
-            // Cover blur bg
-            const coverBg = document.getElementById('cover-bg');
-            if (coverBg) coverBg.style.backgroundImage = bgUrl;
-            // Cover-clean blur bg (samakan)
-            const cleanBg = document.getElementById('cover-clean-bg');
-            if (cleanBg) cleanBg.style.backgroundImage = bgUrl;
-        }
-
-        // Penutup bg — ambil dari foto polaroid penutup
-        const penutupImg = document.querySelector('.penutup-polaroid img');
-        const penutupSrc = penutupImg ? penutupImg.src : coverSrc;
-        if (penutupSrc) {
-            const penutupBg = document.getElementById('penutup-bg');
-            if (penutupBg) penutupBg.style.backgroundImage = `url("${penutupSrc}")`;
-        }
-    }
+    /* ─── SYNC BLUR BACKGROUNDS — tidak dipakai lagi, bg diset via inline style ─── */
+    function syncBlurBackgrounds() {}
 
 
     /* ─── BUKA UNDANGAN ─── */
