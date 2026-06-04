@@ -60,6 +60,21 @@
             min-height: 100vh;
         }
 
+        /* Global blur background untuk semua halaman */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%) scale(1.1);
+            width: 100%; max-width: 480px;
+            height: 100vh;
+            background-image: url('https://riradigital.my.id/demo/album/wedding.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(14px) brightness(0.5);
+            z-index: -1;
+        }
+
         .app {
             max-width: 480px;
             margin: 0 auto;
@@ -98,7 +113,7 @@
             top: 0; left: 50%;
             transform: translateX(-50%) scale(1.1);
             width: 100%; max-width: 480px;
-            height: 100vh; height: 100dvh;
+            height: 100vh;
             background-size: cover;
             background-position: center;
             filter: blur(14px) brightness(0.5);
@@ -231,7 +246,7 @@
             top: 0; left: 50%;
             transform: translateX(-50%) scale(1.1);
             width: 100%; max-width: 480px;
-            height: 100vh; height: 100dvh;
+            height: 100vh;
             background-size: cover;
             background-position: center;
             filter: blur(14px) brightness(0.5);
@@ -714,7 +729,7 @@
            UCAPAN & RSVP
         ═══════════════════════════════ */
         #ucapan {
-            background: var(--bg-deep);
+            background: transparent;
             padding: 40px 20px calc(var(--nav-h) + 30px);
             min-height: 100vh;
         }
