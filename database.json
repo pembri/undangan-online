@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780556591464,
+    "name": "Ivory Marble",
+    "price": "120.000",
+    "category": "wedding",
+    "image": "/assets/product/ivory_marble.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/ivory_marble",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780552649912,
     "name": "Rose Red",
     "price": "100.000",
