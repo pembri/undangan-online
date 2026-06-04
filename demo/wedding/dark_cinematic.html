@@ -263,13 +263,12 @@
 
         /* ── Fullscreen sections ── */
         .screen {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 24px calc(var(--nav-h) + 20px);
+            padding: 56px 28px calc(var(--nav-h) + 32px);
             position: relative;
             overflow: hidden;
         }
@@ -298,9 +297,9 @@
         ═══════════════════════════════ */
         #profil {
             background: transparent;
+            padding: 60px 28px calc(var(--nav-h) + 36px);
         }
 
-        /* Subtle grain overlay */
         #profil::before {
             content: '';
             position: absolute;
@@ -382,6 +381,33 @@
             line-height: 1.7;
         }
 
+        .btn-instagram {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 7px 16px;
+            border-radius: 30px;
+            border: 1.5px solid rgba(201,169,110,0.45);
+            background: rgba(201,169,110,0.07);
+            color: var(--gold-light);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: background 0.25s, border-color 0.25s, color 0.25s;
+            cursor: pointer;
+        }
+        .btn-instagram:hover {
+            background: rgba(201,169,110,0.18);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .btn-instagram svg {
+            flex-shrink: 0;
+        }
+
         .and-divider {
             font-family: 'Great Vibes', cursive;
             font-size: 2.5rem;
@@ -445,7 +471,6 @@
         ═══════════════════════════════ */
         #acara {
             background: transparent;
-            padding-top: 50px;
         }
 
         .event-card {
@@ -958,18 +983,20 @@
         .frame-section {
             position: relative;
         }
-        .frame-section::before {
-            content: '';
+        .frame-section > *:not(.frame-border):not(.frame-border-inner):not(.corner-ornament) {
+            position: relative;
+            z-index: 1;
+        }
+        .frame-section > .frame-border {
             position: absolute;
-            inset: 20px;
-            border: 1px solid rgba(201,169,110,0.25);
+            inset: 16px;
+            border: 1px solid rgba(201,169,110,0.28);
             pointer-events: none;
             z-index: 0;
         }
-        .frame-section::after {
-            content: '';
+        .frame-section > .frame-border-inner {
             position: absolute;
-            inset: 26px;
+            inset: 23px;
             border: 1px solid rgba(201,169,110,0.1);
             pointer-events: none;
             z-index: 0;
@@ -1196,11 +1223,18 @@
 
 
         <!-- ── PROFIL MEMPELAI ── -->
-        <section id="profil" class="frame-section" class="screen">
-            <p class="sec-label anim-up">Mempelai</p>
-            <h2 class="sec-title anim-up anim-delay-1">Dengan Penuh Cinta</h2>
+        <section id="profil" class="frame-section">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
 
-            <div class="profil-pair">
+            <p class="sec-label anim-up" style="position:relative;z-index:1;">Mempelai</p>
+            <h2 class="sec-title anim-up anim-delay-1" style="position:relative;z-index:1;">Dengan Penuh Cinta</h2>
+
+            <div class="profil-pair" style="position:relative;z-index:1;">
 
                 <!--
                 ┌───────────────────────────────────────────────────────────────────┐
@@ -1210,6 +1244,7 @@
                 │  Anggrainita → nama lengkap mempelai wanita                      │
                 │  Satim    → nama bapak kandung mempelai wanita                   │
                 │  Sumini   → nama ibu kandung mempelai wanita                     │
+                │  @anggra_ig → username Instagram mempelai wanita (tanpa @)       │
                 └───────────────────────────────────────────────────────────────────┘
                 -->
                 <div class="mempelai-card anim-left">
@@ -1220,6 +1255,16 @@
                     <div class="m-name">Anggra</div>
                     <div class="m-fullname">Anggrainita</div>
                     <p class="m-parent">Putri dari<br>Bapak Satim & Ibu Sumini</p>
+                    <!--
+                    ┌──────────────────────────────────────────────────────────────┐
+                    │  Ganti href ke link Instagram mempelai wanita               │
+                    │  CONTOH: https://instagram.com/anggrainita                  │
+                    └──────────────────────────────────────────────────────────────┘
+                    -->
+                    <a href="https://instagram.com/anggrainita" target="_blank" class="btn-instagram">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        @anggrainita
+                    </a>
                 </div>
 
                 <div class="and-divider anim-up anim-delay-2">&</div>
@@ -1232,6 +1277,7 @@
                 │  Ahmad Supembri → nama lengkap mempelai pria                     │
                 │  Husin    → nama bapak kandung mempelai pria                     │
                 │  Mujayanah → nama ibu kandung mempelai pria                      │
+                │  @pembri_ig → username Instagram mempelai pria (tanpa @)         │
                 └───────────────────────────────────────────────────────────────────┘
                 -->
                 <div class="mempelai-card anim-right">
@@ -1242,6 +1288,16 @@
                     <div class="m-name">Pembri</div>
                     <div class="m-fullname">Ahmad Supembri</div>
                     <p class="m-parent">Putra dari<br>Bapak Husin & Ibu Mujayanah</p>
+                    <!--
+                    ┌──────────────────────────────────────────────────────────────┐
+                    │  Ganti href ke link Instagram mempelai pria                  │
+                    │  CONTOH: https://instagram.com/ahmadsupembri                 │
+                    └──────────────────────────────────────────────────────────────┘
+                    -->
+                    <a href="https://instagram.com/ahmadsupembri" target="_blank" class="btn-instagram">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        @ahmadsupembri
+                    </a>
                 </div>
 
             </div>
@@ -1249,7 +1305,13 @@
 
 
         <!-- ── COUNTDOWN ── -->
-        <section id="countdown" class="frame-section" class="screen">
+        <section id="countdown" class="frame-section screen">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
             <div class="ayat-box anim-up">
                 <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</div>
                 <div class="ayat-latin">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya"</div>
@@ -1267,7 +1329,13 @@
 
 
         <!-- ── RANGKAIAN ACARA ── -->
-        <section id="acara" class="frame-section" class="screen">
+        <section id="acara" class="frame-section screen">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
             <p class="sec-label anim-up">Rangkaian</p>
             <h2 class="sec-title anim-up anim-delay-1">Save The Date</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
@@ -1404,7 +1472,13 @@
 
 
         <!-- ── PETA LOKASI ── -->
-        <section id="lokasi" class="frame-section" class="screen">
+        <section id="lokasi" class="frame-section screen">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
             <p class="sec-label anim-up">Lokasi Acara</p>
             <h2 class="sec-title anim-up anim-delay-1">Peta Lokasi</h2>
 
@@ -1436,7 +1510,13 @@
 
 
         <!-- ── TANDA KASIH ── -->
-        <section id="hadiah" class="frame-section" class="screen">
+        <section id="hadiah" class="frame-section screen">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
             <p class="sec-label anim-up">Amplop Digital</p>
             <h2 class="sec-title anim-up anim-delay-1">Titip Hadiah</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
@@ -1525,7 +1605,13 @@
 
 
         <!-- ── PENUTUP ── -->
-        <section id="penutup" class="frame-section" class="screen">
+        <section id="penutup" class="frame-section screen">
+            <div class="frame-border"></div>
+            <div class="frame-border-inner"></div>
+            <div class="corner-ornament tl"></div>
+            <div class="corner-ornament tr"></div>
+            <div class="corner-ornament bl"></div>
+            <div class="corner-ornament br"></div>
             <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
 
             <!--
