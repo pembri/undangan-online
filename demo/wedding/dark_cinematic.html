@@ -291,6 +291,7 @@
         .profil-pair {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 36px;
             width: 100%;
         }
@@ -388,6 +389,9 @@
             font-size: 2.5rem;
             color: var(--gold);
             opacity: 0.5;
+            text-align: center;
+            width: 100%;
+            display: block;
         }
 
         /* ═══════════════════════════════
@@ -954,72 +958,85 @@
         .music-btn.spin { animation: spin360 4s linear infinite; }
 
 
-        /* ── Bingkai cover aesthetic ── */
-        .cover-frame {
-            position: absolute;
-            inset: 18px;
-            border: 1px solid rgba(201,169,110,0.35);
-            pointer-events: none;
-            z-index: 2;
-        }
-        .cover-frame-inner {
-            position: absolute;
-            inset: 26px;
-            border: 1px solid rgba(201,169,110,0.12);
-            pointer-events: none;
-            z-index: 2;
-        }
-        .cover-corner {
-            position: absolute;
-            width: 32px; height: 32px;
-            border-color: var(--gold);
-            border-style: solid;
-            opacity: 0.65;
-            z-index: 3;
-            pointer-events: none;
-        }
-        .cover-corner.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
-        .cover-corner.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
-        .cover-corner.bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
-        .cover-corner.br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
-
-        /* Bingkai aesthetic */
+        /* ══════════════════════════════════════
+           BINGKAI AESTHETIC — pure CSS, no divs
+        ══════════════════════════════════════ */
         .frame-section {
             position: relative;
+            /* bingkai luar tipis */
+            outline: 1px solid rgba(201,169,110,0.3);
+            outline-offset: -16px;
         }
-        .frame-section > *:not(.frame-border):not(.frame-border-inner):not(.corner-ornament) {
+        .frame-section > * {
             position: relative;
             z-index: 1;
         }
-        .frame-section > .frame-border {
-            position: absolute;
-            inset: 16px;
-            border: 1px solid rgba(201,169,110,0.28);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .frame-section > .frame-border-inner {
+        /* bingkai dalam lebih samar */
+        .frame-section::before {
+            content: '';
             position: absolute;
             inset: 23px;
             border: 1px solid rgba(201,169,110,0.1);
             pointer-events: none;
             z-index: 0;
         }
-
-        /* Ornamen sudut — sejajar dengan frame-border (inset 16px) */
-        .corner-ornament {
+        /* ornamen sudut — 4 pojok via box-shadow trick tidak bisa,
+           pakai gradient corners via ::after */
+        .frame-section::after {
+            content: '';
             position: absolute;
-            width: 26px; height: 26px;
-            border-color: var(--gold);
-            border-style: solid;
-            opacity: 0.6;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background:
+                /* TL */
+                linear-gradient(to right,  var(--gold) 24px, transparent 24px) 16px 16px / 24px 2px no-repeat,
+                linear-gradient(to bottom, var(--gold) 24px, transparent 24px) 16px 16px / 2px 24px no-repeat,
+                /* TR */
+                linear-gradient(to left,   var(--gold) 24px, transparent 24px) calc(100% - 16px) 16px / 24px 2px no-repeat,
+                linear-gradient(to bottom, var(--gold) 24px, transparent 24px) calc(100% - 17px) 16px / 2px 24px no-repeat,
+                /* BL */
+                linear-gradient(to right,  var(--gold) 24px, transparent 24px) 16px calc(100% - 16px) / 24px 2px no-repeat,
+                linear-gradient(to top,    var(--gold) 24px, transparent 24px) 16px calc(100% - 17px) / 2px 24px no-repeat,
+                /* BR */
+                linear-gradient(to left,   var(--gold) 24px, transparent 24px) calc(100% - 16px) calc(100% - 16px) / 24px 2px no-repeat,
+                linear-gradient(to top,    var(--gold) 24px, transparent 24px) calc(100% - 17px) calc(100% - 17px) / 2px 24px no-repeat;
+            opacity: 0.55;
+        }
+
+        /* cover frame — sama tapi untuk #cover dan #cover-clean */
+        .cover-frame-css {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
             z-index: 3;
+            /* bingkai luar */
+            outline: 1px solid rgba(201,169,110,0.35);
+            outline-offset: -18px;
+        }
+        .cover-frame-css::before {
+            content: '';
+            position: absolute;
+            inset: 26px;
+            border: 1px solid rgba(201,169,110,0.12);
             pointer-events: none;
         }
-        .corner-ornament.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-        .corner-ornament.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-        .corner-ornament.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-        .corner-ornament.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+        .cover-frame-css::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(to right,  var(--gold) 26px, transparent 26px) 18px 18px / 26px 2px no-repeat,
+                linear-gradient(to bottom, var(--gold) 26px, transparent 26px) 18px 18px / 2px 26px no-repeat,
+                linear-gradient(to left,   var(--gold) 26px, transparent 26px) calc(100% - 18px) 18px / 26px 2px no-repeat,
+                linear-gradient(to bottom, var(--gold) 26px, transparent 26px) calc(100% - 19px) 18px / 2px 26px no-repeat,
+                linear-gradient(to right,  var(--gold) 26px, transparent 26px) 18px calc(100% - 18px) / 26px 2px no-repeat,
+                linear-gradient(to top,    var(--gold) 26px, transparent 26px) 18px calc(100% - 19px) / 2px 26px no-repeat,
+                linear-gradient(to left,   var(--gold) 26px, transparent 26px) calc(100% - 18px) calc(100% - 18px) / 26px 2px no-repeat,
+                linear-gradient(to top,    var(--gold) 26px, transparent 26px) calc(100% - 19px) calc(100% - 19px) / 2px 26px no-repeat;
+            opacity: 0.6;
+        }
 
         /* Ayat quran box */
         .ayat-box {
@@ -1157,14 +1174,7 @@
     └───────────────────────────────────────────────────────────────────┘
     -->
     <div id="cover">
-        <!-- bingkai aesthetic cover -->
-        <div class="cover-frame"></div>
-        <div class="cover-frame-inner"></div>
-        <div class="cover-corner tl"></div>
-        <div class="cover-corner tr"></div>
-        <div class="cover-corner bl"></div>
-        <div class="cover-corner br"></div>
-
+        <div class="cover-frame-css"></div>
         <p class="cover-label">Happy Wedding</p>
 
         <!--
@@ -1224,14 +1234,7 @@
         └───────────────────────────────────────────────────────────────────┘
         -->
         <div id="cover-clean">
-            <!-- bingkai aesthetic cover clean -->
-            <div class="cover-frame"></div>
-            <div class="cover-frame-inner"></div>
-            <div class="cover-corner tl"></div>
-            <div class="cover-corner tr"></div>
-            <div class="cover-corner bl"></div>
-            <div class="cover-corner br"></div>
-
+            <div class="cover-frame-css"></div>
             <p class="cover-label" style="animation:none; opacity:1;">Happy Wedding</p>
 
             <!-- BAGIAN 3 — samakan dengan cover asli -->
@@ -1249,13 +1252,6 @@
 
         <!-- ── PROFIL MEMPELAI ── -->
         <section id="profil" class="frame-section">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-
             <p class="sec-label anim-up" style="position:relative;z-index:1;">Mempelai</p>
             <h2 class="sec-title anim-up anim-delay-1" style="position:relative;z-index:1;">Dengan Penuh Cinta</h2>
 
@@ -1330,14 +1326,7 @@
 
 
         <!-- ── COUNTDOWN ── -->
-        <section id="countdown" class="frame-section screen">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-            <div class="ayat-box anim-up">
+        <section id="countdown" class="frame-section screen">            <div class="ayat-box anim-up">
                 <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</div>
                 <div class="ayat-latin">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya"</div>
                 <div class="ayat-source">QS. Ar-Rum : 21</div>
@@ -1354,14 +1343,7 @@
 
 
         <!-- ── RANGKAIAN ACARA ── -->
-        <section id="acara" class="frame-section screen">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-            <p class="sec-label anim-up">Rangkaian</p>
+        <section id="acara" class="frame-section screen">            <p class="sec-label anim-up">Rangkaian</p>
             <h2 class="sec-title anim-up anim-delay-1">Save The Date</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
                 Dengan memohon rahmat Tuhan, kami mengundang kehadiran Anda
@@ -1497,14 +1479,7 @@
 
 
         <!-- ── PETA LOKASI ── -->
-        <section id="lokasi" class="frame-section screen">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-            <p class="sec-label anim-up">Lokasi Acara</p>
+        <section id="lokasi" class="frame-section screen">            <p class="sec-label anim-up">Lokasi Acara</p>
             <h2 class="sec-title anim-up anim-delay-1">Peta Lokasi</h2>
 
             <!--
@@ -1535,14 +1510,7 @@
 
 
         <!-- ── TANDA KASIH ── -->
-        <section id="hadiah" class="frame-section screen">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-            <p class="sec-label anim-up">Amplop Digital</p>
+        <section id="hadiah" class="frame-section screen">            <p class="sec-label anim-up">Amplop Digital</p>
             <h2 class="sec-title anim-up anim-delay-1">Titip Hadiah</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:28px; margin-top:-10px;" class="anim-up anim-delay-2">
                 Tanpa mengurangi rasa hormat, bagi yang ingin memberikan tanda kasih dapat melalui:
@@ -1630,14 +1598,7 @@
 
 
         <!-- ── PENUTUP ── -->
-        <section id="penutup" class="frame-section screen">
-            <div class="frame-border"></div>
-            <div class="frame-border-inner"></div>
-            <div class="corner-ornament tl"></div>
-            <div class="corner-ornament tr"></div>
-            <div class="corner-ornament bl"></div>
-            <div class="corner-ornament br"></div>
-            <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
+        <section id="penutup" class="frame-section screen">            <div id="penutup-bg" style="background-image:url('https://riradigital.my.id/demo/album/wedding.jpg')"></div>
 
             <!--
             ┌───────────────────────────────────────────────────────────────────┐
