@@ -71,7 +71,7 @@
             top: 0; left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 480px;
             height: 100vh;
-            height: 100dvh;
+            height: 100dvh; /* fix Chrome Android address bar */
             background: linear-gradient(rgba(247,249,247,0.9), rgba(247,249,247,0.95)), var(--bg-light);
             z-index: 999;
             display: flex; flex-direction: column;
@@ -92,20 +92,35 @@
         .guest-name { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); margin-top: 8px; padding: 5px 15px; border-bottom: 1px solid var(--primary-color); display: inline-block; }
         .btn-gold { background-color: var(--gold-accent); color: #fff; padding: 12px 30px; border: none; border-radius: 30px; font-size: 0.9rem; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer; box-shadow: 0 4px 15px rgba(196,166,97,0.4); transition: 0.3s; }
 
+
+        /*
+        ┌───────────────────────────────────────────────────────────────────┐
+        │  COVER CLEAN — versi cover tanpa nama tamu & tombol buka          │
+        │  Muncul sebagai halaman PERTAMA setelah tombol buka undangan      │
+        │  diklik, sebelum konten profil mempelai.                          │
+        │                                                                   │
+        │  Jika ingin mengubah isi cover clean, samakan dengan             │
+        │  cover asli (#cover-section) di atas:                            │
+        │    - Foto     → .cover-photo-circle img src                      │
+        │    - Nama     → .cover-title                                      │
+        │    - Tanggal  → .cover-date                                       │
+        │                                                                   │
+        │  JANGAN tambahkan .guest-box atau .btn-gold di sini.             │
+        └───────────────────────────────────────────────────────────────────┘
+        */
+        #cover-clean {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background: linear-gradient(rgba(247,249,247,0.9), rgba(247,249,247,0.95)), var(--bg-light);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 30px;
+        }
+
         /* ── MAIN ── */
         #main-content { display: none; padding-bottom: var(--nav-height); }
-
-        /* ── COVER CLEAN (bagian dari #main) ── */
-#cover-clean {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    background: linear-gradient(rgba(247,249,247,0.9), rgba(247,249,247,0.95)), var(--bg-light);
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    text-align: center; padding: 30px;
-}
 
         /* ── SECTIONS — setiap section tinggi penuh layar ── */
         .section-screen {
@@ -345,29 +360,69 @@
         <button class="btn-gold" onclick="bukaUndangan()">Buka Undangan 💌</button>
     </div>
 
-    <div id="main">
-
 
     <!-- ═══════════════════════════════════════════
          KONTEN UTAMA
     ════════════════════════════════════════════ -->
     <div id="main-content">
 
-        <div id="main">
 
-  <!-- COVER CLEAN — tambah di sini -->
-  <div id="cover-clean">
-    <div class="cover-photo-circle"><img src="...foto..." /></div>
-    <div class="cover-subtitle">The Wedding of</div>
-    <div class="cover-title">Anggra & Pembri</div>
-    <div class="cover-date">02 November 2022</div>
-    <!-- TANPA guest-box dan TANPA btn-gold -->
-  </div>
+        <!-- ═══════════════════════════════════════════
+             COVER CLEAN
+        ════════════════════════════════════════════ -->
+        <!--
+        ┌───────────────────────────────────────────────────────────────────┐
+        │  COVER CLEAN — ditampilkan sebagai halaman PERTAMA setelah        │
+        │  tombol "Buka Undangan" diklik. Bukan overlay/fixed, melainkan    │
+        │  bagian dari konten utama (scroll normal).                        │
+        │                                                                   │
+        │  Isi cover ini SAMA dengan cover asli di atas, KECUALI:          │
+        │    ✗ .guest-box (nama tamu) → SENGAJA DIHILANGKAN                │
+        │    ✗ .btn-gold (tombol buka undangan) → SENGAJA DIHILANGKAN      │
+        │                                                                   │
+        │  Jika mengubah foto/nama/tanggal di cover asli,                  │
+        │  SAMAKAN juga di sini:                                            │
+        │  BAGIAN 3 → foto: .cover-photo-circle img src="..."              │
+        │  BAGIAN 4 → nama: .cover-title                                   │
+        │  BAGIAN 5 → tanggal: .cover-date                                 │
+        └───────────────────────────────────────────────────────────────────┘
+        -->
+        <div id="cover-clean">
 
-  <!-- section profil, countdown, dst seperti biasa -->
-  ...
-</div>
-        
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 3 — FOTO COVER CLEAN (samakan dengan cover asli)         │
+            │  Ganti /demo/album/wedding.jpg dengan link foto pasangan          │
+            │  CONTOH: → https://i.ibb.co/abc123/cover.jpg                     │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="cover-photo-circle">
+                <img src="/demo/album/wedding.jpg" alt="Foto Pasangan">
+            </div>
+
+            <div class="cover-subtitle">Pernikahan Dari</div>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 4 — NAMA PASANGAN (samakan dengan cover asli)            │
+            │  Anggra → nama singkat/panggil mempelai wanita                   │
+            │  Pembri → nama singkat/panggil mempelai pria                     │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <h1 class="cover-title font-serif">Anggra<br>&<br>Pembri</h1>
+
+            <!--
+            ┌───────────────────────────────────────────────────────────────────┐
+            │  BAGIAN 5 — TANGGAL PERNIKAHAN (samakan dengan cover asli)       │
+            │  Format bebas. CONTOH: → 15 . 07 . 2026                          │
+            └───────────────────────────────────────────────────────────────────┘
+            -->
+            <div class="cover-date">02 . 11 . 2022</div>
+
+            <!-- .guest-box dan .btn-gold SENGAJA DIHILANGKAN di sini -->
+
+        </div>
+
         <!-- ── PROFIL MEMPELAI ── -->
         <section id="profil" class="section-screen">
             <p class="section-label fade-up">Mempelai</p>
