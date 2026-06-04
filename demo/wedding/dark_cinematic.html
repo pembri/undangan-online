@@ -227,12 +227,14 @@
         }
 
         #cover-clean-bg {
-            position: absolute;
-            inset: 0;
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%) scale(1.1);
+            width: 100%; max-width: 480px;
+            height: 100vh; height: 100dvh;
             background-size: cover;
             background-position: center;
             filter: blur(14px) brightness(0.5);
-            transform: scale(1.1);
             z-index: 0;
         }
 
