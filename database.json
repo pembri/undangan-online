@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780646864101,
+    "name": "Flora Pink",
+    "price": "100.000",
+    "category": "wedding",
+    "image": "/assets/product/flora_pink.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/flora_pink",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780603609406,
     "name": "Stamp Brown",
     "price": "100.000",
