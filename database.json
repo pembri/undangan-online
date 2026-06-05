@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780656525195,
+    "name": "Purple Floral",
+    "price": "100.000",
+    "category": "wedding",
+    "image": "/assets/product/purple_floral.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/purle_floral.png",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780646864101,
     "name": "Floral Pink",
     "price": "100.000",
