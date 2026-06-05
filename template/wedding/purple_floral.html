@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!--
+╔═══════════════════════════════════════════════════════════════════════╗
+║  ░░░  BAGIAN 1 — JUDUL TAB BROWSER & PREVIEW WHATSAPP  ░░░          ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║                                                                       ║
+║  GANTI 4 hal berikut:                                                 ║
+║                                                                       ║
+║  Anggra    → nama singkat mempelai wanita                             ║
+║  Pembri    → nama singkat mempelai pria                               ║
+║  https://riradigital.my.id/demo/album/wedding.jpg                     ║
+║             → link foto preview WhatsApp (jpg/png langsung)           ║
+║  https://riradigital.my.id/demo/wedding/purple_floral                 ║
+║             → URL lengkap halaman undangan ini                        ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+-->
+<title>Undangan Pernikahan Anggra & Pembri</title>
+<meta property="og:title"       content="Undangan Pernikahan Anggra & Pembri" />
+<meta property="og:description" content="Kami mengundang kehadiran Anda di hari bahagia kami" />
+<meta property="og:image"       content="https://riradigital.my.id/demo/album/wedding.jpg" />
+<meta property="og:url"         content="https://riradigital.my.id/demo/wedding/purple_floral" />
+<meta property="og:type"        content="website" />
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="twitter:image"      content="https://riradigital.my.id/demo/album/wedding.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --lavender:     #8b7ab8;
+  --lavender-mid: #a594cc;
+  --lavender-bg:  #b8aad4;
+  --lavender-pale:#e8e2f5;
+  --lavender-deep:#5c4d8a;
+  --cream:        #f5f0e8;
+  --cream-warm:   #ede5d5;
+  --gold:         #c4a96a;
+  --dark:         #2c2440;
+  --text-body:    #3d3450;
+  --white:        #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Jost', sans-serif;
+  background: #c8bfe0;
+  color: var(--dark);
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--cream);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 60px rgba(91,76,138,0.3);
+}
+
+/* ─── TYPOGRAPHY ─── */
+.font-script  { font-family: 'Great Vibes', cursive; }
+.font-serif   { font-family: 'Cormorant Garamond', serif; }
+
+/* ─── FLORAL SVG DECORATIONS ─── */
+.floral-left, .floral-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 70px;
+  pointer-events: none;
+  z-index: 5;
+}
+.floral-left  { left: 0; }
+.floral-right { right: 0; transform: scaleX(-1); }
+
+/* ─── COVER SECTION ─── */
+#cover {
+  position: fixed;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  height: 100dvh;
+  z-index: 999;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+}
+
+.cover-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #d4cce8 0%, #bdb0d8 40%, #c8bfe0 100%);
+}
+
+/* Peacock decorations on cover */
+.cover-peacock-left, .cover-peacock-right {
+  position: absolute;
+  bottom: 80px;
+  width: 130px;
+  opacity: 0.85;
+  z-index: 2;
+}
+.cover-peacock-left  { left: -10px; }
+.cover-peacock-right { right: -10px; transform: scaleX(-1); }
+
+/* Floral bottom cover */
+.cover-floral-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 260px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Cover top toile illustration */
+.cover-toile {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 200px;
+  opacity: 0.25;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Ornamental frame on cover */
+.cover-frame {
+  position: relative;
+  z-index: 3;
+  padding: 35px 30px;
+  text-align: center;
+}
+
+.cover-frame-border {
+  position: absolute; inset: 0;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 60% 60% 60% 60% / 30% 30% 30% 30%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+}
+
+.cover-tagline {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.cover-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  color: var(--lavender-deep);
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(255,255,255,0.8);
+}
+
+.cover-ampersand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: var(--lavender-deep);
+  display: block;
+  line-height: 1.2;
+}
+
+.cover-date {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  letter-spacing: 4px;
+  font-size: 1rem;
+  color: var(--dark);
+  margin-top: 12px;
+}
+
+.cover-guest {
+  position: relative; z-index: 3;
+  margin-top: 15px;
+  text-align: center;
+}
+.cover-guest p {
+  font-size: 0.8rem;
+  color: rgba(60,40,100,0.7);
+  letter-spacing: 1px;
+}
+.guest-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--lavender-deep);
+  margin-top: 4px;
+  display: block;
+}
+
+.btn-open {
+  position: relative; z-index: 3;
+  margin-top: 20px;
+  background: rgba(139,122,184,0.75);
+  border: 1.5px solid rgba(255,255,255,0.6);
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.3s;
+}
+.btn-open:hover {
+  background: rgba(139,122,184,0.9);
+  transform: translateY(-2px);
+}
+
+/* Butterfly animation on cover */
+.butterfly {
+  position: absolute;
+  font-size: 1.6rem;
+  z-index: 4;
+  animation: flutter 6s ease-in-out infinite;
+  filter: hue-rotate(270deg) saturate(2);
+}
+.butterfly-1 { top: 35%; left: 12%; animation-delay: 0s; }
+.butterfly-2 { top: 25%; right: 18%; animation-delay: 2s; font-size: 1rem; }
+@keyframes flutter {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  25%      { transform: translateY(-15px) rotate(5deg); }
+  50%      { transform: translateY(-8px) rotate(-3deg); }
+  75%      { transform: translateY(-20px) rotate(8deg); }
+}
+
+/* ─── MAIN CONTENT ─── */
+#main { display: none; }
+
+/* ─── COVER CLEAN (first page after open) ─── */
+/*
+┌──────────────────────────────────────────────────────────────────────┐
+│  COVER CLEAN — tampil sebagai halaman PERTAMA setelah tombol "Buka"  │
+│  diklik. Isi SAMA dengan cover asli KECUALI guest-box & tombol open. │
+│  BAGIAN 3 → foto | BAGIAN 4 → nama | BAGIAN 5 → tanggal             │
+└──────────────────────────────────────────────────────────────────────┘
+*/
+#cover-clean {
+  position: relative;
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #d4cce8 0%, #bdb0d8 40%, #c8bfe0 100%);
+}
+
+/* ─── SECTION BASE ─── */
+.section {
+  position: relative;
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 50px 20px 50px;
+  overflow: hidden;
+}
+
+/* Section backgrounds */
+.section.bg-cream   { background: var(--cream); }
+.section.bg-lavender{ background: var(--lavender-bg); }
+.section.bg-deep    { background: var(--lavender-deep); }
+.section.bg-white   { background: #fff; }
+.section.bg-pale    { background: var(--lavender-pale); }
+
+/* ─── SECTION LABELS ─── */
+.s-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--lavender);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.s-label.light { color: rgba(255,255,255,0.7); }
+
+.s-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.s-title.light { color: #fff; }
+
+/* ─── PROFIL SECTION ─── */
+.profil-wrapper {
+  width: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+}
+
+.mempelai-card {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex; flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.arch-photo {
+  width: 170px; height: 220px;
+  border-radius: 85px 85px 0 0;
+  overflow: hidden;
+  border: 5px solid rgba(255,255,255,0.8);
+  box-shadow: 0 15px 40px rgba(91,76,138,0.25);
+  background: #ddd;
+  margin-bottom: 18px;
+  position: relative;
+}
+.arch-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.arch-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 85px 85px 0 0;
+  border: 3px solid rgba(196,169,106,0.4);
+}
+
+.mempelai-nickname {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: var(--lavender-deep);
+  margin-bottom: 2px;
+  line-height: 1.1;
+}
+
+.mempelai-fullname {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.mempelai-ortu {
+  font-size: 0.82rem;
+  color: #777;
+  line-height: 1.6;
+}
+
+.divider-ornament {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  padding: 10px 30px;
+}
+.divider-ornament::before, .divider-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--lavender));
+}
+.divider-ornament::after {
+  background: linear-gradient(to left, transparent, var(--lavender));
+}
+
+/* ─── COUNTDOWN ─── */
+.countdown-section {
+  background: var(--lavender-bg);
+  position: relative;
+}
+
+.cd-wrap {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.cd-box {
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 14px;
+  padding: 16px 18px;
+  min-width: 70px;
+  backdrop-filter: blur(5px);
+}
+.cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  display: block;
+}
+.cd-lbl {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-top: 4px;
+  display: block;
+}
+
+.bouquet-icon {
+  width: 120px;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+/* ─── ACARA CARDS ─── */
+.acara-section {
+  background: var(--lavender-bg);
+}
+
+.acara-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 30px 24px;
+  margin: 12px 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.acara-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent);
+}
+
+.acara-type {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.acara-day {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+.acara-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 4px 0;
+}
+
+.acara-time {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.acara-loc-icon {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 4px;
+}
+
+.acara-venue {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.acara-address {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.btn-maps {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.5);
+  color: #fff;
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+}
+.btn-maps:hover { background: rgba(255,255,255,0.3); }
+
+/* ─── GALERI ─── */
+.galeri-section {
+  background: var(--lavender-bg);
+  padding: 50px 0 50px;
+}
+
+.galeri-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.galeri-item {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #ddd;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.galeri-item:nth-child(1),
+.galeri-item:nth-child(6) { aspect-ratio: 1/1; }
+.galeri-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.galeri-item:hover img { transform: scale(1.05); }
+
+/* ─── LOKASI (maps embed via iframe) ─── */
+.lokasi-section { background: var(--cream); }
+.map-iframe {
+  width: 100%; height: 220px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  margin: 16px 0;
+}
+
+/* ─── HADIAH / TANDA KASIH ─── */
+.hadiah-section { background: var(--lavender-bg); }
+
+.rekening-card {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 20px;
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 8px 30px rgba(91,76,138,0.15);
+  display: flex; flex-direction: column; align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.rekening-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: rgba(139,122,184,0.08);
+  border-radius: 50%;
+  transform: translate(20px, -20px);
+}
+
+.rek-bank-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--lavender-deep);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.rek-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--dark);
+  letter-spacing: 2px;
+  margin: 4px 0;
+}
+.rek-name {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.btn-salin {
+  align-self: flex-end;
+  margin-top: 12px;
+  background: var(--lavender);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Jost', sans-serif;
+  display: flex; align-items: center; gap: 6px;
+}
+.btn-salin:hover { background: var(--lavender-deep); }
+
+.kado-card {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 20px;
+  width: 100%;
+  margin-top: 12px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(91,76,138,0.15);
+}
+.kado-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--dark);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.kado-address {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--lavender);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Jost', sans-serif;
+}
+.btn-wa:hover { background: var(--lavender-deep); }
+
+/* ─── UCAPAN ─── */
+.ucapan-section {
+  background: #fff;
+  min-height: 100dvh;
+  padding: 50px 20px;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+
+.ucapan-count {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--lavender-pale);
+  color: var(--lavender-deep);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  margin-bottom: 20px;
+}
+
+.form-box {
+  background: var(--lavender-pale);
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.form-box input, .form-box select, .form-box textarea {
+  width: 100%;
+  padding: 11px 14px;
+  margin-bottom: 10px;
+  border: 1.5px solid rgba(139,122,184,0.2);
+  border-radius: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.88rem;
+  color: var(--dark);
+  background: #fff;
+  outline: none;
+  transition: border 0.2s;
+}
+.form-box input:focus, .form-box select:focus, .form-box textarea:focus {
+  border-color: var(--lavender);
+}
+.form-box textarea { resize: none; height: 90px; }
+
+.char-count {
+  font-size: 0.73rem;
+  color: #aaa;
+  text-align: right;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+.btn-kirim {
+  width: 100%;
+  padding: 12px;
+  background: var(--lavender);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+.btn-kirim:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-kirim:hover:not(:disabled) { background: var(--lavender-deep); }
+
+.wish-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.wish-card {
+  background: var(--lavender-pale);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: left;
+}
+.wish-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 4px; flex-wrap: wrap;
+}
+.wish-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--lavender);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.wish-name { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+.badge-hadir { background: #d4edda; color: #2d6a4f; font-size: 0.68rem; padding: 2px 8px; border-radius: 20px; }
+.badge-tidak { background: #fde8e8; color: #c0392b; font-size: 0.68rem; padding: 2px 8px; border-radius: 20px; }
+.badge-ragu  { background: #fff3cd; color: #856404; font-size: 0.68rem; padding: 2px 8px; border-radius: 20px; }
+.wish-time   { font-size: 0.72rem; color: #aaa; margin-bottom: 5px; }
+.wish-msg    { font-size: 0.85rem; color: var(--text-body); line-height: 1.6; }
+
+/* ─── PENUTUP ─── */
+.penutup-section {
+  min-height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  padding-bottom: 80px;
+}
+.penutup-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center top;
+  filter: brightness(0.55);
+}
+.penutup-content {
+  position: relative; z-index: 2;
+  color: #fff;
+  text-align: center;
+  padding: 0 30px;
+}
+.penutup-label {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 6px;
+}
+.penutup-thanks {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.penutup-sub {
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 6px;
+}
+.penutup-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #fff;
+}
+.brand-credit {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+/* ─── QUOTE SECTION (between profil and countdown) ─── */
+.quote-section {
+  background: var(--cream);
+  min-height: auto;
+  padding: 50px 30px;
+  position: relative;
+  overflow: hidden;
+}
+.couple-photo-wide {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 40px rgba(91,76,138,0.2);
+  height: 280px;
+  background: #ddd;
+}
+.couple-photo-wide img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.couple-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 3rem;
+  letter-spacing: 8px;
+  color: var(--lavender);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px; justify-content: center;
+}
+.couple-initials-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: var(--lavender-deep);
+}
+.ayat-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-body);
+}
+.ayat-ref {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--lavender);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ─── WELCOME SECTION (after cover-clean) ─── */
+.welcome-section {
+  background: var(--cream);
+  padding: 50px 25px;
+  min-height: auto;
+}
+.welcome-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.welcome-body {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.9;
+}
+
+/* ─── MUSIC CONTROL ─── */
+.music-btn {
+  position: fixed;
+  bottom: 30px; right: 20px;
+  width: 46px; height: 46px;
+  background: var(--lavender);
+  border-radius: 50%;
+  display: none;
+  align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 20px rgba(139,122,184,0.5);
+  cursor: pointer;
+  z-index: 900;
+  border: none;
+  transition: all 0.3s;
+}
+.music-btn.spin { animation: spinAnim 4s linear infinite; }
+@keyframes spinAnim { 100% { transform: rotate(360deg); } }
+
+/* ─── ANIMATIONS ─── */
+/* Fade up */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.anim-fade-up.in { opacity: 1; transform: translateY(0); }
+
+/* Fade in */
+.anim-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.anim-fade.in { opacity: 1; }
+
+/* Zoom in */
+.anim-zoom {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-zoom.in { opacity: 1; transform: scale(1); }
+
+/* Fade left */
+.anim-left {
+  opacity: 0;
+  transform: translateX(-35px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.anim-left.in { opacity: 1; transform: translateX(0); }
+
+/* Fade right */
+.anim-right {
+  opacity: 0;
+  transform: translateX(35px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.anim-right.in { opacity: 1; transform: translateX(0); }
+
+/* Delay helpers */
+.d1 { transition-delay: 0.1s !important; }
+.d2 { transition-delay: 0.2s !important; }
+.d3 { transition-delay: 0.3s !important; }
+.d4 { transition-delay: 0.4s !important; }
+.d5 { transition-delay: 0.5s !important; }
+.d6 { transition-delay: 0.6s !important; }
+.d7 { transition-delay: 0.7s !important; }
+.d8 { transition-delay: 0.8s !important; }
+
+/* Cover entrance animation */
+@keyframes coverIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cover-frame        { animation: coverIn 1s ease 0.3s both; }
+.cover-guest        { animation: coverIn 1s ease 0.7s both; }
+.btn-open           { animation: coverIn 1s ease 1s both; }
+.butterfly-1        { animation: flutter 6s ease-in-out infinite 1.5s; }
+.butterfly-2        { animation: flutter 6s ease-in-out infinite 3s; }
+
+/* Floral side animation */
+@keyframes floralSlideLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes floralSlideRight {
+  from { opacity: 0; transform: translateX(30px) scaleX(-1); }
+  to   { opacity: 1; transform: translateX(0) scaleX(-1); }
+}
+
+/* Peacock idle bob */
+@keyframes peacockBob {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.cover-peacock-left  { animation: peacockBob 4s ease-in-out infinite; }
+.cover-peacock-right { animation: peacockBob 4s ease-in-out infinite 2s; }
+
+/* Transition overlay */
+#trans-overlay {
+  position: fixed; inset: 0;
+  background: var(--lavender-deep);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+#trans-overlay.show { opacity: 1; pointer-events: all; }
+</style>
+</head>
+<body>
+<div id="trans-overlay"></div>
+<div class="app">
+
+<!--
+╔═══════════════════════════════════════════════════════════════════════╗
+║  ░░░  BAGIAN 2 — BACKSOUND / MUSIK LATAR  ░░░                        ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Ganti link mp3 di bawah dengan link file lagu yang diinginkan.      ║
+║  CONTOH: → https://riradigital.my.id/backsound/perfect.mp3           ║
+╚═══════════════════════════════════════════════════════════════════════╝
+-->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://riradigital.my.id/backsound/janji-suci.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div id="cover">
+  <div class="cover-bg"></div>
+
+  <!-- Toile illustration top -->
+  <div class="cover-toile">
+    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <!-- Decorative toile-style tree silhouette -->
+      <g fill="none" stroke="#5c4d8a" stroke-width="0.8" opacity="0.6">
+        <path d="M240 200 Q240 120 240 80 Q220 50 200 30 Q220 55 240 80 Q260 50 280 30 Q260 55 240 80"/>
+        <path d="M240 80 Q210 60 180 50 Q210 65 240 80 Q270 60 300 50 Q270 65 240 80"/>
+        <path d="M240 100 Q200 75 160 70 Q200 80 240 100 Q280 75 320 70 Q280 80 240 100"/>
+        <ellipse cx="240" cy="40" rx="60" ry="40" opacity="0.3"/>
+        <ellipse cx="180" cy="60" rx="40" ry="25" opacity="0.2"/>
+        <ellipse cx="300" cy="60" rx="40" ry="25" opacity="0.2"/>
+        <!-- Estate building -->
+        <rect x="190" y="130" width="100" height="70" rx="2"/>
+        <rect x="215" y="155" width="25" height="45"/>
+        <path d="M190 130 L240 105 L290 130"/>
+        <rect x="200" y="138" width="18" height="15"/>
+        <rect x="262" y="138" width="18" height="15"/>
+        <!-- Fountain -->
+        <ellipse cx="240" cy="185" rx="30" ry="8"/>
+        <line x1="240" y1="185" x2="240" y2="165"/>
+        <ellipse cx="240" cy="165" rx="15" ry="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Floral sides -->
+  <svg class="floral-left" viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin">
+    <!-- Purple flowers cluster -->
+    <g opacity="0.9">
+      <!-- Large flower 1 -->
+      <circle cx="25" cy="120" r="18" fill="#9b7fd4" opacity="0.7"/>
+      <circle cx="25" cy="120" r="10" fill="#7b5db4"/>
+      <ellipse cx="8" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(-20 8 115)"/>
+      <ellipse cx="42" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(20 42 115)"/>
+      <ellipse cx="20" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(-40 20 103)"/>
+      <ellipse cx="30" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(40 30 103)"/>
+      <ellipse cx="15" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(-30 15 133)"/>
+      <ellipse cx="35" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(30 35 133)"/>
+      <!-- Large flower 2 -->
+      <circle cx="15" cy="260" r="20" fill="#7b5db4" opacity="0.75"/>
+      <circle cx="15" cy="260" r="11" fill="#5c3d94"/>
+      <ellipse cx="-3" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-25 -3 252)"/>
+      <ellipse cx="33" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(25 33 252)"/>
+      <ellipse cx="8" cy="242" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-50 8 242)"/>
+      <ellipse cx="22" cy="242" rx="10" ry="7" fill="#9b7fd4" transform="rotate(50 22 242)"/>
+      <ellipse cx="5" cy="274" rx="10" ry="7" fill="#b89de0" transform="rotate(-20 5 274)"/>
+      <ellipse cx="25" cy="274" rx="10" ry="7" fill="#b89de0" transform="rotate(20 25 274)"/>
+      <!-- Small flower 1 -->
+      <circle cx="45" cy="190" r="12" fill="#c8aef0" opacity="0.8"/>
+      <circle cx="45" cy="190" r="6" fill="#9b7fd4"/>
+      <!-- Small flower 2 -->
+      <circle cx="10" cy="350" r="14" fill="#d4b8f0" opacity="0.7"/>
+      <circle cx="10" cy="350" r="7" fill="#a888d4"/>
+      <!-- Stems and leaves -->
+      <path d="M25 138 Q20 180 15 260" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <path d="M25 138 Q40 160 55 170" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+      <ellipse cx="48" cy="168" rx="12" ry="6" fill="#5a8c69" transform="rotate(30 48 168)" opacity="0.8"/>
+      <path d="M15 260 Q5 300 10 350" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="0" cy="305" rx="10" ry="5" fill="#5a8c69" transform="rotate(-20 0 305)" opacity="0.8"/>
+      <!-- Orange flower accent -->
+      <circle cx="55" cy="320" r="10" fill="#e8946a" opacity="0.7"/>
+      <circle cx="55" cy="320" r="5" fill="#c4703a"/>
+      <!-- Yellow accent -->
+      <circle cx="30" cy="420" r="8" fill="#d4c060" opacity="0.6"/>
+      <!-- More lavender -->
+      <circle cx="20" cy="480" r="16" fill="#8b7ab8" opacity="0.65"/>
+      <circle cx="20" cy="480" r="8" fill="#6b5a98"/>
+      <ellipse cx="5" cy="470" rx="9" ry="6" fill="#a898d0" transform="rotate(-20 5 470)"/>
+      <ellipse cx="35" cy="470" rx="9" ry="6" fill="#a898d0" transform="rotate(20 35 470)"/>
+      <ellipse cx="12" cy="462" rx="9" ry="6" fill="#a898d0" transform="rotate(-45 12 462)"/>
+      <ellipse cx="28" cy="462" rx="9" ry="6" fill="#a898d0" transform="rotate(45 28 462)"/>
+      <!-- Butterfly on left -->
+      <ellipse cx="50" cy="440" rx="12" ry="7" fill="#cc55cc" opacity="0.7" transform="rotate(-30 50 440)"/>
+      <ellipse cx="38" cy="435" rx="10" ry="6" fill="#dd77dd" opacity="0.6" transform="rotate(20 38 435)"/>
+      <line x1="44" y1="437" x2="44" y2="447" stroke="#333" stroke-width="0.8"/>
+      <!-- More botanical -->
+      <path d="M10 350 Q15 400 20 480" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="30" cy="398" rx="11" ry="5" fill="#6a9c79" transform="rotate(40 30 398)" opacity="0.8"/>
+      <!-- Bottom flowers -->
+      <circle cx="30" cy="580" r="18" fill="#9b7fd4" opacity="0.7"/>
+      <circle cx="30" cy="580" r="9" fill="#7b5db4"/>
+      <ellipse cx="14" cy="570" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 14 570)"/>
+      <ellipse cx="46" cy="570" rx="9" ry="6" fill="#b89de0" transform="rotate(25 46 570)"/>
+      <ellipse cx="22" cy="562" rx="9" ry="6" fill="#c0a8f0" transform="rotate(-50 22 562)"/>
+      <ellipse cx="38" cy="562" rx="9" ry="6" fill="#c0a8f0" transform="rotate(50 38 562)"/>
+      <ellipse cx="20" cy="594" rx="9" ry="6" fill="#c8b4f8" transform="rotate(-20 20 594)"/>
+      <ellipse cx="40" cy="594" rx="9" ry="6" fill="#c8b4f8" transform="rotate(20 40 594)"/>
+      <!-- Leaf cluster bottom -->
+      <path d="M20 480 Q18 530 30 580" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="10" cy="525" rx="12" ry="5" fill="#5a8c69" transform="rotate(-30 10 525)" opacity="0.8"/>
+      <ellipse cx="35" cy="545" rx="11" ry="5" fill="#4a7c59" transform="rotate(20 35 545)" opacity="0.8"/>
+      <!-- Tiny bud -->
+      <circle cx="55" cy="560" r="7" fill="#d4c8f0" opacity="0.7"/>
+      <!-- Bottom extend -->
+      <circle cx="10" cy="700" r="14" fill="#7b5db4" opacity="0.6"/>
+      <circle cx="10" cy="700" r="7" fill="#5c3d94"/>
+      <path d="M30 580 Q15 640 10 700" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="28" cy="625" rx="10" ry="5" fill="#6a9c79" transform="rotate(35 28 625)" opacity="0.8"/>
+    </g>
+  </svg>
+
+  <svg class="floral-right" viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin">
+    <use href="#" xlink:href=""/>
+    <!-- Mirror of left (same content, CSS scaleX(-1) handles flip) -->
+    <g opacity="0.9">
+      <circle cx="25" cy="120" r="18" fill="#9b7fd4" opacity="0.7"/>
+      <circle cx="25" cy="120" r="10" fill="#7b5db4"/>
+      <ellipse cx="8" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(-20 8 115)"/>
+      <ellipse cx="42" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(20 42 115)"/>
+      <ellipse cx="20" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(-40 20 103)"/>
+      <ellipse cx="30" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(40 30 103)"/>
+      <ellipse cx="15" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(-30 15 133)"/>
+      <ellipse cx="35" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(30 35 133)"/>
+      <circle cx="15" cy="260" r="20" fill="#7b5db4" opacity="0.75"/>
+      <circle cx="15" cy="260" r="11" fill="#5c3d94"/>
+      <ellipse cx="-3" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-25 -3 252)"/>
+      <ellipse cx="33" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(25 33 252)"/>
+      <ellipse cx="8" cy="242" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-50 8 242)"/>
+      <ellipse cx="22" cy="242" rx="10" ry="7" fill="#9b7fd4" transform="rotate(50 22 242)"/>
+      <ellipse cx="5" cy="274" rx="10" ry="7" fill="#b89de0" transform="rotate(-20 5 274)"/>
+      <ellipse cx="25" cy="274" rx="10" ry="7" fill="#b89de0" transform="rotate(20 25 274)"/>
+      <circle cx="45" cy="190" r="12" fill="#c8aef0" opacity="0.8"/>
+      <circle cx="45" cy="190" r="6" fill="#9b7fd4"/>
+      <circle cx="10" cy="350" r="14" fill="#d4b8f0" opacity="0.7"/>
+      <circle cx="10" cy="350" r="7" fill="#a888d4"/>
+      <path d="M25 138 Q20 180 15 260" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <path d="M25 138 Q40 160 55 170" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+      <ellipse cx="48" cy="168" rx="12" ry="6" fill="#5a8c69" transform="rotate(30 48 168)" opacity="0.8"/>
+      <path d="M15 260 Q5 300 10 350" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="0" cy="305" rx="10" ry="5" fill="#5a8c69" transform="rotate(-20 0 305)" opacity="0.8"/>
+      <circle cx="55" cy="320" r="10" fill="#e8946a" opacity="0.7"/>
+      <circle cx="55" cy="320" r="5" fill="#c4703a"/>
+      <circle cx="30" cy="420" r="8" fill="#d4c060" opacity="0.6"/>
+      <circle cx="20" cy="480" r="16" fill="#8b7ab8" opacity="0.65"/>
+      <circle cx="20" cy="480" r="8" fill="#6b5a98"/>
+      <ellipse cx="5" cy="470" rx="9" ry="6" fill="#a898d0" transform="rotate(-20 5 470)"/>
+      <ellipse cx="35" cy="470" rx="9" ry="6" fill="#a898d0" transform="rotate(20 35 470)"/>
+      <ellipse cx="12" cy="462" rx="9" ry="6" fill="#a898d0" transform="rotate(-45 12 462)"/>
+      <ellipse cx="28" cy="462" rx="9" ry="6" fill="#a898d0" transform="rotate(45 28 462)"/>
+      <ellipse cx="50" cy="440" rx="12" ry="7" fill="#cc55cc" opacity="0.7" transform="rotate(-30 50 440)"/>
+      <ellipse cx="38" cy="435" rx="10" ry="6" fill="#dd77dd" opacity="0.6" transform="rotate(20 38 435)"/>
+      <line x1="44" y1="437" x2="44" y2="447" stroke="#333" stroke-width="0.8"/>
+      <path d="M10 350 Q15 400 20 480" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="30" cy="398" rx="11" ry="5" fill="#6a9c79" transform="rotate(40 30 398)" opacity="0.8"/>
+      <circle cx="30" cy="580" r="18" fill="#9b7fd4" opacity="0.7"/>
+      <circle cx="30" cy="580" r="9" fill="#7b5db4"/>
+      <ellipse cx="14" cy="570" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 14 570)"/>
+      <ellipse cx="46" cy="570" rx="9" ry="6" fill="#b89de0" transform="rotate(25 46 570)"/>
+      <ellipse cx="22" cy="562" rx="9" ry="6" fill="#c0a8f0" transform="rotate(-50 22 562)"/>
+      <ellipse cx="38" cy="562" rx="9" ry="6" fill="#c0a8f0" transform="rotate(50 38 562)"/>
+      <ellipse cx="20" cy="594" rx="9" ry="6" fill="#c8b4f8" transform="rotate(-20 20 594)"/>
+      <ellipse cx="40" cy="594" rx="9" ry="6" fill="#c8b4f8" transform="rotate(20 40 594)"/>
+      <path d="M20 480 Q18 530 30 580" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="10" cy="525" rx="12" ry="5" fill="#5a8c69" transform="rotate(-30 10 525)" opacity="0.8"/>
+      <ellipse cx="35" cy="545" rx="11" ry="5" fill="#4a7c59" transform="rotate(20 35 545)" opacity="0.8"/>
+      <circle cx="55" cy="560" r="7" fill="#d4c8f0" opacity="0.7"/>
+      <circle cx="10" cy="700" r="14" fill="#7b5db4" opacity="0.6"/>
+      <circle cx="10" cy="700" r="7" fill="#5c3d94"/>
+      <path d="M30 580 Q15 640 10 700" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      <ellipse cx="28" cy="625" rx="10" ry="5" fill="#6a9c79" transform="rotate(35 28 625)" opacity="0.8"/>
+    </g>
+  </svg>
+
+  <!-- Peacock left -->
+  <svg class="cover-peacock-left" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Peacock body -->
+    <ellipse cx="60" cy="140" rx="28" ry="18" fill="#5c7db8" opacity="0.85"/>
+    <ellipse cx="60" cy="130" rx="14" ry="20" fill="#4a6da8"/>
+    <!-- Head -->
+    <circle cx="72" cy="112" r="10" fill="#5c7db8"/>
+    <circle cx="77" cy="108" r="4" fill="#4a6da8"/>
+    <!-- Crest -->
+    <circle cx="75" cy="100" r="3" fill="#7ab8d4"/>
+    <circle cx="79" cy="97" r="2.5" fill="#7ab8d4"/>
+    <circle cx="71" cy="98" r="2" fill="#7ab8d4"/>
+    <!-- Eye -->
+    <circle cx="79" cy="109" r="2" fill="#fff"/>
+    <circle cx="79.5" cy="109" r="1" fill="#222"/>
+    <!-- Tail feathers -->
+    <ellipse cx="30" cy="115" rx="6" ry="22" fill="#5c7db8" opacity="0.7" transform="rotate(-30 30 115)"/>
+    <ellipse cx="20" cy="110" rx="5" ry="20" fill="#4a9ca8" opacity="0.65" transform="rotate(-45 20 110)"/>
+    <ellipse cx="15" cy="125" rx="5" ry="20" fill="#6b8dc0" opacity="0.6" transform="rotate(-15 15 125)"/>
+    <ellipse cx="18" cy="100" rx="4" ry="18" fill="#5c7db8" opacity="0.55" transform="rotate(-60 18 100)"/>
+    <!-- Eye spots on feathers -->
+    <ellipse cx="22" cy="95" rx="4" ry="5" fill="#1a4a6a" opacity="0.7" transform="rotate(-60 22 95)"/>
+    <ellipse cx="22" cy="95" rx="2" ry="2.5" fill="#7ab8d4" opacity="0.9" transform="rotate(-60 22 95)"/>
+    <ellipse cx="12" cy="98" rx="3" ry="4" fill="#1a4a6a" opacity="0.6" transform="rotate(-45 12 98)"/>
+    <ellipse cx="12" cy="98" rx="1.5" ry="2" fill="#7ab8d4" opacity="0.9" transform="rotate(-45 12 98)"/>
+    <!-- Legs -->
+    <line x1="55" y1="155" x2="52" y2="175" stroke="#3a5a78" stroke-width="2"/>
+    <line x1="65" y1="155" x2="68" y2="175" stroke="#3a5a78" stroke-width="2"/>
+    <line x1="52" y1="175" x2="45" y2="178" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="52" y1="175" x2="55" y2="180" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="68" y1="175" x2="75" y2="178" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="68" y1="175" x2="65" y2="180" stroke="#3a5a78" stroke-width="1.5"/>
+    <!-- Fountain base hint -->
+    <ellipse cx="60" cy="185" rx="35" ry="6" fill="rgba(92,125,184,0.2)"/>
+  </svg>
+
+  <!-- Peacock right (CSS scaleX handles flip) -->
+  <svg class="cover-peacock-right" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="60" cy="140" rx="28" ry="18" fill="#5c7db8" opacity="0.85"/>
+    <ellipse cx="60" cy="130" rx="14" ry="20" fill="#4a6da8"/>
+    <circle cx="72" cy="112" r="10" fill="#5c7db8"/>
+    <circle cx="77" cy="108" r="4" fill="#4a6da8"/>
+    <circle cx="75" cy="100" r="3" fill="#7ab8d4"/>
+    <circle cx="79" cy="97" r="2.5" fill="#7ab8d4"/>
+    <circle cx="71" cy="98" r="2" fill="#7ab8d4"/>
+    <circle cx="79" cy="109" r="2" fill="#fff"/>
+    <circle cx="79.5" cy="109" r="1" fill="#222"/>
+    <ellipse cx="30" cy="115" rx="6" ry="22" fill="#5c7db8" opacity="0.7" transform="rotate(-30 30 115)"/>
+    <ellipse cx="20" cy="110" rx="5" ry="20" fill="#4a9ca8" opacity="0.65" transform="rotate(-45 20 110)"/>
+    <ellipse cx="15" cy="125" rx="5" ry="20" fill="#6b8dc0" opacity="0.6" transform="rotate(-15 15 125)"/>
+    <ellipse cx="18" cy="100" rx="4" ry="18" fill="#5c7db8" opacity="0.55" transform="rotate(-60 18 100)"/>
+    <ellipse cx="22" cy="95" rx="4" ry="5" fill="#1a4a6a" opacity="0.7" transform="rotate(-60 22 95)"/>
+    <ellipse cx="22" cy="95" rx="2" ry="2.5" fill="#7ab8d4" opacity="0.9" transform="rotate(-60 22 95)"/>
+    <ellipse cx="12" cy="98" rx="3" ry="4" fill="#1a4a6a" opacity="0.6" transform="rotate(-45 12 98)"/>
+    <ellipse cx="12" cy="98" rx="1.5" ry="2" fill="#7ab8d4" opacity="0.9" transform="rotate(-45 12 98)"/>
+    <line x1="55" y1="155" x2="52" y2="175" stroke="#3a5a78" stroke-width="2"/>
+    <line x1="65" y1="155" x2="68" y2="175" stroke="#3a5a78" stroke-width="2"/>
+    <line x1="52" y1="175" x2="45" y2="178" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="52" y1="175" x2="55" y2="180" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="68" y1="175" x2="75" y2="178" stroke="#3a5a78" stroke-width="1.5"/>
+    <line x1="68" y1="175" x2="65" y2="180" stroke="#3a5a78" stroke-width="1.5"/>
+    <ellipse cx="60" cy="185" rx="35" ry="6" fill="rgba(92,125,184,0.2)"/>
+  </svg>
+
+  <!-- Floral bottom cluster cover -->
+  <svg class="cover-floral-bottom" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+    <!-- Bottom floral carpet -->
+    <g>
+      <!-- Large center flowers -->
+      <circle cx="240" cy="230" r="25" fill="#9b7fd4" opacity="0.8"/>
+      <circle cx="240" cy="230" r="13" fill="#7b5db4"/>
+      <ellipse cx="215" cy="220" rx="12" ry="8" fill="#b89de0" transform="rotate(-20 215 220)"/>
+      <ellipse cx="265" cy="220" rx="12" ry="8" fill="#b89de0" transform="rotate(20 265 220)"/>
+      <ellipse cx="228" cy="208" rx="12" ry="8" fill="#c8aef0" transform="rotate(-45 228 208)"/>
+      <ellipse cx="252" cy="208" rx="12" ry="8" fill="#c8aef0" transform="rotate(45 252 208)"/>
+      <ellipse cx="220" cy="240" rx="12" ry="8" fill="#d4c0ff" transform="rotate(-25 220 240)"/>
+      <ellipse cx="260" cy="240" rx="12" ry="8" fill="#d4c0ff" transform="rotate(25 260 240)"/>
+      <!-- Left cluster -->
+      <circle cx="120" cy="240" r="20" fill="#7b5db4" opacity="0.75"/>
+      <circle cx="120" cy="240" r="10" fill="#5c3d94"/>
+      <ellipse cx="102" cy="232" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-20 102 232)"/>
+      <ellipse cx="138" cy="232" rx="10" ry="7" fill="#9b7fd4" transform="rotate(20 138 232)"/>
+      <ellipse cx="110" cy="222" rx="10" ry="7" fill="#b09de8" transform="rotate(-45 110 222)"/>
+      <ellipse cx="130" cy="222" rx="10" ry="7" fill="#b09de8" transform="rotate(45 130 222)"/>
+      <!-- Right cluster -->
+      <circle cx="360" cy="240" r="20" fill="#7b5db4" opacity="0.75"/>
+      <circle cx="360" cy="240" r="10" fill="#5c3d94"/>
+      <ellipse cx="342" cy="232" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-20 342 232)"/>
+      <ellipse cx="378" cy="232" rx="10" ry="7" fill="#9b7fd4" transform="rotate(20 378 232)"/>
+      <ellipse cx="350" cy="222" rx="10" ry="7" fill="#b09de8" transform="rotate(-45 350 222)"/>
+      <ellipse cx="370" cy="222" rx="10" ry="7" fill="#b09de8" transform="rotate(45 370 222)"/>
+      <!-- Small accent flowers -->
+      <circle cx="60" cy="250" r="13" fill="#c8aef0" opacity="0.7"/>
+      <circle cx="60" cy="250" r="7" fill="#9b7fd4"/>
+      <circle cx="185" cy="245" r="11" fill="#d4b8f0" opacity="0.8"/>
+      <circle cx="295" cy="245" r="11" fill="#d4b8f0" opacity="0.8"/>
+      <circle cx="420" cy="248" r="13" fill="#c8aef0" opacity="0.7"/>
+      <circle cx="420" cy="248" r="7" fill="#9b7fd4"/>
+      <!-- Orange accents -->
+      <circle cx="160" cy="255" r="8" fill="#e8946a" opacity="0.7"/>
+      <circle cx="320" cy="255" r="8" fill="#e8946a" opacity="0.7"/>
+      <!-- Leaves -->
+      <ellipse cx="90" cy="240" rx="15" ry="6" fill="#4a7c59" transform="rotate(-30 90 240)" opacity="0.7"/>
+      <ellipse cx="390" cy="240" rx="15" ry="6" fill="#4a7c59" transform="rotate(30 390 240)" opacity="0.7"/>
+      <ellipse cx="200" cy="250" rx="14" ry="5" fill="#5a8c69" transform="rotate(15 200 250)" opacity="0.8"/>
+      <ellipse cx="280" cy="250" rx="14" ry="5" fill="#5a8c69" transform="rotate(-15 280 250)" opacity="0.8"/>
+      <!-- Fountain in center-bottom -->
+      <ellipse cx="240" cy="258" rx="40" ry="8" fill="rgba(92,125,184,0.25)"/>
+      <rect x="233" y="230" width="14" height="28" fill="rgba(92,125,184,0.2)" rx="2"/>
+      <ellipse cx="240" cy="232" rx="18" ry="5" fill="rgba(92,125,184,0.2)"/>
+      <!-- Bleed-off edges -->
+      <rect x="0" y="240" width="480" height="20" fill="rgba(180,170,210,0.3)"/>
+    </g>
+  </svg>
+
+  <!-- Butterfly -->
+  <div class="butterfly butterfly-1">🦋</div>
+  <div class="butterfly butterfly-2">🦋</div>
+
+  <!-- Cover frame -->
+  <div class="cover-frame">
+    <div class="cover-frame-border"></div>
+    <span class="cover-tagline">The Wedding Of</span>
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 4 — NAMA PASANGAN DI COVER                               │
+    │  ANGGRA  → nama singkat/panggil mempelai wanita (HURUF BESAR)   │
+    │  PEMBRI  → nama singkat/panggil mempelai pria (HURUF BESAR)     │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="cover-names">ANGGRA<br><span class="cover-ampersand">&</span>PEMBRI</div>
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 5 — TANGGAL PERNIKAHAN DI COVER (teks tampilan saja)    │
+    │  Format bebas. CONTOH: → 31 / 12 / 24                            │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="cover-date">02 / 11 / 22</div>
+  </div>
+
+  <!-- Guest name -->
+  <div class="cover-guest">
+    <p>Kepada Yth.</p>
+    <!--
+      Nama tamu OTOMATIS dari parameter ?to= di URL.
+      Contoh: https://domain.com/?to=Budi_Santoso → tampil "Budi Santoso"
+      TIDAK PERLU DIUBAH.
+    -->
+    <span class="guest-name" id="namaTamu">Tamu Undangan</span>
+  </div>
+
+  <!-- Open button -->
+  <button class="btn-open" onclick="bukaUndangan()">
+    ✉ Buka Undangan
+  </button>
+</div>
+<!-- /cover -->
+
+
+<!-- ═══════════ MAIN CONTENT ═══════════ -->
+<div id="main">
+
+  <!-- ── COVER CLEAN ── -->
+  <!--
+  ┌───────────────────────────────────────────────────────────────────────┐
+  │  COVER CLEAN — tampil sebagai halaman PERTAMA setelah tombol "Buka"  │
+  │  diklik. TIDAK ada guest-box & tombol open.                           │
+  │  Samakan BAGIAN 3 (foto), BAGIAN 4 (nama), BAGIAN 5 (tanggal)       │
+  │  dengan cover asli di atas.                                           │
+  └───────────────────────────────────────────────────────────────────────┘
+  -->
+  <div id="cover-clean">
+    <!-- Same decorative elements as cover -->
+    <div class="cover-toile">
+      <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <g fill="none" stroke="#5c4d8a" stroke-width="0.8" opacity="0.6">
+          <path d="M240 200 Q240 120 240 80 Q220 50 200 30 Q220 55 240 80 Q260 50 280 30 Q260 55 240 80"/>
+          <path d="M240 80 Q210 60 180 50 Q210 65 240 80 Q270 60 300 50 Q270 65 240 80"/>
+          <path d="M240 100 Q200 75 160 70 Q200 80 240 100 Q280 75 320 70 Q280 80 240 100"/>
+          <ellipse cx="240" cy="40" rx="60" ry="40" opacity="0.3"/>
+          <ellipse cx="180" cy="60" rx="40" ry="25" opacity="0.2"/>
+          <ellipse cx="300" cy="60" rx="40" ry="25" opacity="0.2"/>
+          <rect x="190" y="130" width="100" height="70" rx="2"/>
+          <rect x="215" y="155" width="25" height="45"/>
+          <path d="M190 130 L240 105 L290 130"/>
+          <rect x="200" y="138" width="18" height="15"/>
+          <rect x="262" y="138" width="18" height="15"/>
+          <ellipse cx="240" cy="185" rx="30" ry="8"/>
+          <line x1="240" y1="185" x2="240" y2="165"/>
+          <ellipse cx="240" cy="165" rx="15" ry="4"/>
+        </g>
+      </svg>
+    </div>
+    <svg class="floral-left" viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" style="position:absolute;top:0;left:0;height:100%;width:70px;z-index:5;">
+      <g opacity="0.9">
+        <circle cx="25" cy="120" r="18" fill="#9b7fd4" opacity="0.7"/><circle cx="25" cy="120" r="10" fill="#7b5db4"/>
+        <ellipse cx="8" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(-20 8 115)"/><ellipse cx="42" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(20 42 115)"/>
+        <ellipse cx="20" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(-40 20 103)"/><ellipse cx="30" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(40 30 103)"/>
+        <ellipse cx="15" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(-30 15 133)"/><ellipse cx="35" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(30 35 133)"/>
+        <circle cx="15" cy="260" r="20" fill="#7b5db4" opacity="0.75"/><circle cx="15" cy="260" r="11" fill="#5c3d94"/>
+        <ellipse cx="-3" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(-25 -3 252)"/><ellipse cx="33" cy="252" rx="10" ry="7" fill="#9b7fd4" transform="rotate(25 33 252)"/>
+        <path d="M25 138 Q20 180 15 260" stroke="#4a7c59" stroke-width="2" fill="none"/>
+        <ellipse cx="48" cy="168" rx="12" ry="6" fill="#5a8c69" transform="rotate(30 48 168)" opacity="0.8"/>
+        <circle cx="45" cy="190" r="12" fill="#c8aef0" opacity="0.8"/><circle cx="45" cy="190" r="6" fill="#9b7fd4"/>
+        <circle cx="20" cy="480" r="16" fill="#8b7ab8" opacity="0.65"/><circle cx="20" cy="480" r="8" fill="#6b5a98"/>
+        <path d="M15 260 Q15 370 20 480" stroke="#4a7c59" stroke-width="2" fill="none"/>
+        <ellipse cx="35" cy="370" rx="11" ry="5" fill="#6a9c79" transform="rotate(35 35 370)" opacity="0.8"/>
+        <circle cx="30" cy="580" r="18" fill="#9b7fd4" opacity="0.7"/><circle cx="30" cy="580" r="9" fill="#7b5db4"/>
+        <path d="M20 480 Q18 530 30 580" stroke="#4a7c59" stroke-width="2" fill="none"/>
+        <circle cx="55" cy="560" r="7" fill="#d4c8f0" opacity="0.7"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" style="position:absolute;top:0;right:0;height:100%;width:70px;z-index:5;transform:scaleX(-1);">
+      <g opacity="0.9">
+        <circle cx="25" cy="120" r="18" fill="#9b7fd4" opacity="0.7"/><circle cx="25" cy="120" r="10" fill="#7b5db4"/>
+        <ellipse cx="8" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(-20 8 115)"/><ellipse cx="42" cy="115" rx="9" ry="6" fill="#b89de0" transform="rotate(20 42 115)"/>
+        <ellipse cx="20" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(-40 20 103)"/><ellipse cx="30" cy="103" rx="9" ry="6" fill="#b89de0" transform="rotate(40 30 103)"/>
+        <ellipse cx="15" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(-30 15 133)"/><ellipse cx="35" cy="133" rx="9" ry="6" fill="#c8aef0" transform="rotate(30 35 133)"/>
+        <circle cx="15" cy="260" r="20" fill="#7b5db4" opacity="0.75"/><circle cx="15" cy="260" r="11" fill="#5c3d94"/>
+        <path d="M25 138 Q20 180 15 260" stroke="#4a7c59" stroke-width="2" fill="none"/>
+        <circle cx="45" cy="190" r="12" fill="#c8aef0" opacity="0.8"/><circle cx="45" cy="190" r="6" fill="#9b7fd4"/>
+        <circle cx="20" cy="480" r="16" fill="#8b7ab8" opacity="0.65"/><circle cx="20" cy="480" r="8" fill="#6b5a98"/>
+        <path d="M15 260 Q15 370 20 480" stroke="#4a7c59" stroke-width="2" fill="none"/>
+        <circle cx="30" cy="580" r="18" fill="#9b7fd4" opacity="0.7"/><circle cx="30" cy="580" r="9" fill="#7b5db4"/>
+        <path d="M20 480 Q18 530 30 580" stroke="#4a7c59" stroke-width="2" fill="none"/>
+      </g>
+    </svg>
+    <div class="cover-frame" style="animation:none;">
+      <div class="cover-frame-border"></div>
+      <span class="cover-tagline">The Wedding Of</span>
+      <!-- BAGIAN 4 (cover clean) — samakan dengan cover asli -->
+      <div class="cover-names">ANGGRA<br><span class="cover-ampersand">&</span>PEMBRI</div>
+      <!-- BAGIAN 5 (cover clean) — samakan dengan cover asli -->
+      <div class="cover-date">02 / 11 / 22</div>
+    </div>
+    <svg class="cover-floral-bottom" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="position:absolute;bottom:0;left:0;right:0;height:260px;z-index:2;pointer-events:none;width:100%;">
+      <g>
+        <circle cx="240" cy="230" r="25" fill="#9b7fd4" opacity="0.8"/><circle cx="240" cy="230" r="13" fill="#7b5db4"/>
+        <ellipse cx="215" cy="220" rx="12" ry="8" fill="#b89de0" transform="rotate(-20 215 220)"/><ellipse cx="265" cy="220" rx="12" ry="8" fill="#b89de0" transform="rotate(20 265 220)"/>
+        <ellipse cx="228" cy="208" rx="12" ry="8" fill="#c8aef0" transform="rotate(-45 228 208)"/><ellipse cx="252" cy="208" rx="12" ry="8" fill="#c8aef0" transform="rotate(45 252 208)"/>
+        <circle cx="120" cy="240" r="20" fill="#7b5db4" opacity="0.75"/><circle cx="120" cy="240" r="10" fill="#5c3d94"/>
+        <circle cx="360" cy="240" r="20" fill="#7b5db4" opacity="0.75"/><circle cx="360" cy="240" r="10" fill="#5c3d94"/>
+        <circle cx="60" cy="250" r="13" fill="#c8aef0" opacity="0.7"/><circle cx="420" cy="248" r="13" fill="#c8aef0" opacity="0.7"/>
+        <circle cx="160" cy="255" r="8" fill="#e8946a" opacity="0.7"/><circle cx="320" cy="255" r="8" fill="#e8946a" opacity="0.7"/>
+        <ellipse cx="90" cy="240" rx="15" ry="6" fill="#4a7c59" transform="rotate(-30 90 240)" opacity="0.7"/>
+        <ellipse cx="390" cy="240" rx="15" ry="6" fill="#4a7c59" transform="rotate(30 390 240)" opacity="0.7"/>
+        <ellipse cx="240" cy="258" rx="40" ry="8" fill="rgba(92,125,184,0.25)"/>
+        <rect x="0" y="240" width="480" height="20" fill="rgba(180,170,210,0.3)"/>
+      </g>
+    </svg>
+    <div class="butterfly butterfly-1" style="animation:flutter 6s ease-in-out infinite;">🦋</div>
+  </div>
+  <!-- /cover-clean -->
+
+
+  <!-- ── WELCOME / PEMBUKA ── -->
+  <div class="welcome-section section" style="background:var(--cream); min-height:auto; position:relative; overflow:hidden;">
+    <svg class="floral-left" viewBox="0 0 80 400" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+      <g opacity="0.8">
+        <circle cx="20" cy="80" r="14" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="80" r="7" fill="#7b5db4"/>
+        <ellipse cx="8" cy="72" rx="8" ry="5" fill="#b89de0" transform="rotate(-20 8 72)"/><ellipse cx="32" cy="72" rx="8" ry="5" fill="#b89de0" transform="rotate(20 32 72)"/>
+        <path d="M20 95 Q15 150 18 220" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="32" cy="140" rx="10" ry="4" fill="#5a8c69" transform="rotate(30 32 140)" opacity="0.8"/>
+        <circle cx="15" cy="220" r="12" fill="#7b5db4" opacity="0.65"/><circle cx="15" cy="220" r="6" fill="#5c3d94"/>
+        <ellipse cx="28" cy="320" rx="9" ry="4" fill="#5a8c69" transform="rotate(-20 28 320)" opacity="0.8"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 80 400" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+      <g opacity="0.8">
+        <circle cx="20" cy="80" r="14" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="80" r="7" fill="#7b5db4"/>
+        <ellipse cx="8" cy="72" rx="8" ry="5" fill="#b89de0" transform="rotate(-20 8 72)"/><ellipse cx="32" cy="72" rx="8" ry="5" fill="#b89de0" transform="rotate(20 32 72)"/>
+        <path d="M20 95 Q15 150 18 220" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="32" cy="140" rx="10" ry="4" fill="#5a8c69" transform="rotate(30 32 140)" opacity="0.8"/>
+        <circle cx="15" cy="220" r="12" fill="#7b5db4" opacity="0.65"/><circle cx="15" cy="220" r="6" fill="#5c3d94"/>
+      </g>
+    </svg>
+    <p class="welcome-text anim-fade-up font-serif">We are Getting Married!</p>
+    <p class="welcome-text anim-fade-up d1" style="font-size:1rem;font-weight:600;">Assalamu'alaikum Warahmatullaahi Wabarakaatuh</p>
+    <p class="welcome-body anim-fade-up d2">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami</p>
+  </div>
+
+
+  <!-- ── PROFIL MEMPELAI ── -->
+  <section id="profil" class="section" style="background:var(--cream); padding:0; min-height:auto;">
+    <div class="profil-wrapper">
+
+      <!-- MEMPELAI WANITA -->
+      <!--
+      ┌───────────────────────────────────────────────────────────────────┐
+      │  BAGIAN 6 — FOTO & DATA MEMPELAI WANITA                          │
+      │  /demo/album/anggra.jpg   → link foto mempelai wanita            │
+      │  Anggra        → nama panggil (script besar)                     │
+      │  ANGGRAINITA   → nama lengkap (kapital)                          │
+      │  Satim         → nama bapak kandung                              │
+      │  Sumini        → nama ibu kandung                                │
+      └───────────────────────────────────────────────────────────────────┘
+      -->
+      <div class="mempelai-card" style="background:var(--cream); position:relative; overflow:hidden;">
+        <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+          <g opacity="0.9">
+            <circle cx="20" cy="100" r="16" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="100" r="8" fill="#7b5db4"/>
+            <ellipse cx="6" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 6 91)"/><ellipse cx="34" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(25 34 91)"/>
+            <ellipse cx="10" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(-50 10 82)"/><ellipse cx="30" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(50 30 82)"/>
+            <ellipse cx="10" cy="114" rx="9" ry="6" fill="#d0beff" transform="rotate(-25 10 114)"/><ellipse cx="30" cy="114" rx="9" ry="6" fill="#d0beff" transform="rotate(25 30 114)"/>
+            <path d="M20 116 Q14 200 18 320" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <ellipse cx="34" cy="185" rx="12" ry="5" fill="#5a8c69" transform="rotate(30 34 185)" opacity="0.8"/>
+            <circle cx="55" cy="240" r="9" fill="#c8aef0" opacity="0.7"/><circle cx="55" cy="240" r="5" fill="#9b7fd4"/>
+            <circle cx="15" cy="320" r="14" fill="#7b5db4" opacity="0.7"/><circle cx="15" cy="320" r="7" fill="#5c3d94"/>
+            <ellipse cx="4" cy="310" rx="8" ry="5" fill="#9b7fd4" transform="rotate(-20 4 310)"/><ellipse cx="26" cy="310" rx="8" ry="5" fill="#9b7fd4" transform="rotate(20 26 310)"/>
+            <path d="M18 320 Q14 400 18 460" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <ellipse cx="32" cy="390" rx="11" ry="5" fill="#6a9c79" transform="rotate(40 32 390)" opacity="0.8"/>
+            <circle cx="55" cy="440" r="10" fill="#e8946a" opacity="0.65"/>
+          </g>
+        </svg>
+        <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+          <g opacity="0.9">
+            <circle cx="20" cy="100" r="16" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="100" r="8" fill="#7b5db4"/>
+            <ellipse cx="6" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 6 91)"/><ellipse cx="34" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(25 34 91)"/>
+            <ellipse cx="10" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(-50 10 82)"/><ellipse cx="30" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(50 30 82)"/>
+            <path d="M20 116 Q14 200 18 320" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <ellipse cx="34" cy="185" rx="12" ry="5" fill="#5a8c69" transform="rotate(30 34 185)" opacity="0.8"/>
+            <circle cx="15" cy="320" r="14" fill="#7b5db4" opacity="0.7"/><circle cx="15" cy="320" r="7" fill="#5c3d94"/>
+            <path d="M18 320 Q14 400 18 460" stroke="#4a7c59" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <p class="s-label anim-fade-up" style="color:var(--lavender);">Mempelai Wanita</p>
+        <div class="arch-photo anim-zoom d1">
+          <img src="/demo/album/anggra.jpg" alt="Mempelai Wanita">
+        </div>
+        <p class="mempelai-nickname anim-fade-up d2">Anggra</p>
+        <p class="mempelai-fullname anim-fade-up d3">ANGGRAINITA</p>
+        <p class="mempelai-ortu anim-fade-up d4">Putri dari Bapak Satim<br>& Ibu Sumini</p>
+        <!-- ⚠️ NOTE TAMBAHAN: tombol Instagram tidak ada di sage_green, ini fitur baru template ini.
+             Ganti @username_instagram_wanita dengan username Instagram mempelai wanita.
+             Jika tidak ada Instagram, hapus blok <a> di bawah ini. -->
+        <a href="https://instagram.com/username_instagram_wanita" target="_blank" style="margin-top:16px; display:inline-flex; align-items:center; gap:8px; background:var(--lavender); color:#fff; padding:9px 22px; border-radius:50px; font-size:0.82rem; letter-spacing:1px; text-decoration:none;">
+          📸 Instagram
+        </a>
+      </div>
+
+      <!-- MEMPELAI PRIA -->
+      <!--
+      ┌───────────────────────────────────────────────────────────────────┐
+      │  BAGIAN 7 — FOTO & DATA MEMPELAI PRIA                            │
+      │  /demo/album/pembri.jpg   → link foto mempelai pria              │
+      │  Pembri        → nama panggil (script besar)                     │
+      │  AHMAD SUPEMBRI→ nama lengkap (kapital)                          │
+      │  Husin         → nama bapak kandung                              │
+      │  Mujayanah     → nama ibu kandung                                │
+      └───────────────────────────────────────────────────────────────────┘
+      -->
+      <div class="mempelai-card" style="background:var(--lavender-pale); position:relative; overflow:hidden;">
+        <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+          <g opacity="0.9">
+            <circle cx="20" cy="100" r="16" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="100" r="8" fill="#7b5db4"/>
+            <ellipse cx="6" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 6 91)"/><ellipse cx="34" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(25 34 91)"/>
+            <ellipse cx="10" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(-50 10 82)"/><ellipse cx="30" cy="82" rx="9" ry="6" fill="#c0aef0" transform="rotate(50 30 82)"/>
+            <path d="M20 116 Q14 200 18 320" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <ellipse cx="34" cy="185" rx="12" ry="5" fill="#5a8c69" transform="rotate(30 34 185)" opacity="0.8"/>
+            <circle cx="15" cy="320" r="14" fill="#7b5db4" opacity="0.7"/><circle cx="15" cy="320" r="7" fill="#5c3d94"/>
+            <path d="M18 320 Q14 380 18 460" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <ellipse cx="32" cy="390" rx="11" ry="5" fill="#6a9c79" transform="rotate(40 32 390)" opacity="0.8"/>
+          </g>
+        </svg>
+        <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+          <g opacity="0.9">
+            <circle cx="20" cy="100" r="16" fill="#9b7fd4" opacity="0.7"/><circle cx="20" cy="100" r="8" fill="#7b5db4"/>
+            <ellipse cx="6" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(-25 6 91)"/><ellipse cx="34" cy="91" rx="9" ry="6" fill="#b89de0" transform="rotate(25 34 91)"/>
+            <path d="M20 116 Q14 200 18 320" stroke="#4a7c59" stroke-width="2" fill="none"/>
+            <circle cx="15" cy="320" r="14" fill="#7b5db4" opacity="0.7"/><circle cx="15" cy="320" r="7" fill="#5c3d94"/>
+            <path d="M18 320 Q14 380 18 460" stroke="#4a7c59" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <!-- Decorative S initial -->
+        <p class="s-label anim-fade-up" style="color:var(--lavender);">Mempelai Pria</p>
+        <div class="arch-photo anim-zoom d1">
+          <img src="/demo/album/pembri.jpg" alt="Mempelai Pria">
+        </div>
+        <p class="mempelai-nickname anim-fade-up d2">Pembri</p>
+        <p class="mempelai-fullname anim-fade-up d3">AHMAD SUPEMBRI</p>
+        <p class="mempelai-ortu anim-fade-up d4">Putra dari Bapak Husin<br>& Ibu Mujayanah</p>
+        <!-- ⚠️ NOTE TAMBAHAN: Ganti @username_instagram_pria dengan username Instagram mempelai pria.
+             Jika tidak ada Instagram, hapus blok <a> di bawah ini. -->
+        <a href="https://instagram.com/username_instagram_pria" target="_blank" style="margin-top:16px; display:inline-flex; align-items:center; gap:8px; background:var(--lavender); color:#fff; padding:9px 22px; border-radius:50px; font-size:0.82rem; letter-spacing:1px; text-decoration:none;">
+          📸 Instagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── QUOTE / FOTO BERDUA + AYAT ── -->
+  <section class="quote-section" style="position:relative; overflow:hidden;">
+    <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+      <g opacity="0.7">
+        <circle cx="20" cy="80" r="12" fill="#9b7fd4" opacity="0.6"/><path d="M20 92 Q16 180 20 300" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="34" cy="160" rx="10" ry="4" fill="#5a8c69" transform="rotate(25 34 160)" opacity="0.8"/>
+        <circle cx="18" cy="300" r="14" fill="#7b5db4" opacity="0.65"/>
+        <circle cx="42" cy="400" r="8" fill="#c8aef0" opacity="0.6"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+      <g opacity="0.7">
+        <circle cx="20" cy="80" r="12" fill="#9b7fd4" opacity="0.6"/><path d="M20 92 Q16 180 20 300" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="34" cy="160" rx="10" ry="4" fill="#5a8c69" transform="rotate(25 34 160)" opacity="0.8"/>
+        <circle cx="18" cy="300" r="14" fill="#7b5db4" opacity="0.65"/>
+      </g>
+    </svg>
+    <!-- Foto berdua -->
+    <div class="couple-photo-wide anim-zoom">
+      <img src="/demo/album/wedding.jpg" alt="Foto Pasangan">
+    </div>
+    <!-- Monogram -->
+    <div class="couple-initials anim-fade-up d1">
+      <span style="font-weight:300;">A</span>
+      <span class="couple-initials-amp">ℒ</span>
+      <span style="font-weight:300;">S</span>
+    </div>
+    <p class="ayat-text anim-fade-up d2">
+      Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
+    </p>
+    <p class="ayat-ref anim-fade-up d3">QS. Ar-Rum Ayat 21</p>
+  </section>
+
+
+  <!-- ── COUNTDOWN ── -->
+  <section id="countdown" class="section countdown-section" style="background:var(--lavender-bg);">
+    <!-- Bouquet SVG icon -->
+    <svg class="bouquet-icon anim-fade-up" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bouquet flowers -->
+      <circle cx="60" cy="40" r="18" fill="#9b7fd4" opacity="0.85"/>
+      <circle cx="60" cy="40" r="9" fill="#7b5db4"/>
+      <ellipse cx="42" cy="32" rx="10" ry="7" fill="#b89de0" transform="rotate(-20 42 32)"/>
+      <ellipse cx="78" cy="32" rx="10" ry="7" fill="#b89de0" transform="rotate(20 78 32)"/>
+      <ellipse cx="50" cy="22" rx="10" ry="7" fill="#c8aef0" transform="rotate(-45 50 22)"/>
+      <ellipse cx="70" cy="22" rx="10" ry="7" fill="#c8aef0" transform="rotate(45 70 22)"/>
+      <ellipse cx="45" cy="52" rx="10" ry="7" fill="#d0beff" transform="rotate(-25 45 52)"/>
+      <ellipse cx="75" cy="52" rx="10" ry="7" fill="#d0beff" transform="rotate(25 75 52)"/>
+      <!-- Side flowers -->
+      <circle cx="32" cy="55" r="13" fill="#7b5db4" opacity="0.8"/>
+      <circle cx="32" cy="55" r="6" fill="#5c3d94"/>
+      <circle cx="88" cy="55" r="13" fill="#7b5db4" opacity="0.8"/>
+      <circle cx="88" cy="55" r="6" fill="#5c3d94"/>
+      <!-- Small accent -->
+      <circle cx="22" cy="75" r="8" fill="#e8946a" opacity="0.7"/>
+      <circle cx="98" cy="75" r="8" fill="#e8946a" opacity="0.7"/>
+      <!-- Ribbon stem -->
+      <path d="M50 70 Q48 100 42 120 Q60 108 78 120 Q72 100 70 70 Q60 80 50 70Z" fill="#c8a0c8" opacity="0.6"/>
+      <!-- Leaves -->
+      <ellipse cx="38" cy="88" rx="12" ry="5" fill="#4a7c59" transform="rotate(-30 38 88)" opacity="0.8"/>
+      <ellipse cx="82" cy="88" rx="12" ry="5" fill="#4a7c59" transform="rotate(30 82 88)" opacity="0.8"/>
+    </svg>
+
+    <h2 class="font-script s-title light anim-fade-up d1">Save the Date</h2>
+
+    <div class="cd-wrap anim-zoom d2">
+      <div class="cd-box">
+        <span class="cd-num" id="cd-hari">00</span>
+        <span class="cd-lbl">Hari</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-jam">00</span>
+        <span class="cd-lbl">Jam</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-menit">00</span>
+        <span class="cd-lbl">Menit</span>
+      </div>
+      <div class="cd-box">
+        <span class="cd-num" id="cd-detik">00</span>
+        <span class="cd-lbl">Detik</span>
+      </div>
+    </div>
+
+    <p class="anim-fade-up d3" style="font-size:0.85rem; color:rgba(255,255,255,0.85); line-height:1.7; max-width:320px;">
+      Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami pada:
+    </p>
+  </section>
+
+
+  <!-- ── ACARA ── -->
+  <section id="acara" class="section acara-section" style="min-height:auto; padding:40px 20px;">
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 8 — INFO AKAD NIKAH                                      │
+    │  MINGGU     → hari acara (HURUF BESAR)                           │
+    │  31 DESEMBER 2026 → tanggal lengkap (HURUF BESAR)               │
+    │  08.00      → jam mulai                                          │
+    │  10.00      → jam selesai                                        │
+    │  AUDITORIUM MASJID  → nama venue (HURUF BESAR)                  │
+    │  Jalan Raya...      → alamat lengkap                             │
+    │  https://maps.app.goo.gl/... → link Google Maps lokasi akad     │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="acara-card anim-zoom">
+      <div class="acara-type">Akad Nikah</div>
+      <div class="acara-day">RABU</div>
+      <div class="acara-date">02 NOVEMBER 2022</div>
+      <div class="acara-time">09.00 - Selesai WIB</div>
+      <div class="acara-loc-icon">📍</div>
+      <div class="acara-venue">KUA KABUH</div>
+      <div class="acara-address">Ds.Karangpakis Kec.Kabuh Kab.Jombang</div>
+      <a href="https://maps.app.goo.gl/x3AGHRj9CUUv99uw8?g_st=ac" target="_blank" class="btn-maps">
+        ↗ Google Maps
+      </a>
+    </div>
+
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 9 — INFO RESEPSI                                         │
+    │  MINGGU     → hari acara (HURUF BESAR)                           │
+    │  31 DESEMBER 2026 → tanggal lengkap (HURUF BESAR)               │
+    │  11.00      → jam mulai                                          │
+    │  17.00      → jam selesai                                        │
+    │  KEDIAMAN MEMPELAI WANITA → nama venue (HURUF BESAR)            │
+    │  Dsn.Karangjati...        → alamat lengkap                       │
+    │  https://maps.app.goo.gl/... → link Google Maps lokasi resepsi  │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="acara-card anim-zoom d2">
+      <div class="acara-type">Resepsi</div>
+      <div class="acara-day">RABU</div>
+      <div class="acara-date">22 NOVEMBER 2022</div>
+      <div class="acara-time">11.00 - Selesai WIB</div>
+      <div class="acara-loc-icon">📍</div>
+      <div class="acara-venue">KEDIAMAN MEMPELAI WANITA</div>
+      <div class="acara-address">Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang</div>
+      <a href="https://maps.app.goo.gl/x3AGHRj9CUUv99uw8?g_st=ac" target="_blank" class="btn-maps">
+        ↗ Google Maps
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ── GALERI ── -->
+  <section id="galeri" class="galeri-section">
+    <h2 class="font-script s-title light anim-fade-up" style="padding: 0 20px; margin-bottom:20px;">Our Gallery</h2>
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 10 — FOTO GALERI (grid 2 kolom)                          │
+    │  Ganti 6 link foto di bawah dengan link foto prewedding          │
+    │  ✅ Bisa TAMBAH: copy paste <div class="galeri-item">...         │
+    │  ✅ Bisa KURANGI: hapus <div class="galeri-item">...             │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="galeri-grid">
+      <div class="galeri-item anim-zoom"><img src="/demo/album/background.jpg" alt="Foto 1"></div>
+      <div class="galeri-item anim-zoom d1"><img src="/demo/album/wedding.jpg" alt="Foto 2"></div>
+      <div class="galeri-item anim-zoom d2"><img src="/demo/album/wedding2.jpg" alt="Foto 3"></div>
+      <div class="galeri-item anim-zoom d3"><img src="/demo/album/wedding3.jpg" alt="Foto 4"></div>
+      <div class="galeri-item anim-zoom d4"><img src="/demo/album/wedding4.jpg" alt="Foto 5"></div>
+      <div class="galeri-item anim-zoom d5"><img src="/demo/album/background.jpg" alt="Foto 6"></div>
+    </div>
+  </section>
+
+
+  <!-- ── LOKASI ── -->
+  <section id="lokasi" class="section lokasi-section" style="position:relative; overflow:hidden;">
+    <svg viewBox="0 0 80 400" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+      <g opacity="0.6">
+        <circle cx="20" cy="80" r="14" fill="#9b7fd4" opacity="0.7"/><path d="M20 94 Q14 200 18 340" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="35" cy="180" rx="10" ry="4" fill="#5a8c69" transform="rotate(30 35 180)" opacity="0.8"/>
+        <circle cx="15" cy="300" r="12" fill="#7b5db4" opacity="0.65"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 80 400" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+      <g opacity="0.6">
+        <circle cx="20" cy="80" r="14" fill="#9b7fd4" opacity="0.7"/><path d="M20 94 Q14 200 18 340" stroke="#4a7c59" stroke-width="1.5" fill="none"/>
+        <ellipse cx="35" cy="180" rx="10" ry="4" fill="#5a8c69" transform="rotate(30 35 180)" opacity="0.8"/>
+        <circle cx="15" cy="300" r="12" fill="#7b5db4" opacity="0.65"/>
+      </g>
+    </svg>
+    <p class="s-label anim-fade-up">Lokasi Acara</p>
+    <h2 class="font-script anim-fade-up d1" style="font-size:2rem; color:var(--lavender-deep); margin-bottom:16px;">Peta Lokasi</h2>
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 11 — EMBED GOOGLE MAPS                                   │
+    │  Cara: Google Maps → Share → Embed a map → copy isi src="..."   │
+    │  CONTOH: → https://www.google.com/maps/embed?pb=!1m18!...       │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <iframe class="map-iframe anim-fade-up d2"
+      src="https://maps.google.com/maps?q=J64H%2B9G2,+Karang+Pakis,+Kabupaten+Jombang,+Jawa+Timur&output=embed"
+      allowfullscreen="" loading="lazy"></iframe>
+
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 12 — LINK TOMBOL "PETUNJUK KE LOKASI"                   │
+    │  Cara: Google Maps → Share → Send a link → copy link pendeknya  │
+    │  CONTOH: → https://maps.app.goo.gl/x3AGHRj9CUUv99uw8            │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <a href="https://maps.app.goo.gl/x3AGHRj9CUUv99uw8?g_st=ac" target="_blank" style="text-decoration:none;">
+      <button class="btn-maps anim-fade-up d3" style="background:var(--lavender); border:none; color:#fff; padding:12px 28px; font-size:0.88rem;">
+        ↗ Petunjuk Ke Lokasi
+      </button>
+    </a>
+  </section>
+
+
+  <!-- ── TANDA KASIH / HADIAH ── -->
+  <section id="hadiah" class="section hadiah-section" style="position:relative; overflow:hidden;">
+    <svg viewBox="0 0 80 600" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;height:100%;width:55px;z-index:1;pointer-events:none;">
+      <g opacity="0.7">
+        <circle cx="20" cy="80" r="14" fill="#fff" opacity="0.4"/><path d="M20 94 Q14 300 18 540" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+        <ellipse cx="35" cy="200" rx="10" ry="4" fill="rgba(255,255,255,0.4)" transform="rotate(30 35 200)"/>
+        <circle cx="15" cy="400" r="12" fill="rgba(255,255,255,0.3)"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 80 600" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;height:100%;width:55px;z-index:1;pointer-events:none;transform:scaleX(-1);">
+      <g opacity="0.7">
+        <circle cx="20" cy="80" r="14" fill="#fff" opacity="0.4"/><path d="M20 94 Q14 300 18 540" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+        <circle cx="15" cy="400" r="12" fill="rgba(255,255,255,0.3)"/>
+      </g>
+    </svg>
+
+    <div style="font-size:2.5rem; margin-bottom:8px;" class="anim-fade-up">🎁</div>
+    <h2 class="font-script s-title light anim-fade-up d1">Love Gift</h2>
+    <p class="anim-fade-up d2" style="font-size:0.85rem; color:rgba(255,255,255,0.85); max-width:300px; line-height:1.7; margin-bottom:25px;">
+      Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih kepada kami dapat melalui:
+    </p>
+
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 13 — INFO REKENING (CASHLESS)                            │
+    │  BRI          → nama bank                                        │
+    │  625001039334530 → nomor rekening                                │
+    │  Ahmad Supembri  → nama pemilik rekening                         │
+    │                                                                   │
+    │  ⚠️ NOTE TAMBAHAN: Template ini mendukung 2 rekening (BNI + BCA) │
+    │  Kartu ke-2 bisa dihapus jika hanya 1 rekening.                  │
+    │  Jika lebih dari 2, copy paste blok .rekening-card               │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="rekening-card anim-fade-up d3" style="width:calc(100% - 100px);">
+      <div class="rek-bank-logo">🏦 BRI</div>
+      <div class="rek-number" id="noRek1">625001039334530</div>
+      <div class="rek-name">Ahmad Supembri</div>
+      <button class="btn-salin" onclick="salinRek('noRek1')">📋 Salin</button>
+    </div>
+
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  INFO REKENING KEDUA (OPSIONAL)                                   │
+    │  Hapus blok ini jika hanya 1 rekening                             │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="rekening-card anim-fade-up d4" style="width:calc(100% - 100px); margin-top:12px;">
+      <div class="rek-bank-logo">🏦 BCA</div>
+      <div class="rek-number" id="noRek2">1234567890</div>
+      <div class="rek-name">Ahmad Supembri</div>
+      <button class="btn-salin" onclick="salinRek('noRek2')">📋 Salin</button>
+    </div>
+
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 14 — KIRIM KADO & KONFIRMASI WHATSAPP                    │
+    │  Nama Penerima  → nama penerima kado                             │
+    │  08123456789    → nomor WA/HP penerima (format 08xxx)            │
+    │  Alamat...      → alamat pengiriman kado                         │
+    │  6285748949707  → nomor WA konfirmasi (format 62xxx)             │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="kado-card anim-fade-up d5" style="width:calc(100% - 100px); margin-top:12px;">
+      <div style="font-size:1.5rem; margin-bottom:8px;">🎀</div>
+      <div class="kado-title">Kirim Kado</div>
+      <div class="kado-address">
+        Nama Penerima: Ahmad Supembri<br>
+        No. Penerima: 085748949707<br>
+        Alamat: Dsn.Karangjati Ds.Karangpakis Kec.Kabuh Kab.Jombang
+      </div>
+      <a href="https://wa.me/6285748949707?text=Halo%2C+saya+ingin+mengkonfirmasi+pengiriman+kado+%F0%9F%8E%81" target="_blank" class="btn-wa">
+        💬 Konfirmasi WhatsApp
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ── UCAPAN & RSVP ── -->
+  <section id="ucapan" class="ucapan-section">
+    <div style="font-family:'Great Vibes',cursive; font-size:2.5rem; color:var(--lavender-deep); margin-bottom:4px;" class="anim-fade-up">RSV & Doa</div>
+    <p class="anim-fade-up d1" style="font-size:0.85rem; color:#999; margin-bottom:16px;">Ucapan Selamat & Do'a</p>
+    <div class="ucapan-count anim-fade-up d2">
+      💬 <span id="jumlahUcapan">0</span> Ucapan
+    </div>
+    <!--
+        Form ucapan & RSVP sudah OTOMATIS terhubung ke Firebase.
+        TIDAK PERLU DIUBAH apapun di bagian form ini.
+    -->
+    <div class="form-box anim-fade-up d3">
+      <input type="text" id="inputNama" placeholder="Tamu Undangan" maxlength="50">
+      <select id="inputKehadiran">
+        <option value="" disabled selected>Konfirmasi Kehadiran</option>
+        <option value="Hadir">✅ Hadir</option>
+        <option value="Tidak Hadir">❌ Tidak Hadir</option>
+        <option value="Masih Ragu">🤔 Masih Ragu</option>
+      </select>
+      <textarea id="inputPesan" placeholder="Tulis ucapan..." maxlength="200" oninput="updateChar()"></textarea>
+      <div class="char-count"><span id="charCount">0</span>/200</div>
+      <button class="btn-kirim" id="btnKirim" onclick="kirimUcapan()">Kirim ✈️</button>
+    </div>
+    <div class="wish-list" id="wishesList">
+      <p style="text-align:center; color:#ccc; font-size:0.85rem;">Memuat ucapan...</p>
+    </div>
+  </section>
+
+
+  <!-- ── PENUTUP ── -->
+  <section class="penutup-section">
+    <!--
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  BAGIAN 13b — FOTO BERDUA (background full section penutup)      │
+    │  Ganti /demo/album/wedding.jpg dengan link foto pasangan         │
+    │  CONTOH: → https://i.ibb.co/xyz789/couple.jpg                   │
+    └───────────────────────────────────────────────────────────────────┘
+    -->
+    <div class="penutup-bg" style="background-image:url('/demo/album/wedding.jpg');"></div>
+    <div class="penutup-content anim-fade-up">
+      <p class="penutup-label">Terima Kasih</p>
+      <h2 class="penutup-thanks">Terima Kasih</h2>
+      <p class="penutup-sub">Kami Yang Berbahagia</p>
+      <p class="penutup-names">Anggra & Pembri</p>
+      <!--
+      ┌───────────────────────────────────────────────────────────────────┐
+      │  BAGIAN 14b — NAMA BRAND / WEBSITE (kredit di bawah)            │
+      │  CONTOH: → riradigital.my.id                                    │
+      └───────────────────────────────────────────────────────────────────┘
+      -->
+      <p class="brand-credit">riradigital.my.id</p>
+    </div>
+  </section>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+
+<!-- ═══════════ FIREBASE ═══════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAqi-twRPE9IuVu3msYtUZjJEFMHuMwrdQ",
+    authDomain:        "undangan-online-5ae33.firebaseapp.com",
+    projectId:         "undangan-online-5ae33",
+    storageBucket:     "undangan-online-5ae33.firebasestorage.app",
+    messagingSenderId: "51791632815",
+    appId:             "1:51791632815:web:d542ade36077bf6e5fb75a"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  /*
+  ╔═══════════════════════════════════════════════════════════════════════╗
+  ║  ░░░  BAGIAN 15 — NAMA KOLEKSI FIREBASE  ░░░  ← WAJIB GANTI!       ║
+  ╠═══════════════════════════════════════════════════════════════════════╣
+  ║  FORMAT  : "ucapan_[namawanita]_[namapria]"                          ║
+  ║  CONTOH  : Anggra & Pembri → "ucapan_anggra_pembri"                 ║
+  ║  ⚠️ WAJIB BERBEDA tiap klien! Huruf kecil semua, tanpa spasi.       ║
+  ╚═══════════════════════════════════════════════════════════════════════╝
+  */
+  const KOLEKSI = "ucapan_anggra_pembri";
+
+  function timeAgo(date) {
+    const diff = Math.floor((Date.now() - date) / 1000);
+    if (diff < 60)      return 'Baru saja';
+    if (diff < 3600)    return Math.floor(diff/60) + ' menit yang lalu';
+    if (diff < 86400)   return Math.floor(diff/3600) + ' jam yang lalu';
+    if (diff < 2592000) return Math.floor(diff/86400) + ' hari yang lalu';
+    return date.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+  }
+
+  window.kirimUcapan = async function() {
+    const nama      = document.getElementById('inputNama').value.trim();
+    const kehadiran = document.getElementById('inputKehadiran').value;
+    const pesan     = document.getElementById('inputPesan').value.trim();
+    const btn       = document.getElementById('btnKirim');
+    if (!nama || !kehadiran || !pesan) { alert('Mohon isi semua kolom ya! 🙏'); return; }
+    btn.disabled = true; btn.textContent = 'Mengirim...';
+    try {
+      await addDoc(collection(db, KOLEKSI), { nama, kehadiran, pesan, timestamp: serverTimestamp() });
+      document.getElementById('inputNama').value = '';
+      document.getElementById('inputKehadiran').value = '';
+      document.getElementById('inputPesan').value = '';
+      document.getElementById('charCount').textContent = '0';
+      btn.textContent = 'Terkirim ✅';
+      setTimeout(() => { btn.disabled = false; btn.innerHTML = 'Kirim ✈️'; }, 2000);
+      loadUcapan();
+    } catch(e) {
+      alert('Gagal mengirim, coba lagi.');
+      btn.disabled = false; btn.innerHTML = 'Kirim ✈️';
+    }
+  };
+
+  window.loadUcapan = async function() {
+    const list = document.getElementById('wishesList');
+    try {
+      const q    = query(collection(db, KOLEKSI), orderBy("timestamp","desc"));
+      const snap = await getDocs(q);
+      document.getElementById('jumlahUcapan').textContent = snap.size;
+      if (snap.empty) {
+        list.innerHTML = '<p style="text-align:center;color:#ccc;font-size:0.85rem;">Belum ada ucapan. Jadilah yang pertama! 💐</p>';
+        return;
+      }
+      list.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const waktu = d.timestamp ? timeAgo(d.timestamp.toDate()) : '';
+        const badgeClass = d.kehadiran === 'Hadir' ? 'badge-hadir' : d.kehadiran === 'Tidak Hadir' ? 'badge-tidak' : 'badge-ragu';
+        const inisial = d.nama ? d.nama[0].toUpperCase() : '?';
+        list.innerHTML += `
+          <div class="wish-card">
+            <div class="wish-head">
+              <div class="wish-avatar">${inisial}</div>
+              <span class="wish-name">${d.nama}</span>
+              <span class="${badgeClass}">${d.kehadiran}</span>
+            </div>
+            <div class="wish-time">🕐 ${waktu}</div>
+            <div class="wish-msg">${d.pesan}</div>
+          </div>`;
+      });
+    } catch(e) {
+      list.innerHTML = '<p style="text-align:center;color:#ccc;font-size:0.85rem;">Gagal memuat ucapan.</p>';
+    }
+  };
+
+  loadUcapan();
+</script>
+
+
+<script>
+  /* ─── COUNTDOWN
+  ╔═══════════════════════════════════════════════════════════════════════╗
+  ║  ░░░  BAGIAN 16 — TANGGAL PERNIKAHAN UNTUK COUNTDOWN TIMER  ░░░     ║
+  ╠═══════════════════════════════════════════════════════════════════════╣
+  ║  Ganti TAHUN, BULAN, TANGGAL sesuai tanggal pernikahan klien.       ║
+  ║  ⚠️ BULAN DIHITUNG MULAI DARI 0 (NOL):                              ║
+  ║  Jan=0  Feb=1  Mar=2  Apr=3  Mei=4  Jun=5                           ║
+  ║  Jul=6  Agu=7  Sep=8  Okt=9  Nov=10 Des=11                          ║
+  ║  CONTOH: Nikah 2 Nov 2022 → new Date(2022, 10, 2)                   ║
+  ╚═══════════════════════════════════════════════════════════════════════╝
+  */
+  const TANGGAL_NIKAH = new Date(2022, 10, 2); // ← GANTI: new Date(TAHUN, BULAN, TANGGAL)
+
+  function updateCountdown() {
+    const diff = TANGGAL_NIKAH - new Date();
+    if (diff <= 0) {
+      document.querySelector('.cd-wrap').innerHTML = '<p style="color:#fff;font-size:1.2rem;text-align:center;">🎉 Hari Bahagia Telah Tiba!</p>';
+      return;
+    }
+    document.getElementById('cd-hari').textContent   = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+    document.getElementById('cd-jam').textContent    = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    document.getElementById('cd-menit').textContent  = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+    document.getElementById('cd-detik').textContent  = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  /* ─── SALIN REKENING ─── */
+  function salinRek(id) {
+    const noRek = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(noRek).then(() => {
+      alert('Nomor rekening ' + noRek + ' berhasil disalin! ✅');
+    }).catch(() => {
+      prompt('Salin nomor rekening berikut:', noRek);
+    });
+  }
+
+  /* ─── NAMA TAMU DARI URL ─── */
+  function setNamaTamu() {
+    const p = new URLSearchParams(window.location.search);
+    let nama = p.get('to');
+    if (nama) {
+      nama = nama.replace(/[_-]/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+      document.getElementById('namaTamu').innerText = nama;
+    }
+  }
+
+  /* ─── BUKA UNDANGAN ─── */
+  function bukaUndangan() {
+    const overlay = document.getElementById('trans-overlay');
+    overlay.classList.add('show');
+    document.getElementById('bgMusic').play().catch(()=>{});
+    document.getElementById('musicBtn').style.display = 'flex';
+    document.getElementById('musicBtn').classList.add('spin');
+    setTimeout(() => {
+      document.getElementById('cover').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+      window.scrollTo(0, 0);
+      overlay.classList.remove('show');
+      initScrollAnim();
+    }, 400);
+  }
+
+  /* ─── MUSIK ─── */
+  function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn   = document.getElementById('musicBtn');
+    if (audio.paused) {
+      audio.play();
+      btn.classList.add('spin');
+      btn.innerHTML = '🎵';
+    } else {
+      audio.pause();
+      btn.classList.remove('spin');
+      btn.innerHTML = '🔇';
+    }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  function initScrollAnim() {
+    const items = document.querySelectorAll('.anim-fade-up, .anim-fade, .anim-zoom, .anim-left, .anim-right');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(el => obs.observe(el));
+  }
+
+  /* ─── CHAR COUNTER ─── */
+  function updateChar() {
+    document.getElementById('charCount').textContent = document.getElementById('inputPesan').value.length;
+  }
+
+  window.onload = setNamaTamu;
+</script>
+
+</body>
+</html>
