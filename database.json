@@ -1,5 +1,14 @@
 [
   {
+    "id": 1780846237975,
+    "name": "Green Elegance",
+    "price": "100.000",
+    "category": "wedding",
+    "image": "/assets/product/green_elegance.png",
+    "demoUrl": "https://riradigital.my.id/demo/wedding/green_elegance",
+    "whatsapp": "6288231198485"
+  },
+  {
     "id": 1780656525195,
     "name": "Purple Floral",
     "price": "100.000",
