@@ -87,28 +87,13 @@ html, body {
 }
 
 
-/* ══ FLORAL CORNER FRAMES ══ */
-/* Hapus sec-corner lama, ganti floral SVG */
-.floral-frame {
-    position:absolute;inset:0;pointer-events:none;z-index:3;
-}
-/* Sudut floral SVG — injected via JS */
+/* ══ FLORAL CORNER FRAMES — fixed to app corners ══ */
 .fc {
-    position:absolute;width:80px;height:80px;pointer-events:none;z-index:3;
+    position:fixed;
+    width:72px;height:72px;
+    pointer-events:none;z-index:490;
 }
-.fc.tl { top:4px;left:4px; }
-.fc.tr { top:4px;right:4px;transform:scaleX(-1); }
-.fc.bl { bottom:70px;left:4px;transform:scaleY(-1); }
-.fc.br { bottom:70px;right:4px;transform:scale(-1); }
-/* Untuk cover section bl/br tidak perlu offset nav */
-.cover-fc.bl { bottom:4px;left:4px;transform:scaleY(-1); }
-.cover-fc.br { bottom:4px;right:4px;transform:scale(-1); }
-/* Garis bingkai tipis di dalam */
-.inner-border {
-    position:absolute;inset:12px;
-    border:1px solid rgba(212,175,55,0.18);
-    pointer-events:none;z-index:2;
-}
+.inner-border { display:none; }
 
 
 /* ══ HATI BERSINAR — pojok atas selang-seling ══ */
@@ -1235,38 +1220,33 @@ function floralSVG(color1, color2) {
 }
 
 function injectFloralCorners() {
-    // Cover section
-    const cover = document.getElementById('cover-section');
-    if (cover) {
-        ['tl','tr','bl','br'].forEach(pos => {
-            const d = document.createElement('div');
-            d.className = `fc cover-fc ${pos}`;
-            d.style.cssText = 'position:absolute;width:80px;height:80px;pointer-events:none;z-index:3;';
-            if(pos==='tl'){d.style.top='4px';d.style.left='4px';}
-            if(pos==='tr'){d.style.top='4px';d.style.right='4px';d.style.transform='scaleX(-1)';}
-            if(pos==='bl'){d.style.bottom='4px';d.style.left='4px';d.style.transform='scaleY(-1)';}
-            if(pos==='br'){d.style.bottom='4px';d.style.right='4px';d.style.transform='scale(-1)';}
-            d.innerHTML = floralSVG('#d4af37','#cc2020');
-            cover.appendChild(d);
-        });
+    const app = document.querySelector('.app');
+    const navH = 65;
+
+    function setCornerPos(el, pos) {
+        const r = app.getBoundingClientRect();
+        el.style.position = 'fixed';
+        el.style.width = '72px';
+        el.style.height = '72px';
+        if (pos === 'tl') { el.style.top = r.top + 'px'; el.style.left = r.left + 'px'; }
+        if (pos === 'tr') { el.style.top = r.top + 'px'; el.style.left = (r.right - 72) + 'px'; el.style.transform = 'scaleX(-1)'; }
+        if (pos === 'bl') { el.style.top = (window.innerHeight - navH - 72) + 'px'; el.style.left = r.left + 'px'; el.style.transform = 'scaleY(-1)'; }
+        if (pos === 'br') { el.style.top = (window.innerHeight - navH - 72) + 'px'; el.style.left = (r.right - 72) + 'px'; el.style.transform = 'scale(-1)'; }
     }
-    // All sections in main content
-    document.querySelectorAll('#main-content section, #main-content #cover-clean').forEach(sec => {
-        ['tl','tr','bl','br'].forEach(pos => {
-            const d = document.createElement('div');
-            d.className = `fc ${pos}`;
-            d.style.cssText = 'position:absolute;width:72px;height:72px;pointer-events:none;z-index:3;';
-            if(pos==='tl'){d.style.top='4px';d.style.left='4px';}
-            if(pos==='tr'){d.style.top='4px';d.style.right='4px';d.style.transform='scaleX(-1)';}
-            if(pos==='bl'){d.style.bottom='70px';d.style.left='4px';d.style.transform='scaleY(-1)';}
-            if(pos==='br'){d.style.bottom='70px';d.style.right='4px';d.style.transform='scale(-1)';}
-            d.innerHTML = floralSVG('#d4af37','#cc2020');
-            sec.appendChild(d);
-        });
-        // Inner border line
-        const ib = document.createElement('div');
-        ib.className = 'inner-border';
-        sec.appendChild(ib);
+
+    const corners = {};
+    ['tl','tr','bl','br'].forEach(pos => {
+        const d = document.createElement('div');
+        d.className = `fc ${pos}`;
+        d.innerHTML = floralSVG('#d4af37','#cc2020');
+        setCornerPos(d, pos);
+        app.appendChild(d);
+        corners[pos] = d;
+    });
+
+    // Reposition on resize
+    window.addEventListener('resize', () => {
+        ['tl','tr','bl','br'].forEach(pos => setCornerPos(corners[pos], pos));
     });
 }
 
