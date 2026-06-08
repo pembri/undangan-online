@@ -622,7 +622,7 @@ html, body {
 <div class="app">
 
 <audio id="bg-music" loop preload="auto">
-    <source src="https://riradigital.my.id/backsound/kawitaning-sinawang.mp3" type="audio/mpeg">
+    <source src="https://riradigital.my.id/backsound/janji-suci.mp3" type="audio/mpeg">
 </audio>
 <div id="music-control" class="music-control" onclick="toggleMusic()">🎵</div>
 
@@ -970,32 +970,34 @@ html, body {
         <p class="fade-up" style="font-size:.68rem;font-weight:700;color:var(--red);margin-top:12px;letter-spacing:2px;font-family:'Cinzel',serif;position:relative;z-index:2">riradigital.my.id</p>
     </section>
 
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav" id="bottomNav">
-        <a href="#profil" class="nav-item active" data-section="profil">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profil
-        </a>
-        <a href="#countdown" class="nav-item" data-section="countdown">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>Hitung
-        </a>
-        <a href="#acara" class="nav-item" data-section="acara">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Acara
-        </a>
-        <a href="#galeri" class="nav-item" data-section="galeri">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Galeri
-        </a>
-        <a href="#lokasi" class="nav-item" data-section="lokasi">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Lokasi
-        </a>
-        <a href="#hadiah" class="nav-item" data-section="hadiah">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Hadiah
-        </a>
-        <a href="#ucapan" class="nav-item" data-section="ucapan">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Ucapan
-        </a>
-    </nav>
 
 </div><!-- /main-content -->
+
+<!-- BOTTOM NAV — di luar main-content, selalu fixed, disembunyikan dulu -->
+<nav class="bottom-nav" id="bottomNav" style="display:none">
+    <a href="#profil" class="nav-item active" data-section="profil">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profil
+    </a>
+    <a href="#countdown" class="nav-item" data-section="countdown">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>Hitung
+    </a>
+    <a href="#acara" class="nav-item" data-section="acara">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Acara
+    </a>
+    <a href="#galeri" class="nav-item" data-section="galeri">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Galeri
+    </a>
+    <a href="#lokasi" class="nav-item" data-section="lokasi">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Lokasi
+    </a>
+    <a href="#hadiah" class="nav-item" data-section="hadiah">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Hadiah
+    </a>
+    <a href="#ucapan" class="nav-item" data-section="ucapan">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Ucapan
+    </a>
+</nav>
+
 </div><!-- /app -->
 
 <!-- FIREBASE -->
@@ -1091,6 +1093,7 @@ function bukaUndangan(){
     setTimeout(()=>{
         cover.style.display='none';
         document.getElementById('main-content').style.display='block';
+        document.getElementById('bottomNav').style.display='flex';
         window.scrollTo(0,0);
         initScroll();
         initNavHighlight();
